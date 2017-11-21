@@ -2,8 +2,6 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 
 export default (pageContent) => {
-  let content = renderToString(pageContent);
-
   return `
     <!DOCTYPE html>
     <html>
@@ -12,7 +10,7 @@ export default (pageContent) => {
         <title></title>
       </head>
       <body>
-        <div id="root">${content}</div>
+        <div id="root">${pageContent}</div>
         <script src="bundle.js"></script>
       </body>
     </html>

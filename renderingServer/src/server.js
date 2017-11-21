@@ -2,7 +2,7 @@ import express from 'express';
 import React from 'react';
 import htmlTemplate from './htmlTemplate';
 
-import Home from './client/components/Home';
+import index from './index';
 
 const app = express();
 require('dotenv').config({path: '../.env'});
@@ -10,7 +10,7 @@ require('dotenv').config({path: '../.env'});
 app.use(express.static(process.cwd() + '/public'));
 
 app.get('/', function(req, res) {
-  let page = htmlTemplate(<Home/>);
+  let page = htmlTemplate(index(req));
   res.send(page);
 });
 
