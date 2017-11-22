@@ -100,7 +100,7 @@ var _htmlTemplate = __webpack_require__(5);
 
 var _htmlTemplate2 = _interopRequireDefault(_htmlTemplate);
 
-var _index = __webpack_require__(11);
+var _index = __webpack_require__(6);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -151,7 +151,41 @@ exports.default = function (pageContent) {
 };
 
 /***/ }),
-/* 6 */,
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _server = __webpack_require__(1);
+
+var _reactRouterDom = __webpack_require__(2);
+
+var _reactRedux = __webpack_require__(7);
+
+var _routes = __webpack_require__(8);
+
+var _routes2 = _interopRequireDefault(_routes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (req) {
+  return (0, _server.renderToString)(_react2.default.createElement(
+    _reactRouterDom.StaticRouter,
+    { location: req.path, context: {} },
+    _react2.default.createElement(_routes2.default, null)
+  ));
+};
+
+/***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
@@ -221,41 +255,6 @@ exports.default = Home;
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _server = __webpack_require__(1);
-
-var _reactRouterDom = __webpack_require__(2);
-
-var _reactRedux = __webpack_require__(7);
-
-var _routes = __webpack_require__(8);
-
-var _routes2 = _interopRequireDefault(_routes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (req) {
-  return (0, _server.renderToString)(_react2.default.createElement(
-    _reactRouterDom.StaticRouter,
-    { location: req.path, context: {} },
-    _react2.default.createElement(_routes2.default, null)
-  ));
-};
 
 /***/ })
 /******/ ]);
