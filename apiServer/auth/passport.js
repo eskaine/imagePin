@@ -2,8 +2,6 @@ const TwitterStrategy = require('passport-twitter').Strategy;
 const User = require('../models/users');
 const auth = require('./auth');
 
-console.log(process.env);
-
 module.exports = function(passport) {
 
   passport.serializeUser(function(user, done) {

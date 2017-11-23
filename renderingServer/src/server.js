@@ -1,16 +1,19 @@
+import 'babel-polyfill';
 import express from 'express';
 import React from 'react';
-import htmlTemplate from './htmlTemplate';
+import htmlTemplate from './server/htmlTemplate';
+import createStore from './server/createStore';
 
-import index from './index';
+import createApp from './server/index';
 
 const app = express();
 require('dotenv').config({path: '../.env'});
 
 app.use(express.static(process.cwd() + '/public'));
 
-app.get('/', function(req, res) {
-  let page = htmlTemplate(index(req));
+app.get('*', function(req, res) {
+  const store = createStore();
+  const page = htmlTemplate(createApp(req, store));
   res.send(page);
 });
 
