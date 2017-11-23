@@ -30,4 +30,11 @@ function mapStateToProps(state) {
   return {images: state.images};
 }
 
-export default connect(mapStateToProps, { fetchData })(BookList);
+function loadData(store) {
+  return store.dispatch(fetchData());
+}
+
+export default {
+  loadData,
+  component: connect(mapStateToProps, { fetchData })(BookList)
+}

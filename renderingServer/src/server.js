@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import express from 'express';
-import React from 'react';
+import { matchRoutes } from 'react-router-config';
+import routes from './client/routes';
 import htmlTemplate from './server/htmlTemplate';
 import createStore from './server/createStore';
 
@@ -12,9 +13,18 @@ require('dotenv').config({path: '../.env'});
 app.use(express.static(process.cwd() + '/public'));
 
 app.get('*', function(req, res) {
-  const store = createStore();
-  const page = htmlTemplate(createApp(req, store));
-  res.send(page);
+  var store = createStore();
+
+  var promises = matchRoutes(routes, req.path).map(({route}) => {
+    return route.loadData ? route.loadData(store) :  null;
+  });
+
+  Promise.all(promises)
+  .then(() => {
+    let page = htmlTemplate(createApp(req, store));
+    res.send(page);
+  });
+
 });
 
 var port = process.env.PORT;
