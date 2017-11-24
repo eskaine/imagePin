@@ -10,6 +10,8 @@ import axios from 'axios';
 import Routes from './routes';
 import reducers from './reducers';
 
+import './styles/styles.scss';
+
 const axiosInstance = axios.create({
   baseURL: '/api'
 });
