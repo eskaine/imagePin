@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import express from 'express';
+import proxy from 'express-http-proxy';
 import { matchRoutes } from 'react-router-config';
 import routes from './client/routes';
 import htmlTemplate from './server/htmlTemplate';
@@ -10,10 +11,12 @@ import createApp from './server/index';
 const app = express();
 require('dotenv').config({path: '../.env'});
 
+app.use('/api', proxy(process.env.API_URL));
 app.use(express.static(process.cwd() + '/public'));
 
+
 app.get('*', function(req, res) {
-  var store = createStore();
+  var store = createStore(req);
 
   var promises = matchRoutes(routes, req.path).map(({route}) => {
     return route.loadData ? route.loadData(store) :  null;

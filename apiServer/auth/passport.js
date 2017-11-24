@@ -16,10 +16,11 @@ module.exports = function(passport) {
 
   passport.use(new TwitterStrategy({
       consumerKey: auth.twitterAuth.consumerKey,
-      consumerSecret: auth.twitterAuth.consumerSecret,
-      callbackURL: auth.twitterAuth.callbackURL
+      consumerSecret: auth.twitterAuth.consumerSecret//,
+      //callbackURL: auth.twitterAuth.callbackURL
     },
     function(token, tokenSecret, profile, cb) {
+      console.log();
       process.nextTick(function() {
         User.findOne({ 'twitter.id': profile.id }, function (err, user) {
           if(err)
