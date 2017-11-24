@@ -1,15 +1,15 @@
 import React from 'react';
-import Home from './components/Home';
-import BookList from './components/BookList';
+import HomeContainer from './containers/HomeContainer';
+import BookListContainer from './containers/BookListContainer';
 
 export default [
   {
+    ...HomeContainer,
     path: '/',
-    exact: true,
-    component: Home
+    exact: true
   },
   {
-    ...BookList,
+    ...BookListContainer,
     path: '/data'
   }
 ];

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData } from '../actions';
 
-class BookList extends Component {
+class BookListContainer extends Component {
 
   componentDidMount() {
     this.props.fetchData();
@@ -36,5 +36,5 @@ function loadData(store) {
 
 export default {
   loadData,
-  component: connect(mapStateToProps, { fetchData })(BookList)
+  component: connect(mapStateToProps, { fetchData })(BookListContainer)
 }

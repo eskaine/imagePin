@@ -1,7 +1,8 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import serialize from 'serialize-javascript';
 
-export default (pageContent) => {
+export default (pageContent, store) => {
   return `
     <!DOCTYPE html>
     <html>
@@ -11,6 +12,9 @@ export default (pageContent) => {
       </head>
       <body>
         <div id="root">${pageContent}</div>
+        <script>
+          window.INITIAL_STATE = ${serialize(store.getState())}
+        </script>
         <script src="bundle.js"></script>
       </body>
     </html>

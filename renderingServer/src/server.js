@@ -21,7 +21,8 @@ app.get('*', function(req, res) {
 
   Promise.all(promises)
   .then(() => {
-    let page = htmlTemplate(createApp(req, store));
+    let newApp = createApp(req, store);
+    let page = htmlTemplate(newApp, store);
     res.send(page);
   });
 
