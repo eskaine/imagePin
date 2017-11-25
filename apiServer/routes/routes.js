@@ -25,10 +25,14 @@ module.exports = function(app, passport) {
     res.send(data);
   });
 
+  app.get('/auth/twitter', function(req, res) {
+    console.log('redirecting to twiiter');
+  });
+/*
   app.get('/auth/twitter',
     passport.authenticate('twitter')
   );
-
+*/
   app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
       successRedirect: '/',

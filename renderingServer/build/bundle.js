@@ -96,11 +96,11 @@ var _App = __webpack_require__(12);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _HomeContainer = __webpack_require__(14);
+var _HomeContainer = __webpack_require__(16);
 
 var _HomeContainer2 = _interopRequireDefault(_HomeContainer);
 
-var _BookListContainer = __webpack_require__(15);
+var _BookListContainer = __webpack_require__(17);
 
 var _BookListContainer2 = _interopRequireDefault(_BookListContainer);
 
@@ -210,22 +210,22 @@ var _routes = __webpack_require__(2);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _htmlTemplate = __webpack_require__(16);
+var _htmlTemplate = __webpack_require__(18);
 
 var _htmlTemplate2 = _interopRequireDefault(_htmlTemplate);
 
-var _createStore = __webpack_require__(18);
+var _createStore = __webpack_require__(20);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
-var _index = __webpack_require__(23);
+var _index = __webpack_require__(25);
 
 var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-__webpack_require__(24).config({ path: '../.env' });
+__webpack_require__(26).config({ path: '../.env' });
 
 app.use('/api', (0, _expressHttpProxy2.default)(process.env.API_URL));
 app.use(_express2.default.static(process.cwd() + '/public'));
@@ -318,6 +318,24 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _Icon2 = __webpack_require__(27);
+
+var _Icon3 = _interopRequireDefault(_Icon2);
+
+var _Button2 = __webpack_require__(28);
+
+var _Button3 = _interopRequireDefault(_Button2);
+
+var _Menu2 = __webpack_require__(14);
+
+var _Menu3 = _interopRequireDefault(_Menu2);
+
+var _Container2 = __webpack_require__(15);
+
+var _Container3 = _interopRequireDefault(_Container2);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -326,50 +344,97 @@ var _reactRouterDom = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function () {
-  return _react2.default.createElement(
-    'nav',
-    null,
-    _react2.default.createElement(
-      'div',
-      { className: 'nav-wrapper' },
-      _react2.default.createElement(
-        'ul',
-        { id: 'nav-mobile', className: 'left hide-on-med-and-down' },
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Navbar = function (_Component) {
+  _inherits(Navbar, _Component);
+
+  function Navbar() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Navbar);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call.apply(_ref, [this].concat(args))), _this), _this.state = { activeItem: 'home' }, _this.handleItemClick = function (e, _ref2) {
+      var name = _ref2.name;
+      return _this.setState({ activeItem: name });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Navbar, [{
+    key: 'render',
+    value: function render() {
+      var activeItem = this.state.activeItem;
+
+
+      return _react2.default.createElement(
+        _Menu3.default,
+        { borderless: true, fixed: 'top', size: 'large', color: 'blue' },
         _react2.default.createElement(
-          'li',
+          _Container3.default,
           null,
           _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/' },
+            _Menu3.default.Item,
+            { name: 'home', active: activeItem === 'home', onClick: this.handleItemClick, as: _reactRouterDom.Link, to: '/' },
             'imagePin'
-          )
-        ),
-        _react2.default.createElement(
-          'li',
-          null,
+          ),
           _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/all' },
+            _Menu3.default.Item,
+            { name: 'all', active: activeItem === 'all', onClick: this.handleItemClick, as: _reactRouterDom.Link, to: '/all' },
             'All'
-          )
-        ),
-        _react2.default.createElement(
-          'li',
-          null,
+          ),
           _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/data' },
+            _Menu3.default.Item,
+            { name: 'data', active: activeItem === 'data', onClick: this.handleItemClick, as: _reactRouterDom.Link, to: '/data' },
             'Data'
+          ),
+          _react2.default.createElement(
+            _Menu3.default.Menu,
+            { position: 'right' },
+            _react2.default.createElement(
+              _Menu3.default.Item,
+              { as: _reactRouterDom.Link, to: '/auth/twitter' },
+              _react2.default.createElement(
+                _Button3.default,
+                { color: 'twitter' },
+                _react2.default.createElement(_Icon3.default, { name: 'twitter' }),
+                ' Twitter'
+              )
+            )
           )
         )
-      )
-    )
-  );
-};
+      );
+    }
+  }]);
+
+  return Navbar;
+}(_react.Component);
+
+exports.default = Navbar;
 
 /***/ }),
 /* 14 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/collections/Menu/Menu");
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Container/Container");
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -399,7 +464,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -487,7 +552,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -503,24 +568,24 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(6);
 
-var _serializeJavascript = __webpack_require__(17);
+var _serializeJavascript = __webpack_require__(19);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (pageContent, store) {
-  return '\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <meta charset="utf-8">\n        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\n        <title></title>\n        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">\n        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">\n      </head>\n      <body>\n        <div id="root">' + pageContent + '</div>\n        <script>\n          window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n        </script>\n        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>\n        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>\n        <script src="bundle.js"></script>\n      </body>\n    </html>\n  ';
+  return '\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <meta charset="utf-8">\n        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\n        <title></title>\n        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>\n      </head>\n      <body>\n        <div id="root">' + pageContent + '</div>\n        <script>\n          window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n        </script>\n        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>\n        <script src="bundle.js"></script>\n      </body>\n    </html>\n  ';
 };
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -532,15 +597,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(7);
 
-var _reduxThunk = __webpack_require__(19);
+var _reduxThunk = __webpack_require__(21);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _axios = __webpack_require__(20);
+var _axios = __webpack_require__(22);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _reducers = __webpack_require__(21);
+var _reducers = __webpack_require__(23);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -558,19 +623,19 @@ exports.default = function (req) {
 };
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -582,7 +647,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(7);
 
-var _images = __webpack_require__(22);
+var _images = __webpack_require__(24);
 
 var _images2 = _interopRequireDefault(_images);
 
@@ -593,7 +658,7 @@ exports.default = (0, _redux.combineReducers)({
 });
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -618,7 +683,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -663,10 +728,22 @@ exports.default = function (req, store) {
 };
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Icon/Icon");
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Button/Button");
 
 /***/ })
 /******/ ]);
