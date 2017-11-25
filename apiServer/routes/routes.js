@@ -25,19 +25,25 @@ module.exports = function(app, passport) {
     res.send(data);
   });
 
-  app.get('/auth/twitter', function(req, res) {
-    console.log('redirecting to twiiter');
+  app.get('/user', function(req, res) {
+    res.send(req.isAuthenticated());
   });
-/*
+
   app.get('/auth/twitter',
     passport.authenticate('twitter')
   );
-*/
+
   app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
-      successRedirect: '/',
+      successRedirect: process.env.APP_URL,
       failureRedirect: '/login'
     })
   );
+
+  app.get('/logout', function(req, res) {
+    console.log('logging out');
+    req.logout();
+    res.redirect(process.env.APP_URL);
+  });
 
 }

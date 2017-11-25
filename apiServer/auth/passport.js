@@ -16,18 +16,32 @@ module.exports = function(passport) {
 
   passport.use(new TwitterStrategy({
       consumerKey: auth.twitterAuth.consumerKey,
-      consumerSecret: auth.twitterAuth.consumerSecret//,
-      //callbackURL: auth.twitterAuth.callbackURL
+      consumerSecret: auth.twitterAuth.consumerSecret,
+      callbackURL: 'http://localhost:8080/auth/twitter/callback'
     },
-    function(token, tokenSecret, profile, cb) {
-      console.log();
+    function(token, tokenSecret, profile, done) {
+
+      console.log('creating user');
+
       process.nextTick(function() {
         User.findOne({ 'twitter.id': profile.id }, function (err, user) {
           if(err)
-            return cb(err);
+            return done(err);
 
-          //TODO: create new user
-          return cb(err, user);
+          if(user) {
+            return done(null, user);
+          } else {
+            var newUser = new User();
+            newUser.twitter.id = profile.id;
+            newUser.twitter.name = profile.displayName;
+            newUser.save(function(err) {
+              if (err) {
+                throw err;
+              }
+
+              return done(null, newUser);
+            });
+          }
         });
       });
     }

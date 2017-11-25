@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchData } from '../actions';
+import { fetchData } from '../actions/allImages';
 
 class BookListContainer extends Component {
 
@@ -36,5 +36,5 @@ function loadData(store) {
 
 export default {
   loadData,
-  component: connect(mapStateToProps, { fetchData })(BookListContainer)
+  component: connect(mapStateToProps, {fetchData})(BookListContainer)
 }

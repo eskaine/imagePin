@@ -77,6 +77,12 @@ module.exports = require("react-router-config");
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96,11 +102,11 @@ var _App = __webpack_require__(12);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _HomeContainer = __webpack_require__(16);
+var _HomeContainer = __webpack_require__(17);
 
 var _HomeContainer2 = _interopRequireDefault(_HomeContainer);
 
-var _BookListContainer = __webpack_require__(17);
+var _BookListContainer = __webpack_require__(18);
 
 var _BookListContainer2 = _interopRequireDefault(_BookListContainer);
 
@@ -116,16 +122,10 @@ exports.default = [_extends({}, _App2.default, {
 })];
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-router-dom");
-
-/***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-redux");
+module.exports = require("react-router-dom");
 
 /***/ }),
 /* 5 */
@@ -140,8 +140,8 @@ Object.defineProperty(exports, "__esModule", {
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-var FETCH_DATA = exports.FETCH_DATA = 'fetch_data';
-var fetchData = exports.fetchData = function fetchData() {
+var FETCH_USER = exports.FETCH_USER = 'fetch__user';
+var fetchUser = exports.fetchUser = function fetchUser() {
   return function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch, getState, axiosInstance) {
       var res;
@@ -150,14 +150,14 @@ var fetchData = exports.fetchData = function fetchData() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axiosInstance.get('/data');
+              return axiosInstance.get('/user');
 
             case 2:
               res = _context.sent;
 
 
               dispatch({
-                type: FETCH_DATA,
+                type: FETCH_USER,
                 payload: res
               });
 
@@ -206,28 +206,30 @@ var _expressHttpProxy2 = _interopRequireDefault(_expressHttpProxy);
 
 var _reactRouterConfig = __webpack_require__(1);
 
-var _routes = __webpack_require__(2);
+var _routes = __webpack_require__(3);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _htmlTemplate = __webpack_require__(18);
+var _htmlTemplate = __webpack_require__(20);
 
 var _htmlTemplate2 = _interopRequireDefault(_htmlTemplate);
 
-var _createStore = __webpack_require__(20);
+var _createStore = __webpack_require__(22);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
-var _index = __webpack_require__(25);
+var _index = __webpack_require__(29);
 
 var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-__webpack_require__(26).config({ path: '../.env' });
+__webpack_require__(30).config({ path: '../.env' });
 
-app.use('/api', (0, _expressHttpProxy2.default)(process.env.API_URL));
+app.use('/api', (0, _expressHttpProxy2.default)(process.env.API_URL, function () {
+  console.log('calling api');
+}));
 app.use(_express2.default.static(process.cwd() + '/public'));
 
 app.get('*', function (req, res) {
@@ -290,6 +292,8 @@ var _Navbar = __webpack_require__(13);
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
+var _auth = __webpack_require__(5);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App(_ref) {
@@ -304,6 +308,10 @@ var App = function App(_ref) {
 };
 
 exports.default = {
+  loadData: function loadData(_ref2) {
+    var dispatch = _ref2.dispatch;
+    return dispatch((0, _auth.fetchUser)());
+  },
   component: App
 };
 
@@ -318,19 +326,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Icon2 = __webpack_require__(27);
+var _Icon2 = __webpack_require__(14);
 
 var _Icon3 = _interopRequireDefault(_Icon2);
 
-var _Button2 = __webpack_require__(28);
-
-var _Button3 = _interopRequireDefault(_Button2);
-
-var _Menu2 = __webpack_require__(14);
+var _Menu2 = __webpack_require__(15);
 
 var _Menu3 = _interopRequireDefault(_Menu2);
 
-var _Container2 = __webpack_require__(15);
+var _Container2 = __webpack_require__(16);
 
 var _Container3 = _interopRequireDefault(_Container2);
 
@@ -340,7 +344,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(3);
+var _reactRedux = __webpack_require__(2);
+
+var _reactRouterDom = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -365,16 +371,46 @@ var Navbar = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call.apply(_ref, [this].concat(args))), _this), _this.state = { activeItem: 'home' }, _this.handleItemClick = function (e, _ref2) {
-      var name = _ref2.name;
-      return _this.setState({ activeItem: name });
+      var path = _ref2.path;
+      return _this.setState({ activeItem: path });
+    }, _this.setActive = function (path) {
+      return _this.setState({ activeItem: path });
+    }, _this.renderNavLink = function () {
+      return _this.props.auth ? _react2.default.createElement(
+        _Menu3.default.Item,
+        { path: 'yourpins', active: activeItem === 'yourpins', onClick: _this.handleItemClick, as: _reactRouterDom.Link, to: '/yourpins' },
+        'Your Pins'
+      ) : null;
+    }, _this.renderAuthButton = function () {
+      return _this.props.auth ? _react2.default.createElement(
+        'a',
+        { className: 'item', href: '/api/logout' },
+        'Logout'
+      ) : _react2.default.createElement(
+        _Menu3.default.Item,
+        null,
+        _react2.default.createElement(
+          'a',
+          { className: 'ui twitter button', href: '/api/auth/twitter' },
+          _react2.default.createElement(_Icon3.default, { name: 'twitter' }),
+          'Login'
+        )
+      );
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Navbar, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.setActive(this.props.location.pathname.split('/')[1]);
+    }
+
+    //TODO: fix home
+
+  }, {
     key: 'render',
     value: function render() {
       var activeItem = this.state.activeItem;
-
 
       return _react2.default.createElement(
         _Menu3.default,
@@ -384,32 +420,19 @@ var Navbar = function (_Component) {
           null,
           _react2.default.createElement(
             _Menu3.default.Item,
-            { name: 'home', active: activeItem === 'home', onClick: this.handleItemClick, as: _reactRouterDom.Link, to: '/' },
+            { path: 'home', active: activeItem === 'home', onClick: this.handleItemClick, as: _reactRouterDom.Link, to: '/' },
             'imagePin'
           ),
           _react2.default.createElement(
             _Menu3.default.Item,
-            { name: 'all', active: activeItem === 'all', onClick: this.handleItemClick, as: _reactRouterDom.Link, to: '/all' },
-            'All'
+            { path: 'data', active: activeItem === 'data', onClick: this.handleItemClick, as: _reactRouterDom.Link, to: '/data' },
+            'Pins'
           ),
-          _react2.default.createElement(
-            _Menu3.default.Item,
-            { name: 'data', active: activeItem === 'data', onClick: this.handleItemClick, as: _reactRouterDom.Link, to: '/data' },
-            'Data'
-          ),
+          this.renderNavLink(),
           _react2.default.createElement(
             _Menu3.default.Menu,
             { position: 'right' },
-            _react2.default.createElement(
-              _Menu3.default.Item,
-              { as: _reactRouterDom.Link, to: '/auth/twitter' },
-              _react2.default.createElement(
-                _Button3.default,
-                { color: 'twitter' },
-                _react2.default.createElement(_Icon3.default, { name: 'twitter' }),
-                ' Twitter'
-              )
-            )
+            this.renderAuthButton()
           )
         )
       );
@@ -419,22 +442,34 @@ var Navbar = function (_Component) {
   return Navbar;
 }(_react.Component);
 
-exports.default = Navbar;
+function mapStateToProps(_ref3) {
+  var auth = _ref3.auth;
+
+  return { auth: auth };
+}
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(Navbar));
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = require("semantic-ui-react/dist/commonjs/collections/Menu/Menu");
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Icon/Icon");
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Container/Container");
+module.exports = require("semantic-ui-react/dist/commonjs/collections/Menu/Menu");
 
 /***/ }),
 /* 16 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Container/Container");
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -464,7 +499,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -480,9 +515,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(2);
 
-var _actions = __webpack_require__(5);
+var _allImages = __webpack_require__(19);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -543,16 +578,64 @@ function mapStateToProps(state) {
 }
 
 function loadData(store) {
-  return store.dispatch((0, _actions.fetchData)());
+  return store.dispatch((0, _allImages.fetchData)());
 }
 
 exports.default = {
   loadData: loadData,
-  component: (0, _reactRedux.connect)(mapStateToProps, { fetchData: _actions.fetchData })(BookListContainer)
+  component: (0, _reactRedux.connect)(mapStateToProps, { fetchData: _allImages.fetchData })(BookListContainer)
 };
 
 /***/ }),
-/* 18 */
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var FETCH_DATA = exports.FETCH_DATA = 'fetch_data';
+var fetchData = exports.fetchData = function fetchData() {
+  return function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch, getState, axiosInstance) {
+      var res;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axiosInstance.get('/data');
+
+            case 2:
+              res = _context.sent;
+
+
+              dispatch({
+                type: FETCH_DATA,
+                payload: res
+              });
+
+            case 4:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, undefined);
+    }));
+
+    return function (_x, _x2, _x3) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+
+/***/ }),
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -568,7 +651,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(6);
 
-var _serializeJavascript = __webpack_require__(19);
+var _serializeJavascript = __webpack_require__(21);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
@@ -579,13 +662,13 @@ exports.default = function (pageContent, store) {
 };
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -597,15 +680,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(7);
 
-var _reduxThunk = __webpack_require__(21);
+var _reduxThunk = __webpack_require__(23);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _axios = __webpack_require__(22);
+var _axios = __webpack_require__(24);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _reducers = __webpack_require__(23);
+var _reducers = __webpack_require__(25);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -623,19 +706,19 @@ exports.default = function (req) {
 };
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -647,18 +730,23 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(7);
 
-var _images = __webpack_require__(24);
+var _images = __webpack_require__(26);
 
 var _images2 = _interopRequireDefault(_images);
+
+var _auth = __webpack_require__(28);
+
+var _auth2 = _interopRequireDefault(_auth);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
+  auth: _auth2.default,
   images: _images2.default
 });
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -668,7 +756,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actions = __webpack_require__(5);
+var _actions = __webpack_require__(27);
 
 exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -683,7 +771,80 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 25 */
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var FETCH_DATA = exports.FETCH_DATA = 'fetch_data';
+var fetchData = exports.fetchData = function fetchData() {
+  return function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch, getState, axiosInstance) {
+      var res;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axiosInstance.get('/data');
+
+            case 2:
+              res = _context.sent;
+
+
+              dispatch({
+                type: FETCH_DATA,
+                payload: res
+              });
+
+            case 4:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, undefined);
+    }));
+
+    return function (_x, _x2, _x3) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _auth.FETCH_USER:
+      return action.payload.data || false;
+    default:
+      return state;
+  }
+};
+
+var _auth = __webpack_require__(5);
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -699,13 +860,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(6);
 
-var _reactRouterDom = __webpack_require__(3);
+var _reactRouterDom = __webpack_require__(4);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(2);
 
 var _reactRouterConfig = __webpack_require__(1);
 
-var _routes = __webpack_require__(2);
+var _routes = __webpack_require__(3);
 
 var _routes2 = _interopRequireDefault(_routes);
 
@@ -728,22 +889,10 @@ exports.default = function (req, store) {
 };
 
 /***/ }),
-/* 26 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports) {
-
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Icon/Icon");
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports) {
-
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Button/Button");
 
 /***/ })
 /******/ ]);

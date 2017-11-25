@@ -4,7 +4,6 @@ import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 
-
 import Routes from '../client/routes';
 
 export default (req, store) => {

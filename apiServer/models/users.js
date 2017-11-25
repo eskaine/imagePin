@@ -8,3 +8,5 @@ var User = new Schema({
   },
   images: []
 });
+
+module.exports = mongoose.model('User', User);

@@ -11,7 +11,9 @@ import createApp from './server/index';
 const app = express();
 require('dotenv').config({path: '../.env'});
 
-app.use('/api', proxy(process.env.API_URL));
+app.use('/api', proxy(process.env.API_URL, function () {
+  console.log('calling api');
+}));
 app.use(express.static(process.cwd() + '/public'));
 
 
