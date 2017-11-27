@@ -1,12 +1,12 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
-import Navbar from './components/Navbar';
+import NavbarContainer from './containers/NavbarContainer';
 import { fetchUser } from './actions/auth';
 
 const App = ({ route }) => {
   return (
     <div>
-      <Navbar />
+      <NavbarContainer />
       {renderRoutes(route.routes)}
     </div>
   );
