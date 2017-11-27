@@ -11,9 +11,7 @@ import createApp from './server/index';
 const app = express();
 require('dotenv').config({path: '../.env'});
 
-app.use('/api', proxy(process.env.API_URL, function () {
-  console.log('calling api');
-}));
+app.use('/api', proxy(process.env.API_URL));
 app.use(express.static(process.cwd() + '/public'));
 
 
@@ -26,8 +24,18 @@ app.get('*', function(req, res) {
 
   Promise.all(promises)
   .then(() => {
-    let newApp = createApp(req, store);
+    const context = {};
+
+    //fetch data and embed into app
+    let newApp = createApp(req, store, context);
+
+    //embed app into html page
     let page = htmlTemplate(newApp, store);
+
+    if(context.notFound) {
+      res.status(404);
+    }
+
     res.send(page);
   });
 

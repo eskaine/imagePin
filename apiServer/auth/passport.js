@@ -17,11 +17,9 @@ module.exports = function(passport) {
   passport.use(new TwitterStrategy({
       consumerKey: auth.twitterAuth.consumerKey,
       consumerSecret: auth.twitterAuth.consumerSecret,
-      callbackURL: 'http://localhost:8080/auth/twitter/callback'
+      callbackURL: auth.twitterAuth.callbackURL
     },
     function(token, tokenSecret, profile, done) {
-
-      console.log('creating user');
 
       process.nextTick(function() {
         User.findOne({ 'twitter.id': profile.id }, function (err, user) {

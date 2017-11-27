@@ -110,6 +110,10 @@ var _BookListContainer = __webpack_require__(18);
 
 var _BookListContainer2 = _interopRequireDefault(_BookListContainer);
 
+var _PageNotFoundContainer = __webpack_require__(34);
+
+var _PageNotFoundContainer2 = _interopRequireDefault(_PageNotFoundContainer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = [_extends({}, _App2.default, {
@@ -118,7 +122,7 @@ exports.default = [_extends({}, _App2.default, {
     exact: true
   }), _extends({}, _BookListContainer2.default, {
     path: '/data'
-  })]
+  }), _extends({}, _PageNotFoundContainer2.default)]
 })];
 
 /***/ }),
@@ -227,9 +231,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _express2.default)();
 __webpack_require__(30).config({ path: '../.env' });
 
-app.use('/api', (0, _expressHttpProxy2.default)(process.env.API_URL, function () {
-  console.log('calling api');
-}));
+app.use('/api', (0, _expressHttpProxy2.default)(process.env.API_URL));
 app.use(_express2.default.static(process.cwd() + '/public'));
 
 app.get('*', function (req, res) {
@@ -242,8 +244,18 @@ app.get('*', function (req, res) {
   });
 
   Promise.all(promises).then(function () {
-    var newApp = (0, _index2.default)(req, store);
+    var context = {};
+
+    //fetch data and embed into app
+    var newApp = (0, _index2.default)(req, store, context);
+
+    //embed app into html page
     var page = (0, _htmlTemplate2.default)(newApp, store);
+
+    if (context.notFound) {
+      res.status(404);
+    }
+
     res.send(page);
   });
 });
@@ -375,7 +387,7 @@ var Navbar = function (_Component) {
       return _this.setState({ activeItem: path });
     }, _this.setActive = function (path) {
       return _this.setState({ activeItem: path });
-    }, _this.renderNavLink = function () {
+    }, _this.renderNavLink = function (activeItem) {
       return _this.props.auth ? _react2.default.createElement(
         _Menu3.default.Item,
         { path: 'yourpins', active: activeItem === 'yourpins', onClick: _this.handleItemClick, as: _reactRouterDom.Link, to: '/yourpins' },
@@ -428,7 +440,7 @@ var Navbar = function (_Component) {
             { path: 'data', active: activeItem === 'data', onClick: this.handleItemClick, as: _reactRouterDom.Link, to: '/data' },
             'Pins'
           ),
-          this.renderNavLink(),
+          this.renderNavLink(activeItem),
           _react2.default.createElement(
             _Menu3.default.Menu,
             { position: 'right' },
@@ -872,13 +884,13 @@ var _routes2 = _interopRequireDefault(_routes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (req, store) {
+exports.default = function (req, store, context) {
   return (0, _server.renderToString)(_react2.default.createElement(
     _reactRedux.Provider,
     { store: store },
     _react2.default.createElement(
       _reactRouterDom.StaticRouter,
-      { location: req.path, context: {} },
+      { location: req.path, context: context },
       _react2.default.createElement(
         'div',
         null,
@@ -893,6 +905,70 @@ exports.default = function (req, store) {
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
+
+/***/ }),
+/* 31 */,
+/* 32 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Segment/Segment");
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Header/Header");
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Segment2 = __webpack_require__(32);
+
+var _Segment3 = _interopRequireDefault(_Segment2);
+
+var _Header2 = __webpack_require__(33);
+
+var _Header3 = _interopRequireDefault(_Header2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PageNotFound = function PageNotFound(_ref) {
+  var _ref$staticContext = _ref.staticContext,
+      staticContext = _ref$staticContext === undefined ? {} : _ref$staticContext;
+
+
+  staticContext.notFound = true;
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'notfound-content' },
+    _react2.default.createElement(
+      _Segment3.default,
+      { secondary: true, textAlign: 'center' },
+      _react2.default.createElement(
+        _Header3.default,
+        { as: 'h1' },
+        'Page Not Found!'
+      )
+    )
+  );
+};
+
+exports.default = {
+  component: PageNotFound
+};
 
 /***/ })
 /******/ ]);

@@ -43242,6 +43242,10 @@ var _BookListContainer = __webpack_require__(937);
 
 var _BookListContainer2 = _interopRequireDefault(_BookListContainer);
 
+var _PageNotFoundContainer = __webpack_require__(967);
+
+var _PageNotFoundContainer2 = _interopRequireDefault(_PageNotFoundContainer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = [_extends({}, _App2.default, {
@@ -43250,7 +43254,7 @@ exports.default = [_extends({}, _App2.default, {
     exact: true
   }), _extends({}, _BookListContainer2.default, {
     path: '/data'
-  })]
+  }), _extends({}, _PageNotFoundContainer2.default)]
 })];
 
 /***/ }),
@@ -43357,7 +43361,7 @@ var Navbar = function (_Component) {
       return _this.setState({ activeItem: path });
     }, _this.setActive = function (path) {
       return _this.setState({ activeItem: path });
-    }, _this.renderNavLink = function () {
+    }, _this.renderNavLink = function (activeItem) {
       return _this.props.auth ? _react2.default.createElement(
         _Menu3.default.Item,
         { path: 'yourpins', active: activeItem === 'yourpins', onClick: _this.handleItemClick, as: _reactRouterDom.Link, to: '/yourpins' },
@@ -43410,7 +43414,7 @@ var Navbar = function (_Component) {
             { path: 'data', active: activeItem === 'data', onClick: this.handleItemClick, as: _reactRouterDom.Link, to: '/data' },
             'Pins'
           ),
-          this.renderNavLink(),
+          this.renderNavLink(activeItem),
           _react2.default.createElement(
             _Menu3.default.Menu,
             { position: 'right' },
@@ -54810,7 +54814,7 @@ exports = module.exports = __webpack_require__(945)(undefined);
 
 
 // module
-exports.push([module.i, ".menu {\n  height: 50px; }\n", ""]);
+exports.push([module.i, ".menu {\n  height: 50px; }\n\n.page-content {\n  margin-top: 5em; }\n\n.notfound-content {\n  margin: auto;\n  margin-top: 10em;\n  max-width: 500px; }\n", ""]);
 
 // exports
 
@@ -55363,6 +55367,2323 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 948 */,
+/* 949 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _isNil2 = __webpack_require__(233);
+
+var _isNil3 = _interopRequireDefault(_isNil2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+var _Dimmer = __webpack_require__(954);
+
+var _Dimmer2 = _interopRequireDefault(_Dimmer);
+
+var _Label = __webpack_require__(961);
+
+var _Label2 = _interopRequireDefault(_Label);
+
+var _ImageGroup = __webpack_require__(964);
+
+var _ImageGroup2 = _interopRequireDefault(_ImageGroup);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * An image is a graphic representation of something.
+ * @see Icon
+ */
+function Image(props) {
+  var alt = props.alt,
+      avatar = props.avatar,
+      bordered = props.bordered,
+      centered = props.centered,
+      children = props.children,
+      circular = props.circular,
+      className = props.className,
+      content = props.content,
+      dimmer = props.dimmer,
+      disabled = props.disabled,
+      floated = props.floated,
+      fluid = props.fluid,
+      height = props.height,
+      hidden = props.hidden,
+      href = props.href,
+      inline = props.inline,
+      label = props.label,
+      rounded = props.rounded,
+      size = props.size,
+      spaced = props.spaced,
+      src = props.src,
+      verticalAlign = props.verticalAlign,
+      width = props.width,
+      wrapped = props.wrapped,
+      ui = props.ui;
+
+
+  var classes = (0, _classnames2.default)((0, _lib.useKeyOnly)(ui, 'ui'), size, (0, _lib.useKeyOnly)(avatar, 'avatar'), (0, _lib.useKeyOnly)(bordered, 'bordered'), (0, _lib.useKeyOnly)(circular, 'circular'), (0, _lib.useKeyOnly)(centered, 'centered'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(fluid, 'fluid'), (0, _lib.useKeyOnly)(hidden, 'hidden'), (0, _lib.useKeyOnly)(inline, 'inline'), (0, _lib.useKeyOnly)(rounded, 'rounded'), (0, _lib.useKeyOrValueAndKey)(spaced, 'spaced'), (0, _lib.useValueAndKey)(floated, 'floated'), (0, _lib.useVerticalAlignProp)(verticalAlign, 'aligned'), 'image', className);
+  var rest = (0, _lib.getUnhandledProps)(Image, props);
+  var ElementType = (0, _lib.getElementType)(Image, props, function () {
+    if (!(0, _isNil3.default)(dimmer) || !(0, _isNil3.default)(label) || !(0, _isNil3.default)(wrapped) || !_lib.childrenUtils.isNil(children)) return 'div';
+  });
+
+  if (!_lib.childrenUtils.isNil(children)) {
+    return _react2.default.createElement(
+      ElementType,
+      (0, _extends3.default)({}, rest, { className: classes }),
+      children
+    );
+  }
+  if (!_lib.childrenUtils.isNil(content)) {
+    return _react2.default.createElement(
+      ElementType,
+      (0, _extends3.default)({}, rest, { className: classes }),
+      content
+    );
+  }
+
+  var rootProps = (0, _extends3.default)({}, rest, { className: classes });
+  var imgTagProps = { alt: alt, src: src, height: height, width: width };
+
+  if (ElementType === 'img') return _react2.default.createElement(ElementType, (0, _extends3.default)({}, rootProps, imgTagProps));
+
+  return _react2.default.createElement(
+    ElementType,
+    (0, _extends3.default)({}, rootProps, { href: href }),
+    _Dimmer2.default.create(dimmer),
+    _Label2.default.create(label),
+    _react2.default.createElement('img', imgTagProps)
+  );
+}
+
+Image.handledProps = ['alt', 'as', 'avatar', 'bordered', 'centered', 'children', 'circular', 'className', 'content', 'dimmer', 'disabled', 'floated', 'fluid', 'height', 'hidden', 'href', 'inline', 'label', 'rounded', 'size', 'spaced', 'src', 'ui', 'verticalAlign', 'width', 'wrapped'];
+Image.Group = _ImageGroup2.default;
+
+Image._meta = {
+  name: 'Image',
+  type: _lib.META.TYPES.ELEMENT
+};
+
+Image.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** Alternate text for the image specified. */
+  alt: _propTypes2.default.string,
+
+  /** An image may be formatted to appear inline with text as an avatar. */
+  avatar: _propTypes2.default.bool,
+
+  /** An image may include a border to emphasize the edges of white or transparent content. */
+  bordered: _propTypes2.default.bool,
+
+  /** An image can appear centered in a content block. */
+  centered: _propTypes2.default.bool,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** An image may appear circular. */
+  circular: _propTypes2.default.bool,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand,
+
+  /** An image can show that it is disabled and cannot be selected. */
+  disabled: _propTypes2.default.bool,
+
+  /** Shorthand for Dimmer. */
+  dimmer: _lib.customPropTypes.itemShorthand,
+
+  /** An image can sit to the left or right of other content. */
+  floated: _propTypes2.default.oneOf(_lib.SUI.FLOATS),
+
+  /** An image can take up the width of its container. */
+  fluid: _lib.customPropTypes.every([_propTypes2.default.bool, _lib.customPropTypes.disallow(['size'])]),
+
+  /** The img element height attribute. */
+  height: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
+
+  /** An image can be hidden. */
+  hidden: _propTypes2.default.bool,
+
+  /** Renders the Image as an <a> tag with this href. */
+  href: _propTypes2.default.string,
+
+  /** An image may appear inline. */
+  inline: _propTypes2.default.bool,
+
+  /** Shorthand for Label. */
+  label: _lib.customPropTypes.itemShorthand,
+
+  /** An image may appear rounded. */
+  rounded: _propTypes2.default.bool,
+
+  /** An image may appear at different sizes. */
+  size: _propTypes2.default.oneOf(_lib.SUI.SIZES),
+
+  /** An image can specify that it needs an additional spacing to separate it from nearby content. */
+  spaced: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.oneOf(['left', 'right'])]),
+
+  /** Specifies the URL of the image. */
+  src: _propTypes2.default.string,
+
+  /** Whether or not to add the ui className. */
+  ui: _propTypes2.default.bool,
+
+  /** An image can specify its vertical alignment. */
+  verticalAlign: _propTypes2.default.oneOf(_lib.SUI.VERTICAL_ALIGNMENTS),
+
+  /** The img element width attribute. */
+  width: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+
+  /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
+  wrapped: _propTypes2.default.bool
+} : {};
+
+Image.defaultProps = {
+  as: 'img',
+  ui: true
+};
+
+Image.create = (0, _lib.createShorthandFactory)(Image, function (value) {
+  return { src: value };
+});
+
+exports.default = Image;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 950 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _without2 = __webpack_require__(134);
+
+var _without3 = _interopRequireDefault(_without2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+var _SegmentGroup = __webpack_require__(951);
+
+var _SegmentGroup2 = _interopRequireDefault(_SegmentGroup);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * A segment is used to create a grouping of related content.
+ */
+function Segment(props) {
+  var attached = props.attached,
+      basic = props.basic,
+      children = props.children,
+      circular = props.circular,
+      className = props.className,
+      clearing = props.clearing,
+      color = props.color,
+      compact = props.compact,
+      content = props.content,
+      disabled = props.disabled,
+      floated = props.floated,
+      inverted = props.inverted,
+      loading = props.loading,
+      padded = props.padded,
+      piled = props.piled,
+      raised = props.raised,
+      secondary = props.secondary,
+      size = props.size,
+      stacked = props.stacked,
+      tertiary = props.tertiary,
+      textAlign = props.textAlign,
+      vertical = props.vertical;
+
+
+  var classes = (0, _classnames2.default)('ui', color, size, (0, _lib.useKeyOnly)(basic, 'basic'), (0, _lib.useKeyOnly)(circular, 'circular'), (0, _lib.useKeyOnly)(clearing, 'clearing'), (0, _lib.useKeyOnly)(compact, 'compact'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useKeyOnly)(piled, 'piled'), (0, _lib.useKeyOnly)(raised, 'raised'), (0, _lib.useKeyOnly)(secondary, 'secondary'), (0, _lib.useKeyOnly)(stacked, 'stacked'), (0, _lib.useKeyOnly)(tertiary, 'tertiary'), (0, _lib.useKeyOnly)(vertical, 'vertical'), (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useKeyOrValueAndKey)(padded, 'padded'), (0, _lib.useTextAlignProp)(textAlign), (0, _lib.useValueAndKey)(floated, 'floated'), 'segment', className);
+  var rest = (0, _lib.getUnhandledProps)(Segment, props);
+  var ElementType = (0, _lib.getElementType)(Segment, props);
+
+  return _react2.default.createElement(
+    ElementType,
+    (0, _extends3.default)({}, rest, { className: classes }),
+    _lib.childrenUtils.isNil(children) ? content : children
+  );
+}
+
+Segment.handledProps = ['as', 'attached', 'basic', 'children', 'circular', 'className', 'clearing', 'color', 'compact', 'content', 'disabled', 'floated', 'inverted', 'loading', 'padded', 'piled', 'raised', 'secondary', 'size', 'stacked', 'tertiary', 'textAlign', 'vertical'];
+Segment.Group = _SegmentGroup2.default;
+
+Segment._meta = {
+  name: 'Segment',
+  type: _lib.META.TYPES.ELEMENT
+};
+
+Segment.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** Attach segment to other content, like a header. */
+  attached: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.oneOf(['top', 'bottom'])]),
+
+  /** A basic segment has no special formatting. */
+  basic: _propTypes2.default.bool,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** A segment can be circular. */
+  circular: _propTypes2.default.bool,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** A segment can clear floated content. */
+  clearing: _propTypes2.default.bool,
+
+  /** Segment can be colored. */
+  color: _propTypes2.default.oneOf(_lib.SUI.COLORS),
+
+  /** A segment may take up only as much space as is necessary. */
+  compact: _propTypes2.default.bool,
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand,
+
+  /** A segment may show its content is disabled. */
+  disabled: _propTypes2.default.bool,
+
+  /** Segment content can be floated to the left or right. */
+  floated: _propTypes2.default.oneOf(_lib.SUI.FLOATS),
+
+  /** A segment can have its colors inverted for contrast. */
+  inverted: _propTypes2.default.bool,
+
+  /** A segment may show its content is being loaded. */
+  loading: _propTypes2.default.bool,
+
+  /** A segment can increase its padding. */
+  padded: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.oneOf(['very'])]),
+
+  /** Formatted to look like a pile of pages. */
+  piled: _propTypes2.default.bool,
+
+  /** A segment may be formatted to raise above the page. */
+  raised: _propTypes2.default.bool,
+
+  /** A segment can be formatted to appear less noticeable. */
+  secondary: _propTypes2.default.bool,
+
+  /** A segment can have different sizes. */
+  size: _propTypes2.default.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'medium')),
+
+  /** Formatted to show it contains multiple pages. */
+  stacked: _propTypes2.default.bool,
+
+  /** A segment can be formatted to appear even less noticeable. */
+  tertiary: _propTypes2.default.bool,
+
+  /** Formats content to be aligned as part of a vertical group. */
+  textAlign: _propTypes2.default.oneOf((0, _without3.default)(_lib.SUI.TEXT_ALIGNMENTS, 'justified')),
+
+  /** Formats content to be aligned vertically. */
+  vertical: _propTypes2.default.bool
+} : {};
+
+exports.default = Segment;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 951 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _without2 = __webpack_require__(134);
+
+var _without3 = _interopRequireDefault(_without2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * A group of segments can be formatted to appear together.
+ */
+function SegmentGroup(props) {
+  var children = props.children,
+      className = props.className,
+      compact = props.compact,
+      content = props.content,
+      horizontal = props.horizontal,
+      piled = props.piled,
+      raised = props.raised,
+      size = props.size,
+      stacked = props.stacked;
+
+
+  var classes = (0, _classnames2.default)('ui', size, (0, _lib.useKeyOnly)(compact, 'compact'), (0, _lib.useKeyOnly)(horizontal, 'horizontal'), (0, _lib.useKeyOnly)(piled, 'piled'), (0, _lib.useKeyOnly)(raised, 'raised'), (0, _lib.useKeyOnly)(stacked, 'stacked'), 'segments', className);
+  var rest = (0, _lib.getUnhandledProps)(SegmentGroup, props);
+  var ElementType = (0, _lib.getElementType)(SegmentGroup, props);
+
+  return _react2.default.createElement(
+    ElementType,
+    (0, _extends3.default)({}, rest, { className: classes }),
+    _lib.childrenUtils.isNil(children) ? content : children
+  );
+}
+
+SegmentGroup.handledProps = ['as', 'children', 'className', 'compact', 'content', 'horizontal', 'piled', 'raised', 'size', 'stacked'];
+SegmentGroup._meta = {
+  name: 'SegmentGroup',
+  parent: 'Segment',
+  type: _lib.META.TYPES.ELEMENT
+};
+
+SegmentGroup.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** A segment may take up only as much space as is necessary. */
+  compact: _propTypes2.default.bool,
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand,
+
+  /** Formats content to be aligned horizontally. */
+  horizontal: _propTypes2.default.bool,
+
+  /** Formatted to look like a pile of pages. */
+  piled: _propTypes2.default.bool,
+
+  /** A segment group may be formatted to raise above the page. */
+  raised: _propTypes2.default.bool,
+
+  /** A segment group can have different sizes. */
+  size: _propTypes2.default.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'medium')),
+
+  /** Formatted to show it contains multiple pages. */
+  stacked: _propTypes2.default.bool
+} : {};
+
+exports.default = SegmentGroup;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 952 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _without2 = __webpack_require__(134);
+
+var _without3 = _interopRequireDefault(_without2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+var _Icon = __webpack_require__(933);
+
+var _Icon2 = _interopRequireDefault(_Icon);
+
+var _Image = __webpack_require__(953);
+
+var _Image2 = _interopRequireDefault(_Image);
+
+var _HeaderSubheader = __webpack_require__(965);
+
+var _HeaderSubheader2 = _interopRequireDefault(_HeaderSubheader);
+
+var _HeaderContent = __webpack_require__(966);
+
+var _HeaderContent2 = _interopRequireDefault(_HeaderContent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * A header provides a short summary of content
+ */
+function Header(props) {
+  var attached = props.attached,
+      block = props.block,
+      children = props.children,
+      className = props.className,
+      color = props.color,
+      content = props.content,
+      disabled = props.disabled,
+      dividing = props.dividing,
+      floated = props.floated,
+      icon = props.icon,
+      image = props.image,
+      inverted = props.inverted,
+      size = props.size,
+      sub = props.sub,
+      subheader = props.subheader,
+      textAlign = props.textAlign;
+
+
+  var classes = (0, _classnames2.default)('ui', color, size, (0, _lib.useKeyOnly)(block, 'block'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(dividing, 'dividing'), (0, _lib.useValueAndKey)(floated, 'floated'), (0, _lib.useKeyOnly)(icon === true, 'icon'), (0, _lib.useKeyOnly)(image === true, 'image'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(sub, 'sub'), (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useTextAlignProp)(textAlign), 'header', className);
+  var rest = (0, _lib.getUnhandledProps)(Header, props);
+  var ElementType = (0, _lib.getElementType)(Header, props);
+
+  if (!_lib.childrenUtils.isNil(children)) {
+    return _react2.default.createElement(
+      ElementType,
+      (0, _extends3.default)({}, rest, { className: classes }),
+      children
+    );
+  }
+
+  var iconElement = _Icon2.default.create(icon);
+  var imageElement = _Image2.default.create(image);
+  var subheaderElement = _HeaderSubheader2.default.create(subheader);
+
+  if (iconElement || imageElement) {
+    return _react2.default.createElement(
+      ElementType,
+      (0, _extends3.default)({}, rest, { className: classes }),
+      iconElement || imageElement,
+      (content || subheaderElement) && _react2.default.createElement(
+        _HeaderContent2.default,
+        null,
+        content,
+        subheaderElement
+      )
+    );
+  }
+
+  return _react2.default.createElement(
+    ElementType,
+    (0, _extends3.default)({}, rest, { className: classes }),
+    content,
+    subheaderElement
+  );
+}
+
+Header.handledProps = ['as', 'attached', 'block', 'children', 'className', 'color', 'content', 'disabled', 'dividing', 'floated', 'icon', 'image', 'inverted', 'size', 'sub', 'subheader', 'textAlign'];
+Header._meta = {
+  name: 'Header',
+  type: _lib.META.TYPES.ELEMENT
+};
+
+Header.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** Attach header  to other content, like a segment. */
+  attached: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.oneOf(['top', 'bottom'])]),
+
+  /** Format header to appear inside a content block. */
+  block: _propTypes2.default.bool,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** Color of the header. */
+  color: _propTypes2.default.oneOf(_lib.SUI.COLORS),
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand,
+
+  /** Show that the header is inactive. */
+  disabled: _propTypes2.default.bool,
+
+  /** Divide header from the content below it. */
+  dividing: _propTypes2.default.bool,
+
+  /** Header can sit to the left or right of other content. */
+  floated: _propTypes2.default.oneOf(_lib.SUI.FLOATS),
+
+  /** Add an icon by icon name or pass an Icon. */
+  icon: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['image']), _propTypes2.default.oneOfType([_propTypes2.default.bool, _lib.customPropTypes.itemShorthand])]),
+
+  /** Add an image by img src or pass an Image. */
+  image: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['icon']), _propTypes2.default.oneOfType([_propTypes2.default.bool, _lib.customPropTypes.itemShorthand])]),
+
+  /** Inverts the color of the header for dark backgrounds. */
+  inverted: _propTypes2.default.bool,
+
+  /** Content headings are sized with em and are based on the font-size of their container. */
+  size: _propTypes2.default.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'big', 'massive', 'mini')),
+
+  /** Headers may be formatted to label smaller or de-emphasized content. */
+  sub: _propTypes2.default.bool,
+
+  /** Shorthand for Header.Subheader. */
+  subheader: _lib.customPropTypes.itemShorthand,
+
+  /** Align header content. */
+  textAlign: _propTypes2.default.oneOf(_lib.SUI.TEXT_ALIGNMENTS)
+} : {};
+
+Header.Content = _HeaderContent2.default;
+Header.Subheader = _HeaderSubheader2.default;
+
+exports.default = Header;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 953 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _Image = __webpack_require__(949);
+
+var _Image2 = _interopRequireDefault(_Image);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Image2.default;
+
+/***/ }),
+/* 954 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _Dimmer = __webpack_require__(955);
+
+var _Dimmer2 = _interopRequireDefault(_Dimmer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Dimmer2.default;
+
+/***/ }),
+/* 955 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classCallCheck2 = __webpack_require__(84);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(130);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(131);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(133);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+var _Portal = __webpack_require__(956);
+
+var _Portal2 = _interopRequireDefault(_Portal);
+
+var _DimmerDimmable = __webpack_require__(960);
+
+var _DimmerDimmable2 = _interopRequireDefault(_DimmerDimmable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * A dimmer hides distractions to focus attention on particular content.
+ */
+var Dimmer = function (_Component) {
+  (0, _inherits3.default)(Dimmer, _Component);
+
+  function Dimmer() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, Dimmer);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Dimmer.__proto__ || Object.getPrototypeOf(Dimmer)).call.apply(_ref, [this].concat(args))), _this), _this.handlePortalMount = function () {
+      if (!(0, _lib.isBrowser)()) return;
+
+      // Heads up, IE doesn't support second argument in add()
+      document.body.classList.add('dimmed');
+      document.body.classList.add('dimmable');
+    }, _this.handlePortalUnmount = function () {
+      if (!(0, _lib.isBrowser)()) return;
+
+      // Heads up, IE doesn't support second argument in add()
+      document.body.classList.remove('dimmed');
+      document.body.classList.remove('dimmable');
+    }, _this.handleClick = function (e) {
+      var _this$props = _this.props,
+          onClick = _this$props.onClick,
+          onClickOutside = _this$props.onClickOutside;
+
+
+      if (onClick) onClick(e, _this.props);
+      if (_this.centerRef && _this.centerRef !== e.target && _this.centerRef.contains(e.target)) return;
+      if (onClickOutside) onClickOutside(e, _this.props);
+    }, _this.handleCenterRef = function (c) {
+      return _this.centerRef = c;
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(Dimmer, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          active = _props.active,
+          children = _props.children,
+          className = _props.className,
+          content = _props.content,
+          disabled = _props.disabled,
+          inverted = _props.inverted,
+          page = _props.page,
+          simple = _props.simple;
+
+
+      var classes = (0, _classnames2.default)('ui', (0, _lib.useKeyOnly)(active, 'active transition visible'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(page, 'page'), (0, _lib.useKeyOnly)(simple, 'simple'), 'dimmer', className);
+      var rest = (0, _lib.getUnhandledProps)(Dimmer, this.props);
+      var ElementType = (0, _lib.getElementType)(Dimmer, this.props);
+
+      var childrenContent = _lib.childrenUtils.isNil(children) ? content : children;
+
+      var dimmerElement = _react2.default.createElement(
+        ElementType,
+        (0, _extends3.default)({}, rest, { className: classes, onClick: this.handleClick }),
+        childrenContent && _react2.default.createElement(
+          'div',
+          { className: 'content' },
+          _react2.default.createElement(
+            'div',
+            { className: 'center', ref: this.handleCenterRef },
+            childrenContent
+          )
+        )
+      );
+
+      if (page) {
+        return _react2.default.createElement(
+          _Portal2.default,
+          {
+            closeOnEscape: false,
+            closeOnDocumentClick: false,
+            onMount: this.handlePortalMount,
+            onUnmount: this.handlePortalUnmount,
+            open: active,
+            openOnTriggerClick: false
+          },
+          dimmerElement
+        );
+      }
+
+      return dimmerElement;
+    }
+  }]);
+  return Dimmer;
+}(_react.Component);
+
+Dimmer._meta = {
+  name: 'Dimmer',
+  type: _lib.META.TYPES.MODULE
+};
+Dimmer.Dimmable = _DimmerDimmable2.default;
+Dimmer.handledProps = ['active', 'as', 'children', 'className', 'content', 'disabled', 'inverted', 'onClick', 'onClickOutside', 'page', 'simple'];
+exports.default = Dimmer;
+Dimmer.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** An active dimmer will dim its parent container. */
+  active: _propTypes2.default.bool,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand,
+
+  /** A disabled dimmer cannot be activated */
+  disabled: _propTypes2.default.bool,
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: _propTypes2.default.func,
+
+  /**
+   * Handles click outside Dimmer's content, but inside Dimmer area.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClickOutside: _propTypes2.default.func,
+
+  /** A dimmer can be formatted to have its colors inverted. */
+  inverted: _propTypes2.default.bool,
+
+  /** A dimmer can be formatted to be fixed to the page. */
+  page: _propTypes2.default.bool,
+
+  /** A dimmer can be controlled with simple prop. */
+  simple: _propTypes2.default.bool
+} : {};
+
+
+Dimmer.create = (0, _lib.createShorthandFactory)(Dimmer, function (value) {
+  return { content: value };
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 956 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _Portal = __webpack_require__(957);
+
+var _Portal2 = _interopRequireDefault(_Portal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Portal2.default;
+
+/***/ }),
+/* 957 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classCallCheck2 = __webpack_require__(84);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(130);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(131);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(133);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _invoke2 = __webpack_require__(228);
+
+var _invoke3 = _interopRequireDefault(_invoke2);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(592);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _lib = __webpack_require__(73);
+
+var _Ref = __webpack_require__(958);
+
+var _Ref2 = _interopRequireDefault(_Ref);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * A component that allows you to render children outside their parent.
+ * @see Modal
+ * @see Popup
+ * @see Dimmer
+ * @see Confirm
+ */
+var Portal = function (_Component) {
+  (0, _inherits3.default)(Portal, _Component);
+
+  function Portal() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, Portal);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Portal.__proto__ || Object.getPrototypeOf(Portal)).call.apply(_ref, [this].concat(args))), _this), _this.handleDocumentClick = function (e) {
+      var _this$props = _this.props,
+          closeOnDocumentClick = _this$props.closeOnDocumentClick,
+          closeOnRootNodeClick = _this$props.closeOnRootNodeClick;
+
+
+      if (!_this.rootNode // not mounted
+      || !_this.portalNode // no portal
+      || (0, _invoke3.default)(_this, 'triggerNode.contains', e.target) // event happened in trigger (delegate to trigger handlers)
+      || (0, _invoke3.default)(_this, 'portalNode.contains', e.target) // event happened in the portal
+      ) return; // ignore the click
+
+      var didClickInRootNode = _this.rootNode.contains(e.target);
+
+      if (closeOnDocumentClick && !didClickInRootNode || closeOnRootNodeClick && didClickInRootNode) {
+
+        _this.close(e);
+      }
+    }, _this.handleEscape = function (e) {
+      if (!_this.props.closeOnEscape) return;
+      if (_lib.keyboardKey.getCode(e) !== _lib.keyboardKey.Escape) return;
+
+      _this.close(e);
+    }, _this.handlePortalMouseLeave = function (e) {
+      var _this$props2 = _this.props,
+          closeOnPortalMouseLeave = _this$props2.closeOnPortalMouseLeave,
+          mouseLeaveDelay = _this$props2.mouseLeaveDelay;
+
+
+      if (!closeOnPortalMouseLeave) return;
+
+      _this.mouseLeaveTimer = _this.closeWithTimeout(e, mouseLeaveDelay);
+    }, _this.handlePortalMouseEnter = function () {
+      // In order to enable mousing from the trigger to the portal, we need to
+      // clear the mouseleave timer that was set when leaving the trigger.
+      var closeOnPortalMouseLeave = _this.props.closeOnPortalMouseLeave;
+
+
+      if (!closeOnPortalMouseLeave) return;
+
+      clearTimeout(_this.mouseLeaveTimer);
+    }, _this.handleTriggerBlur = function (e) {
+      for (var _len2 = arguments.length, rest = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        rest[_key2 - 1] = arguments[_key2];
+      }
+
+      var _this$props3 = _this.props,
+          trigger = _this$props3.trigger,
+          closeOnTriggerBlur = _this$props3.closeOnTriggerBlur;
+
+      // Call original event handler
+
+      _invoke3.default.apply(undefined, [trigger, 'props.onBlur', e].concat(rest));
+
+      // do not close if focus is given to the portal
+      var didFocusPortal = (0, _invoke3.default)(_this, 'rootNode.contains', e.relatedTarget);
+
+      if (!closeOnTriggerBlur || didFocusPortal) return;
+
+      _this.close(e);
+    }, _this.handleTriggerClick = function (e) {
+      for (var _len3 = arguments.length, rest = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        rest[_key3 - 1] = arguments[_key3];
+      }
+
+      var _this$props4 = _this.props,
+          trigger = _this$props4.trigger,
+          closeOnTriggerClick = _this$props4.closeOnTriggerClick,
+          openOnTriggerClick = _this$props4.openOnTriggerClick;
+      var open = _this.state.open;
+
+      // Call original event handler
+
+      _invoke3.default.apply(undefined, [trigger, 'props.onClick', e].concat(rest));
+
+      if (open && closeOnTriggerClick) {
+
+        _this.close(e);
+      } else if (!open && openOnTriggerClick) {
+
+        _this.open(e);
+      }
+    }, _this.handleTriggerFocus = function (e) {
+      for (var _len4 = arguments.length, rest = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
+        rest[_key4 - 1] = arguments[_key4];
+      }
+
+      var _this$props5 = _this.props,
+          trigger = _this$props5.trigger,
+          openOnTriggerFocus = _this$props5.openOnTriggerFocus;
+
+      // Call original event handler
+
+      _invoke3.default.apply(undefined, [trigger, 'props.onFocus', e].concat(rest));
+
+      if (!openOnTriggerFocus) return;
+
+      _this.open(e);
+    }, _this.handleTriggerMouseLeave = function (e) {
+      for (var _len5 = arguments.length, rest = Array(_len5 > 1 ? _len5 - 1 : 0), _key5 = 1; _key5 < _len5; _key5++) {
+        rest[_key5 - 1] = arguments[_key5];
+      }
+
+      clearTimeout(_this.mouseEnterTimer);
+
+      var _this$props6 = _this.props,
+          trigger = _this$props6.trigger,
+          closeOnTriggerMouseLeave = _this$props6.closeOnTriggerMouseLeave,
+          mouseLeaveDelay = _this$props6.mouseLeaveDelay;
+
+      // Call original event handler
+
+      _invoke3.default.apply(undefined, [trigger, 'props.onMouseLeave', e].concat(rest));
+
+      if (!closeOnTriggerMouseLeave) return;
+
+      _this.mouseLeaveTimer = _this.closeWithTimeout(e, mouseLeaveDelay);
+    }, _this.handleTriggerMouseEnter = function (e) {
+      for (var _len6 = arguments.length, rest = Array(_len6 > 1 ? _len6 - 1 : 0), _key6 = 1; _key6 < _len6; _key6++) {
+        rest[_key6 - 1] = arguments[_key6];
+      }
+
+      clearTimeout(_this.mouseLeaveTimer);
+
+      var _this$props7 = _this.props,
+          trigger = _this$props7.trigger,
+          mouseEnterDelay = _this$props7.mouseEnterDelay,
+          openOnTriggerMouseEnter = _this$props7.openOnTriggerMouseEnter;
+
+      // Call original event handler
+
+      _invoke3.default.apply(undefined, [trigger, 'props.onMouseEnter', e].concat(rest));
+
+      if (!openOnTriggerMouseEnter) return;
+
+      _this.mouseEnterTimer = _this.openWithTimeout(e, mouseEnterDelay);
+    }, _this.open = function (e) {
+      var onOpen = _this.props.onOpen;
+
+      if (onOpen) onOpen(e, _this.props);
+
+      _this.trySetState({ open: true });
+    }, _this.openWithTimeout = function (e, delay) {
+      // React wipes the entire event object and suggests using e.persist() if
+      // you need the event for async access. However, even with e.persist
+      // certain required props (e.g. currentTarget) are null so we're forced to clone.
+      var eventClone = (0, _extends3.default)({}, e);
+      return setTimeout(function () {
+        return _this.open(eventClone);
+      }, delay || 0);
+    }, _this.close = function (e) {
+      var onClose = _this.props.onClose;
+
+      if (onClose) onClose(e, _this.props);
+
+      _this.trySetState({ open: false });
+    }, _this.closeWithTimeout = function (e, delay) {
+      // React wipes the entire event object and suggests using e.persist() if
+      // you need the event for async access. However, even with e.persist
+      // certain required props (e.g. currentTarget) are null so we're forced to clone.
+      var eventClone = (0, _extends3.default)({}, e);
+      return setTimeout(function () {
+        return _this.close(eventClone);
+      }, delay || 0);
+    }, _this.mountPortal = function () {
+      if (!(0, _lib.isBrowser)() || _this.rootNode) return;
+
+      var _this$props8 = _this.props,
+          eventPool = _this$props8.eventPool,
+          _this$props8$mountNod = _this$props8.mountNode,
+          mountNode = _this$props8$mountNod === undefined ? (0, _lib.isBrowser)() ? document.body : null : _this$props8$mountNod,
+          prepend = _this$props8.prepend;
+
+
+      _this.rootNode = document.createElement('div');
+
+      if (prepend) {
+        mountNode.insertBefore(_this.rootNode, mountNode.firstElementChild);
+      } else {
+        mountNode.appendChild(_this.rootNode);
+      }
+
+      _lib.eventStack.sub('click', _this.handleDocumentClick, eventPool);
+      _lib.eventStack.sub('keydown', _this.handleEscape, eventPool);
+      (0, _invoke3.default)(_this.props, 'onMount', null, _this.props);
+    }, _this.unmountPortal = function () {
+      if (!(0, _lib.isBrowser)() || !_this.rootNode) return;
+
+      var eventPool = _this.props.eventPool;
+
+
+      _reactDom2.default.unmountComponentAtNode(_this.rootNode);
+      _this.rootNode.parentNode.removeChild(_this.rootNode);
+
+      _lib.eventStack.unsub('mouseleave', _this.handlePortalMouseLeave, { target: _this.portalNode });
+      _lib.eventStack.unsub('mouseenter', _this.handlePortalMouseEnter, { target: _this.portalNode });
+
+      _this.rootNode = null;
+      _this.portalNode = null;
+
+      _lib.eventStack.unsub('click', _this.handleDocumentClick, eventPool);
+      _lib.eventStack.unsub('keydown', _this.handleEscape, eventPool);
+      (0, _invoke3.default)(_this.props, 'onUnmount', null, _this.props);
+    }, _this.handleRef = function (c) {
+      return _this.triggerNode = c;
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(Portal, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.renderPortal();
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      // NOTE: Ideally the portal rendering would happen in the render() function
+      // but React gives a warning about not being pure and suggests doing it
+      // within this method.
+
+      // If the portal is open, render (or re-render) the portal and child.
+      this.renderPortal();
+
+      if (prevState.open && !this.state.open) {
+        this.unmountPortal();
+      }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.unmountPortal();
+
+      // Clean up timers
+      clearTimeout(this.mouseEnterTimer);
+      clearTimeout(this.mouseLeaveTimer);
+    }
+
+    // ----------------------------------------
+    // Document Event Handlers
+    // ----------------------------------------
+
+    // ----------------------------------------
+    // Component Event Handlers
+    // ----------------------------------------
+
+    // ----------------------------------------
+    // Behavior
+    // ----------------------------------------
+
+  }, {
+    key: 'renderPortal',
+    value: function renderPortal() {
+      var _this2 = this;
+
+      if (!this.state.open) return;
+      var _props = this.props,
+          children = _props.children,
+          className = _props.className;
+
+
+      this.mountPortal();
+
+      // Server side rendering
+      if (!(0, _lib.isBrowser)()) return null;
+
+      this.rootNode.className = className || '';
+
+      // when re-rendering, first remove listeners before re-adding them to the new node
+      if (this.portalNode) {
+        _lib.eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { target: this.portalNode });
+        _lib.eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { target: this.portalNode });
+      }
+
+      _reactDom2.default.unstable_renderSubtreeIntoContainer(this, _react.Children.only(children), this.rootNode, function () {
+        _this2.portalNode = _this2.rootNode.firstElementChild;
+
+        _lib.eventStack.sub('mouseleave', _this2.handlePortalMouseLeave, { target: _this2.portalNode });
+        _lib.eventStack.sub('mouseenter', _this2.handlePortalMouseEnter, { target: _this2.portalNode });
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var trigger = this.props.trigger;
+
+
+      if (!trigger) return null;
+      return _react2.default.createElement(
+        _Ref2.default,
+        { innerRef: this.handleRef },
+        (0, _react.cloneElement)(trigger, {
+          onBlur: this.handleTriggerBlur,
+          onClick: this.handleTriggerClick,
+          onFocus: this.handleTriggerFocus,
+          onMouseLeave: this.handleTriggerMouseLeave,
+          onMouseEnter: this.handleTriggerMouseEnter
+        })
+      );
+    }
+  }]);
+  return Portal;
+}(_lib.AutoControlledComponent);
+
+Portal.defaultProps = {
+  closeOnDocumentClick: true,
+  closeOnEscape: true,
+  eventPool: 'default',
+  openOnTriggerClick: true
+};
+Portal.autoControlledProps = ['open'];
+Portal._meta = {
+  name: 'Portal',
+  type: _lib.META.TYPES.ADDON
+};
+Portal.handledProps = ['children', 'className', 'closeOnDocumentClick', 'closeOnEscape', 'closeOnPortalMouseLeave', 'closeOnRootNodeClick', 'closeOnTriggerBlur', 'closeOnTriggerClick', 'closeOnTriggerMouseLeave', 'defaultOpen', 'eventPool', 'mountNode', 'mouseEnterDelay', 'mouseLeaveDelay', 'onClose', 'onMount', 'onOpen', 'onUnmount', 'open', 'openOnTriggerClick', 'openOnTriggerFocus', 'openOnTriggerMouseEnter', 'prepend', 'trigger'];
+Portal.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** Primary content. */
+  children: _propTypes2.default.node.isRequired,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** Controls whether or not the portal should close when the document is clicked. */
+  closeOnDocumentClick: _propTypes2.default.bool,
+
+  /** Controls whether or not the portal should close when escape is pressed is displayed. */
+  closeOnEscape: _propTypes2.default.bool,
+
+  /**
+   * Controls whether or not the portal should close when mousing out of the portal.
+   * NOTE: This will prevent `closeOnTriggerMouseLeave` when mousing over the
+   * gap from the trigger to the portal.
+   */
+  closeOnPortalMouseLeave: _propTypes2.default.bool,
+
+  /**
+   * Controls whether or not the portal should close on a click on the portal background.
+   * NOTE: This differs from closeOnDocumentClick:
+   * - DocumentClick - any click not within the portal
+   * - RootNodeClick - a click not within the portal but within the portal's wrapper
+   */
+  closeOnRootNodeClick: _propTypes2.default.bool,
+
+  /** Controls whether or not the portal should close on blur of the trigger. */
+  closeOnTriggerBlur: _propTypes2.default.bool,
+
+  /** Controls whether or not the portal should close on click of the trigger. */
+  closeOnTriggerClick: _propTypes2.default.bool,
+
+  /** Controls whether or not the portal should close when mousing out of the trigger. */
+  closeOnTriggerMouseLeave: _propTypes2.default.bool,
+
+  /** Initial value of open. */
+  defaultOpen: _propTypes2.default.bool,
+
+  /** Event pool namespace that is used to handle component events */
+  eventPool: _propTypes2.default.string,
+
+  /** The node where the portal should mount. */
+  mountNode: _propTypes2.default.any,
+
+  /** Milliseconds to wait before opening on mouse over */
+  mouseEnterDelay: _propTypes2.default.number,
+
+  /** Milliseconds to wait before closing on mouse leave */
+  mouseLeaveDelay: _propTypes2.default.number,
+
+  /**
+   * Called when a close event happens
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClose: _propTypes2.default.func,
+
+  /**
+   * Called when the portal is mounted on the DOM
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onMount: _propTypes2.default.func,
+
+  /**
+   * Called when an open event happens
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onOpen: _propTypes2.default.func,
+
+  /**
+   * Called when the portal is unmounted from the DOM
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onUnmount: _propTypes2.default.func,
+
+  /** Controls whether or not the portal is displayed. */
+  open: _propTypes2.default.bool,
+
+  /** Controls whether or not the portal should open when the trigger is clicked. */
+  openOnTriggerClick: _propTypes2.default.bool,
+
+  /** Controls whether or not the portal should open on focus of the trigger. */
+  openOnTriggerFocus: _propTypes2.default.bool,
+
+  /** Controls whether or not the portal should open when mousing over the trigger. */
+  openOnTriggerMouseEnter: _propTypes2.default.bool,
+
+  /** Controls whether the portal should be prepended to the mountNode instead of appended. */
+  prepend: _propTypes2.default.bool,
+
+  /** Element to be rendered in-place where the portal is defined. */
+  trigger: _propTypes2.default.node
+} : {};
+exports.default = Portal;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 958 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _Ref = __webpack_require__(959);
+
+var _Ref2 = _interopRequireDefault(_Ref);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Ref2.default;
+
+/***/ }),
+/* 959 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = __webpack_require__(84);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(130);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(131);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(133);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _reactDom = __webpack_require__(592);
+
+var _META = __webpack_require__(907);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * This component exposes a callback prop that always returns the DOM node of both functional and class component
+ * children.
+ */
+var Ref = function (_Component) {
+  (0, _inherits3.default)(Ref, _Component);
+
+  function Ref() {
+    (0, _classCallCheck3.default)(this, Ref);
+    return (0, _possibleConstructorReturn3.default)(this, (Ref.__proto__ || Object.getPrototypeOf(Ref)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(Ref, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var innerRef = this.props.innerRef;
+
+      // Heads up! Don't move this condition, it's a short circuit that avoids run of `findDOMNode`
+      // if `innerRef` isn't passed
+      // eslint-disable-next-line react/no-find-dom-node
+
+      if (innerRef) innerRef((0, _reactDom.findDOMNode)(this));
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var children = this.props.children;
+
+
+      return _react.Children.only(children);
+    }
+  }]);
+  return Ref;
+}(_react.Component);
+
+Ref._meta = {
+  name: 'Ref',
+  type: _META.TYPES.ADDON
+};
+Ref.handledProps = ['children', 'innerRef'];
+exports.default = Ref;
+Ref.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** Primary content. */
+  children: _propTypes2.default.element,
+
+  /**
+   * Called when componentDidMount.
+   *
+   * @param {HTMLElement} node - Referred node.
+   */
+  innerRef: _propTypes2.default.func
+} : {};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 960 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * A dimmable sub-component for Dimmer.
+ */
+function DimmerDimmable(props) {
+  var blurring = props.blurring,
+      className = props.className,
+      children = props.children,
+      content = props.content,
+      dimmed = props.dimmed;
+
+
+  var classes = (0, _classnames2.default)((0, _lib.useKeyOnly)(blurring, 'blurring'), (0, _lib.useKeyOnly)(dimmed, 'dimmed'), 'dimmable', className);
+  var rest = (0, _lib.getUnhandledProps)(DimmerDimmable, props);
+  var ElementType = (0, _lib.getElementType)(DimmerDimmable, props);
+
+  return _react2.default.createElement(
+    ElementType,
+    (0, _extends3.default)({}, rest, { className: classes }),
+    _lib.childrenUtils.isNil(children) ? content : children
+  );
+}
+
+DimmerDimmable.handledProps = ['as', 'blurring', 'children', 'className', 'content', 'dimmed'];
+DimmerDimmable._meta = {
+  name: 'DimmerDimmable',
+  type: _lib.META.TYPES.MODULE,
+  parent: 'Dimmer'
+};
+
+DimmerDimmable.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** A dimmable element can blur its contents. */
+  blurring: _propTypes2.default.bool,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand,
+
+  /** Controls whether or not the dim is displayed. */
+  dimmed: _propTypes2.default.bool
+} : {};
+
+exports.default = DimmerDimmable;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 961 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classCallCheck2 = __webpack_require__(84);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(130);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(131);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(133);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _isUndefined2 = __webpack_require__(747);
+
+var _isUndefined3 = _interopRequireDefault(_isUndefined2);
+
+var _invoke2 = __webpack_require__(228);
+
+var _invoke3 = _interopRequireDefault(_invoke2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+var _Icon = __webpack_require__(309);
+
+var _Icon2 = _interopRequireDefault(_Icon);
+
+var _Image = __webpack_require__(949);
+
+var _Image2 = _interopRequireDefault(_Image);
+
+var _LabelDetail = __webpack_require__(962);
+
+var _LabelDetail2 = _interopRequireDefault(_LabelDetail);
+
+var _LabelGroup = __webpack_require__(963);
+
+var _LabelGroup2 = _interopRequireDefault(_LabelGroup);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * A label displays content classification.
+ */
+var Label = function (_Component) {
+  (0, _inherits3.default)(Label, _Component);
+
+  function Label() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, Label);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Label.__proto__ || Object.getPrototypeOf(Label)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function (e) {
+      var onClick = _this.props.onClick;
+
+
+      if (onClick) onClick(e, _this.props);
+    }, _this.handleIconOverrides = function (predefinedProps) {
+      return {
+        onClick: function onClick(e) {
+          (0, _invoke3.default)(predefinedProps, 'onClick', e);
+          (0, _invoke3.default)(_this.props, 'onRemove', e, _this.props);
+        }
+      };
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(Label, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          active = _props.active,
+          attached = _props.attached,
+          basic = _props.basic,
+          children = _props.children,
+          circular = _props.circular,
+          className = _props.className,
+          color = _props.color,
+          content = _props.content,
+          corner = _props.corner,
+          detail = _props.detail,
+          empty = _props.empty,
+          floating = _props.floating,
+          horizontal = _props.horizontal,
+          icon = _props.icon,
+          image = _props.image,
+          onRemove = _props.onRemove,
+          pointing = _props.pointing,
+          removeIcon = _props.removeIcon,
+          ribbon = _props.ribbon,
+          size = _props.size,
+          tag = _props.tag;
+
+
+      var pointingClass = pointing === true && 'pointing' || (pointing === 'left' || pointing === 'right') && pointing + ' pointing' || (pointing === 'above' || pointing === 'below') && 'pointing ' + pointing;
+
+      var classes = (0, _classnames2.default)('ui', color, pointingClass, size, (0, _lib.useKeyOnly)(active, 'active'), (0, _lib.useKeyOnly)(basic, 'basic'), (0, _lib.useKeyOnly)(circular, 'circular'), (0, _lib.useKeyOnly)(empty, 'empty'), (0, _lib.useKeyOnly)(floating, 'floating'), (0, _lib.useKeyOnly)(horizontal, 'horizontal'), (0, _lib.useKeyOnly)(image === true, 'image'), (0, _lib.useKeyOnly)(tag, 'tag'), (0, _lib.useKeyOrValueAndKey)(corner, 'corner'), (0, _lib.useKeyOrValueAndKey)(ribbon, 'ribbon'), (0, _lib.useValueAndKey)(attached, 'attached'), 'label', className);
+      var rest = (0, _lib.getUnhandledProps)(Label, this.props);
+      var ElementType = (0, _lib.getElementType)(Label, this.props);
+
+      if (!_lib.childrenUtils.isNil(children)) {
+        return _react2.default.createElement(
+          ElementType,
+          (0, _extends3.default)({}, rest, { className: classes, onClick: this.handleClick }),
+          children
+        );
+      }
+
+      var removeIconShorthand = (0, _isUndefined3.default)(removeIcon) ? 'delete' : removeIcon;
+
+      return _react2.default.createElement(
+        ElementType,
+        (0, _extends3.default)({ className: classes, onClick: this.handleClick }, rest),
+        _Icon2.default.create(icon),
+        typeof image !== 'boolean' && _Image2.default.create(image),
+        content,
+        (0, _lib.createShorthand)(_LabelDetail2.default, function (val) {
+          return { content: val };
+        }, detail),
+        onRemove && _Icon2.default.create(removeIconShorthand, { overrideProps: this.handleIconOverrides })
+      );
+    }
+  }]);
+  return Label;
+}(_react.Component);
+
+Label._meta = {
+  name: 'Label',
+  type: _lib.META.TYPES.ELEMENT
+};
+Label.Detail = _LabelDetail2.default;
+Label.Group = _LabelGroup2.default;
+Label.handledProps = ['active', 'as', 'attached', 'basic', 'children', 'circular', 'className', 'color', 'content', 'corner', 'detail', 'empty', 'floating', 'horizontal', 'icon', 'image', 'onClick', 'onRemove', 'pointing', 'removeIcon', 'ribbon', 'size', 'tag'];
+exports.default = Label;
+Label.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** A label can be active. */
+  active: _propTypes2.default.bool,
+
+  /** A label can attach to a content segment. */
+  attached: _propTypes2.default.oneOf(['top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right']),
+
+  /** A label can reduce its complexity. */
+  basic: _propTypes2.default.bool,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** A label can be circular. */
+  circular: _propTypes2.default.bool,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** Color of the label. */
+  color: _propTypes2.default.oneOf(_lib.SUI.COLORS),
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand,
+
+  /** A label can position itself in the corner of an element. */
+  corner: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.oneOf(['left', 'right'])]),
+
+  /** Shorthand for LabelDetail. */
+  detail: _lib.customPropTypes.itemShorthand,
+
+  /** Formats the label as a dot. */
+  empty: _lib.customPropTypes.every([_propTypes2.default.bool, _lib.customPropTypes.demand(['circular'])]),
+
+  /** Float above another element in the upper right corner. */
+  floating: _propTypes2.default.bool,
+
+  /** A horizontal label is formatted to label content along-side it horizontally. */
+  horizontal: _propTypes2.default.bool,
+
+  /** Shorthand for Icon. */
+  icon: _lib.customPropTypes.itemShorthand,
+
+  /** A label can be formatted to emphasize an image or prop can be used as shorthand for Image. */
+  image: _propTypes2.default.oneOfType([_propTypes2.default.bool, _lib.customPropTypes.itemShorthand]),
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: _propTypes2.default.func,
+
+  /**
+   * Adds an "x" icon, called when "x" is clicked.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onRemove: _propTypes2.default.func,
+
+  /** A label can point to content next to it. */
+  pointing: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.oneOf(['above', 'below', 'left', 'right'])]),
+
+  /** Shorthand for Icon to appear as the last child and trigger onRemove. */
+  removeIcon: _lib.customPropTypes.itemShorthand,
+
+  /** A label can appear as a ribbon attaching itself to an element. */
+  ribbon: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.oneOf(['right'])]),
+
+  /** A label can have different sizes. */
+  size: _propTypes2.default.oneOf(_lib.SUI.SIZES),
+
+  /** A label can appear as a tag. */
+  tag: _propTypes2.default.bool
+} : {};
+
+
+Label.create = (0, _lib.createShorthandFactory)(Label, function (value) {
+  return { content: value };
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 962 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function LabelDetail(props) {
+  var children = props.children,
+      className = props.className,
+      content = props.content;
+
+  var classes = (0, _classnames2.default)('detail', className);
+  var rest = (0, _lib.getUnhandledProps)(LabelDetail, props);
+  var ElementType = (0, _lib.getElementType)(LabelDetail, props);
+
+  return _react2.default.createElement(
+    ElementType,
+    (0, _extends3.default)({}, rest, { className: classes }),
+    _lib.childrenUtils.isNil(children) ? content : children
+  );
+}
+
+LabelDetail.handledProps = ['as', 'children', 'className', 'content'];
+LabelDetail._meta = {
+  name: 'LabelDetail',
+  parent: 'Label',
+  type: _lib.META.TYPES.ELEMENT
+};
+
+LabelDetail.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand
+} : {};
+
+exports.default = LabelDetail;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 963 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * A label can be grouped.
+ */
+function LabelGroup(props) {
+  var children = props.children,
+      circular = props.circular,
+      className = props.className,
+      color = props.color,
+      content = props.content,
+      size = props.size,
+      tag = props.tag;
+
+
+  var classes = (0, _classnames2.default)('ui', color, size, (0, _lib.useKeyOnly)(circular, 'circular'), (0, _lib.useKeyOnly)(tag, 'tag'), 'labels', className);
+  var rest = (0, _lib.getUnhandledProps)(LabelGroup, props);
+  var ElementType = (0, _lib.getElementType)(LabelGroup, props);
+
+  return _react2.default.createElement(
+    ElementType,
+    (0, _extends3.default)({}, rest, { className: classes }),
+    _lib.childrenUtils.isNil(children) ? content : children
+  );
+}
+
+LabelGroup.handledProps = ['as', 'children', 'circular', 'className', 'color', 'content', 'size', 'tag'];
+LabelGroup._meta = {
+  name: 'LabelGroup',
+  parent: 'Label',
+  type: _lib.META.TYPES.ELEMENT
+};
+
+LabelGroup.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** Labels can share shapes. */
+  circular: _propTypes2.default.bool,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** Label group can share colors together. */
+  color: _propTypes2.default.oneOf(_lib.SUI.COLORS),
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand,
+
+  /** Label group can share sizes together. */
+  size: _propTypes2.default.oneOf(_lib.SUI.SIZES),
+
+  /** Label group can share tag formatting. */
+  tag: _propTypes2.default.bool
+} : {};
+
+exports.default = LabelGroup;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 964 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * A group of images.
+ */
+function ImageGroup(props) {
+  var children = props.children,
+      className = props.className,
+      content = props.content,
+      size = props.size;
+
+  var classes = (0, _classnames2.default)('ui', size, className, 'images');
+  var rest = (0, _lib.getUnhandledProps)(ImageGroup, props);
+  var ElementType = (0, _lib.getElementType)(ImageGroup, props);
+
+  return _react2.default.createElement(
+    ElementType,
+    (0, _extends3.default)({}, rest, { className: classes }),
+    _lib.childrenUtils.isNil(children) ? content : children
+  );
+}
+
+ImageGroup.handledProps = ['as', 'children', 'className', 'content', 'size'];
+ImageGroup._meta = {
+  name: 'ImageGroup',
+  parent: 'Image',
+  type: _lib.META.TYPES.ELEMENT
+};
+
+ImageGroup.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand,
+
+  /** A group of images can be formatted to have the same size. */
+  size: _propTypes2.default.oneOf(_lib.SUI.SIZES)
+} : {};
+
+exports.default = ImageGroup;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 965 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Headers may contain subheaders.
+ */
+function HeaderSubheader(props) {
+  var children = props.children,
+      className = props.className,
+      content = props.content;
+
+  var classes = (0, _classnames2.default)('sub header', className);
+  var rest = (0, _lib.getUnhandledProps)(HeaderSubheader, props);
+  var ElementType = (0, _lib.getElementType)(HeaderSubheader, props);
+
+  return _react2.default.createElement(
+    ElementType,
+    (0, _extends3.default)({}, rest, { className: classes }),
+    _lib.childrenUtils.isNil(children) ? content : children
+  );
+}
+
+HeaderSubheader.handledProps = ['as', 'children', 'className', 'content'];
+HeaderSubheader._meta = {
+  name: 'HeaderSubheader',
+  parent: 'Header',
+  type: _lib.META.TYPES.ELEMENT
+};
+
+HeaderSubheader.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand
+} : {};
+
+HeaderSubheader.create = (0, _lib.createShorthandFactory)(HeaderSubheader, function (content) {
+  return { content: content };
+});
+
+exports.default = HeaderSubheader;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 966 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(44);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classnames = __webpack_require__(56);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lib = __webpack_require__(73);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Header content wraps the main content when there is an adjacent Icon or Image.
+ */
+function HeaderContent(props) {
+  var children = props.children,
+      className = props.className,
+      content = props.content;
+
+  var classes = (0, _classnames2.default)('content', className);
+  var rest = (0, _lib.getUnhandledProps)(HeaderContent, props);
+  var ElementType = (0, _lib.getElementType)(HeaderContent, props);
+
+  return _react2.default.createElement(
+    ElementType,
+    (0, _extends3.default)({}, rest, { className: classes }),
+    _lib.childrenUtils.isNil(children) ? content : children
+  );
+}
+
+HeaderContent.handledProps = ['as', 'children', 'className', 'content'];
+HeaderContent._meta = {
+  name: 'HeaderContent',
+  parent: 'Header',
+  type: _lib.META.TYPES.VIEW
+};
+
+HeaderContent.propTypes = process.env.NODE_ENV !== "production" ? {
+  /** An element type to render as (string or function). */
+  as: _lib.customPropTypes.as,
+
+  /** Primary content. */
+  children: _propTypes2.default.node,
+
+  /** Additional classes. */
+  className: _propTypes2.default.string,
+
+  /** Shorthand for primary content. */
+  content: _lib.customPropTypes.contentShorthand
+} : {};
+
+exports.default = HeaderContent;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 967 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Segment2 = __webpack_require__(950);
+
+var _Segment3 = _interopRequireDefault(_Segment2);
+
+var _Header2 = __webpack_require__(952);
+
+var _Header3 = _interopRequireDefault(_Header2);
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PageNotFound = function PageNotFound(_ref) {
+  var _ref$staticContext = _ref.staticContext,
+      staticContext = _ref$staticContext === undefined ? {} : _ref$staticContext;
+
+
+  staticContext.notFound = true;
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'notfound-content' },
+    _react2.default.createElement(
+      _Segment3.default,
+      { secondary: true, textAlign: 'center' },
+      _react2.default.createElement(
+        _Header3.default,
+        { as: 'h1' },
+        'Page Not Found!'
+      )
+    )
+  );
+};
+
+exports.default = {
+  component: PageNotFound
+};
 
 /***/ })
 /******/ ]);

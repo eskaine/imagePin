@@ -1,9 +1,5 @@
 module.exports = function(app, passport) {
 
-  app.get('/', function(req, res) {
-    res.send('API responding');
-  });
-
   //test route
   app.get('/data', function(req, res) {
 
@@ -41,8 +37,11 @@ module.exports = function(app, passport) {
   );
 
   app.get('/logout', function(req, res) {
-    console.log('logging out');
     req.logout();
+    res.redirect(process.env.APP_URL);
+  });
+
+  app.get('*', function(req, res) {
     res.redirect(process.env.APP_URL);
   });
 

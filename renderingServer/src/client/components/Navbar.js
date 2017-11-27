@@ -11,7 +11,7 @@ class Navbar extends Component {
 
   setActive = (path) => this.setState({ activeItem: path });
 
-  renderNavLink = () => {
+  renderNavLink = (activeItem) => {
     return this.props.auth ? (
       <Menu.Item path='yourpins'  active={activeItem === 'yourpins'} onClick={this.handleItemClick} as={Link} to='/yourpins'>Your Pins</Menu.Item>
     ) : null;
@@ -40,7 +40,7 @@ class Navbar extends Component {
         <Container>
           <Menu.Item path='home' active={activeItem === 'home'} onClick={this.handleItemClick} as={Link} to='/'>imagePin</Menu.Item>
           <Menu.Item path='data'  active={activeItem === 'data'} onClick={this.handleItemClick} as={Link} to='/data'>Pins</Menu.Item>
-          {this.renderNavLink()}
+          {this.renderNavLink(activeItem)}
 
           <Menu.Menu position='right'>
             {this.renderAuthButton()}

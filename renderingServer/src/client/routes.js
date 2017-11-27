@@ -2,6 +2,7 @@ import React from 'react';
 import App from './App';
 import HomeContainer from './containers/HomeContainer';
 import BookListContainer from './containers/BookListContainer';
+import PageNotFoundContainer from './containers/PageNotFoundContainer';
 
 export default [
   {
@@ -15,6 +16,9 @@ export default [
       {
         ...BookListContainer,
         path: '/data'
+      },
+      {
+        ...PageNotFoundContainer
       }
     ]
   }
