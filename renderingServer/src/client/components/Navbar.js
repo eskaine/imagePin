@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Menu, Button, Icon } from 'semantic-ui-react';
+import {  Container, Menu, Button, Icon } from 'semantic-ui-react';
 
 const Navbar = ({ authStatus, activeItem, onClick}) => {
 

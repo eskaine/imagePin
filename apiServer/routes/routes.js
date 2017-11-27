@@ -1,4 +1,6 @@
 module.exports = function(app, passport) {
+  const appUrl = process.env.APP_URL;
+  const loginRedirectUrl = appUrl + 'yourpins';
 
   //test route
   app.get('/data', function(req, res) {
@@ -31,18 +33,18 @@ module.exports = function(app, passport) {
 
   app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
-      successRedirect: process.env.APP_URL,
+      successRedirect: loginRedirectUrl,
       failureRedirect: '/login'
     })
   );
 
   app.get('/logout', function(req, res) {
     req.logout();
-    res.redirect(process.env.APP_URL);
+    res.redirect(appUrl);
   });
 
   app.get('*', function(req, res) {
-    res.redirect(process.env.APP_URL);
+    res.redirect(appUrl);
   });
 
 }

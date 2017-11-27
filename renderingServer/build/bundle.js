@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -77,6 +77,18 @@ module.exports = require("react-router-config");
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router-dom");
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -92,19 +104,23 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _App = __webpack_require__(11);
+var _App = __webpack_require__(13);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _HomeContainer = __webpack_require__(12);
+var _HomeContainer = __webpack_require__(19);
 
 var _HomeContainer2 = _interopRequireDefault(_HomeContainer);
 
-var _BookListContainer = __webpack_require__(13);
+var _BookListContainer = __webpack_require__(20);
 
 var _BookListContainer2 = _interopRequireDefault(_BookListContainer);
 
-var _PageNotFoundContainer = __webpack_require__(15);
+var _YourPinsContainer = __webpack_require__(22);
+
+var _YourPinsContainer2 = _interopRequireDefault(_YourPinsContainer);
+
+var _PageNotFoundContainer = __webpack_require__(27);
 
 var _PageNotFoundContainer2 = _interopRequireDefault(_PageNotFoundContainer);
 
@@ -116,11 +132,13 @@ exports.default = [_extends({}, _App2.default, {
     exact: true
   }), _extends({}, _BookListContainer2.default, {
     path: '/data'
+  }), _extends({}, _YourPinsContainer2.default, {
+    path: '/yourpins'
   }), _extends({}, _PageNotFoundContainer2.default)]
 })];
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -168,62 +186,62 @@ var fetchUser = exports.fetchUser = function fetchUser() {
 };
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-redux");
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Header/Header");
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux");
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(8);
+__webpack_require__(10);
 
-var _express = __webpack_require__(9);
+var _express = __webpack_require__(11);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _expressHttpProxy = __webpack_require__(10);
+var _expressHttpProxy = __webpack_require__(12);
 
 var _expressHttpProxy2 = _interopRequireDefault(_expressHttpProxy);
 
 var _reactRouterConfig = __webpack_require__(1);
 
-var _routes = __webpack_require__(2);
+var _routes = __webpack_require__(4);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _htmlTemplate = __webpack_require__(18);
+var _htmlTemplate = __webpack_require__(29);
 
 var _htmlTemplate2 = _interopRequireDefault(_htmlTemplate);
 
-var _createStore = __webpack_require__(20);
+var _createStore = __webpack_require__(31);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
-var _index = __webpack_require__(27);
+var _index = __webpack_require__(38);
 
 var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-__webpack_require__(29).config({ path: '../.env' });
+__webpack_require__(39).config({ path: '../.env' });
 
 app.use('/api', (0, _expressHttpProxy2.default)(process.env.API_URL));
 app.use(_express2.default.static(process.cwd() + '/public'));
@@ -260,25 +278,25 @@ app.listen(port, function () {
 });
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("babel-polyfill");
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-http-proxy");
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -294,11 +312,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterConfig = __webpack_require__(1);
 
-var _NavbarContainer = __webpack_require__(35);
+var _NavbarContainer = __webpack_require__(14);
 
 var _NavbarContainer2 = _interopRequireDefault(_NavbarContainer);
 
-var _auth = __webpack_require__(3);
+var _auth = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -322,7 +340,202 @@ exports.default = {
 };
 
 /***/ }),
-/* 12 */
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(2);
+
+var _reactRouterDom = __webpack_require__(3);
+
+var _Navbar = __webpack_require__(15);
+
+var _Navbar2 = _interopRequireDefault(_Navbar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NavbarContainer = function (_Component) {
+  _inherits(NavbarContainer, _Component);
+
+  function NavbarContainer() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, NavbarContainer);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NavbarContainer.__proto__ || Object.getPrototypeOf(NavbarContainer)).call.apply(_ref, [this].concat(args))), _this), _this.state = { activeItem: 'home' }, _this.handleItemClick = function (e, _ref2) {
+      var path = _ref2.path;
+      return _this.setState({ activeItem: path });
+    }, _this.setActive = function (path) {
+      return _this.setState({ activeItem: path });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(NavbarContainer, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.setActive(this.props.location.pathname.split('/')[1]);
+    }
+
+    //TODO: fix home
+
+  }, {
+    key: 'render',
+    value: function render() {
+      var activeItem = this.state.activeItem;
+
+
+      return _react2.default.createElement(_Navbar2.default, {
+        authStatus: this.props.auth,
+        activeItem: activeItem,
+        onClick: this.handleItemClick });
+    }
+  }]);
+
+  return NavbarContainer;
+}(_react.Component);
+
+function mapStateToProps(_ref3) {
+  var auth = _ref3.auth;
+
+  return { auth: auth };
+}
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(NavbarContainer));
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Icon2 = __webpack_require__(16);
+
+var _Icon3 = _interopRequireDefault(_Icon2);
+
+var _Menu2 = __webpack_require__(17);
+
+var _Menu3 = _interopRequireDefault(_Menu2);
+
+var _Container2 = __webpack_require__(18);
+
+var _Container3 = _interopRequireDefault(_Container2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Navbar = function Navbar(_ref) {
+  var authStatus = _ref.authStatus,
+      activeItem = _ref.activeItem,
+      onClick = _ref.onClick;
+
+
+  function renderNavLink() {
+    return authStatus ? _react2.default.createElement(
+      _Menu3.default.Item,
+      { path: 'yourpins', active: activeItem === 'yourpins', onClick: onClick, as: _reactRouterDom.Link, to: '/yourpins' },
+      'Your Pins'
+    ) : null;
+  }
+
+  function renderAuthButton() {
+    return authStatus ? _react2.default.createElement(
+      'a',
+      { className: 'item', href: '/api/logout' },
+      'Logout'
+    ) : _react2.default.createElement(
+      _Menu3.default.Item,
+      null,
+      _react2.default.createElement(
+        'a',
+        { className: 'ui twitter button', href: '/api/auth/twitter' },
+        _react2.default.createElement(_Icon3.default, { name: 'twitter' }),
+        'Login'
+      )
+    );
+  }
+
+  return _react2.default.createElement(
+    _Menu3.default,
+    { borderless: true, fixed: 'top', size: 'large', color: 'blue' },
+    _react2.default.createElement(
+      _Container3.default,
+      null,
+      _react2.default.createElement(
+        _Menu3.default.Item,
+        { path: 'home', active: activeItem === 'home', onClick: onClick, as: _reactRouterDom.Link, to: '/' },
+        'imagePin'
+      ),
+      _react2.default.createElement(
+        _Menu3.default.Item,
+        { path: 'data', active: activeItem === 'data', onClick: onClick, as: _reactRouterDom.Link, to: '/data' },
+        'Pins'
+      ),
+      renderNavLink(),
+      _react2.default.createElement(
+        _Menu3.default.Menu,
+        { position: 'right' },
+        renderAuthButton()
+      )
+    )
+  );
+};
+
+exports.default = Navbar;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Icon/Icon");
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/collections/Menu/Menu");
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Container/Container");
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -352,7 +565,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 13 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -368,9 +581,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(2);
 
-var _allImages = __webpack_require__(14);
+var _allImages = __webpack_require__(21);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -440,7 +653,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 14 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -488,7 +701,7 @@ var fetchData = exports.fetchData = function fetchData() {
 };
 
 /***/ }),
-/* 15 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -498,11 +711,145 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Segment2 = __webpack_require__(16);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _YourPins = __webpack_require__(23);
+
+var _YourPins2 = _interopRequireDefault(_YourPins);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var YourPinsContainer = function (_Component) {
+  _inherits(YourPinsContainer, _Component);
+
+  function YourPinsContainer() {
+    _classCallCheck(this, YourPinsContainer);
+
+    return _possibleConstructorReturn(this, (YourPinsContainer.__proto__ || Object.getPrototypeOf(YourPinsContainer)).apply(this, arguments));
+  }
+
+  _createClass(YourPinsContainer, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(_YourPins2.default, null);
+    }
+  }]);
+
+  return YourPinsContainer;
+}(_react.Component);
+
+exports.default = {
+  component: YourPinsContainer
+};
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Divider2 = __webpack_require__(25);
+
+var _Divider3 = _interopRequireDefault(_Divider2);
+
+var _Header2 = __webpack_require__(6);
+
+var _Header3 = _interopRequireDefault(_Header2);
+
+var _Menu2 = __webpack_require__(17);
+
+var _Menu3 = _interopRequireDefault(_Menu2);
+
+var _Container2 = __webpack_require__(18);
+
+var _Container3 = _interopRequireDefault(_Container2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _NewPin = __webpack_require__(42);
+
+var _NewPin2 = _interopRequireDefault(_NewPin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var YourPins = function YourPins() {
+  return _react2.default.createElement(
+    _Container3.default,
+    null,
+    _react2.default.createElement(
+      'div',
+      { className: 'page-content' },
+      _react2.default.createElement(
+        _Menu3.default,
+        { secondary: true, borderless: true, size: 'large' },
+        _react2.default.createElement(
+          _Menu3.default.Item,
+          null,
+          _react2.default.createElement(
+            _Header3.default,
+            { as: 'h1' },
+            'Your Pins'
+          )
+        ),
+        _react2.default.createElement(
+          _Menu3.default.Item,
+          null,
+          _react2.default.createElement(_NewPin2.default, null)
+        )
+      ),
+      _react2.default.createElement(_Divider3.default, null)
+    )
+  );
+};
+
+exports.default = YourPins;
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Button/Button");
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Divider/Divider");
+
+/***/ }),
+/* 26 */,
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Segment2 = __webpack_require__(28);
 
 var _Segment3 = _interopRequireDefault(_Segment2);
 
-var _Header2 = __webpack_require__(17);
+var _Header2 = __webpack_require__(6);
 
 var _Header3 = _interopRequireDefault(_Header2);
 
@@ -538,19 +885,13 @@ exports.default = {
 };
 
 /***/ }),
-/* 16 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = require("semantic-ui-react/dist/commonjs/elements/Segment/Segment");
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Header/Header");
-
-/***/ }),
-/* 18 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -564,9 +905,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(5);
+var _server = __webpack_require__(7);
 
-var _serializeJavascript = __webpack_require__(19);
+var _serializeJavascript = __webpack_require__(30);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
@@ -577,13 +918,13 @@ exports.default = function (pageContent, store) {
 };
 
 /***/ }),
-/* 19 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 20 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -593,17 +934,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _redux = __webpack_require__(6);
+var _redux = __webpack_require__(8);
 
-var _reduxThunk = __webpack_require__(21);
+var _reduxThunk = __webpack_require__(32);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _axios = __webpack_require__(22);
+var _axios = __webpack_require__(33);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _reducers = __webpack_require__(23);
+var _reducers = __webpack_require__(34);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -621,19 +962,19 @@ exports.default = function (req) {
 };
 
 /***/ }),
-/* 21 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
 
 /***/ }),
-/* 22 */
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
 
 /***/ }),
-/* 23 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -643,13 +984,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _redux = __webpack_require__(6);
+var _redux = __webpack_require__(8);
 
-var _images = __webpack_require__(24);
+var _images = __webpack_require__(35);
 
 var _images2 = _interopRequireDefault(_images);
 
-var _auth = __webpack_require__(26);
+var _auth = __webpack_require__(37);
 
 var _auth2 = _interopRequireDefault(_auth);
 
@@ -661,7 +1002,7 @@ exports.default = (0, _redux.combineReducers)({
 });
 
 /***/ }),
-/* 24 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -671,7 +1012,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actions = __webpack_require__(25);
+var _actions = __webpack_require__(36);
 
 exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -686,7 +1027,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 25 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -734,7 +1075,7 @@ var fetchData = exports.fetchData = function fetchData() {
 };
 
 /***/ }),
-/* 26 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -756,10 +1097,10 @@ exports.default = function () {
   }
 };
 
-var _auth = __webpack_require__(3);
+var _auth = __webpack_require__(5);
 
 /***/ }),
-/* 27 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -773,15 +1114,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(5);
+var _server = __webpack_require__(7);
 
-var _reactRouterDom = __webpack_require__(28);
+var _reactRouterDom = __webpack_require__(3);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(2);
 
 var _reactRouterConfig = __webpack_require__(1);
 
-var _routes = __webpack_require__(2);
+var _routes = __webpack_require__(4);
 
 var _routes2 = _interopRequireDefault(_routes);
 
@@ -804,20 +1145,25 @@ exports.default = function (req, store, context) {
 };
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-router-dom");
-
-/***/ }),
-/* 29 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
 
 /***/ }),
-/* 30 */,
-/* 31 */
+/* 40 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/modules/Modal/Modal");
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Image/Image");
+
+/***/ }),
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -827,127 +1173,27 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Icon2 = __webpack_require__(34);
+var _Header2 = __webpack_require__(6);
 
-var _Icon3 = _interopRequireDefault(_Icon2);
+var _Header3 = _interopRequireDefault(_Header2);
 
-var _Menu2 = __webpack_require__(32);
+var _Image2 = __webpack_require__(41);
 
-var _Menu3 = _interopRequireDefault(_Menu2);
+var _Image3 = _interopRequireDefault(_Image2);
 
-var _Container2 = __webpack_require__(33);
+var _Button2 = __webpack_require__(24);
 
-var _Container3 = _interopRequireDefault(_Container2);
+var _Button3 = _interopRequireDefault(_Button2);
 
-var _react = __webpack_require__(0);
+var _Modal2 = __webpack_require__(40);
 
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(28);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Navbar = function Navbar(_ref) {
-  var authStatus = _ref.authStatus,
-      activeItem = _ref.activeItem,
-      onClick = _ref.onClick;
-
-
-  function renderNavLink() {
-    return authStatus ? _react2.default.createElement(
-      _Menu3.default.Item,
-      { path: 'yourpins', active: activeItem === 'yourpins', onClick: onClick, as: _reactRouterDom.Link, to: '/yourpins' },
-      'Your Pins'
-    ) : null;
-  }
-
-  function renderAuthButton() {
-    return authStatus ? _react2.default.createElement(
-      'a',
-      { className: 'item', href: '/api/logout' },
-      'Logout'
-    ) : _react2.default.createElement(
-      _Menu3.default.Item,
-      null,
-      _react2.default.createElement(
-        'a',
-        { className: 'ui twitter button', href: '/api/auth/twitter' },
-        _react2.default.createElement(_Icon3.default, { name: 'twitter' }),
-        'Login'
-      )
-    );
-  }
-
-  return _react2.default.createElement(
-    _Menu3.default,
-    { borderless: true, fixed: 'top', size: 'large', color: 'blue' },
-    _react2.default.createElement(
-      _Container3.default,
-      null,
-      _react2.default.createElement(
-        _Menu3.default.Item,
-        { path: 'home', active: activeItem === 'home', onClick: onClick, as: _reactRouterDom.Link, to: '/' },
-        'imagePin'
-      ),
-      _react2.default.createElement(
-        _Menu3.default.Item,
-        { path: 'data', active: activeItem === 'data', onClick: onClick, as: _reactRouterDom.Link, to: '/data' },
-        'Pins'
-      ),
-      renderNavLink(),
-      _react2.default.createElement(
-        _Menu3.default.Menu,
-        { position: 'right' },
-        renderAuthButton()
-      )
-    )
-  );
-};
-
-exports.default = Navbar;
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports) {
-
-module.exports = require("semantic-ui-react/dist/commonjs/collections/Menu/Menu");
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports) {
-
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Container/Container");
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports) {
-
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Icon/Icon");
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _Modal3 = _interopRequireDefault(_Modal2);
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(4);
-
-var _reactRouterDom = __webpack_require__(28);
-
-var _Navbar = __webpack_require__(31);
-
-var _Navbar2 = _interopRequireDefault(_Navbar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -957,59 +1203,74 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var NavbarContainer = function (_Component) {
-  _inherits(NavbarContainer, _Component);
+var NewPin = function (_Component) {
+  _inherits(NewPin, _Component);
 
-  function NavbarContainer() {
+  function NewPin() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, NavbarContainer);
+    _classCallCheck(this, NewPin);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NavbarContainer.__proto__ || Object.getPrototypeOf(NavbarContainer)).call.apply(_ref, [this].concat(args))), _this), _this.state = { activeItem: 'home' }, _this.handleItemClick = function (e, _ref2) {
-      var path = _ref2.path;
-      return _this.setState({ activeItem: path });
-    }, _this.setActive = function (path) {
-      return _this.setState({ activeItem: path });
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewPin.__proto__ || Object.getPrototypeOf(NewPin)).call.apply(_ref, [this].concat(args))), _this), _this.state = { visible: true }, _this.toggleVisibility = function () {
+      return _this.setState({ visible: !_this.state.visible });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(NavbarContainer, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      this.setActive(this.props.location.pathname.split('/')[1]);
-    }
-
-    //TODO: fix home
-
-  }, {
+  _createClass(NewPin, [{
     key: 'render',
     value: function render() {
-      var activeItem = this.state.activeItem;
+      var visible = this.state.visible;
 
-
-      return _react2.default.createElement(_Navbar2.default, {
-        authStatus: this.props.auth,
-        activeItem: activeItem,
-        onClick: this.handleItemClick });
+      return _react2.default.createElement(
+        _Modal3.default,
+        { trigger: _react2.default.createElement(
+            _Button3.default,
+            { className: 'new-pin-btn', color: 'green', inverted: true },
+            'New Pin'
+          ) },
+        _react2.default.createElement(
+          _Modal3.default.Header,
+          null,
+          'Select a Photo'
+        ),
+        _react2.default.createElement(
+          _Modal3.default.Content,
+          { image: true },
+          _react2.default.createElement(_Image3.default, { wrapped: true, size: 'medium', src: '/assets/images/avatar/large/rachel.png' }),
+          _react2.default.createElement(
+            _Modal3.default.Description,
+            null,
+            _react2.default.createElement(
+              _Header3.default,
+              null,
+              'Default Profile Image'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'We\'ve found the following gravatar image associated with your e-mail address.'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Is it okay to use this photo?'
+            )
+          )
+        )
+      );
     }
   }]);
 
-  return NavbarContainer;
+  return NewPin;
 }(_react.Component);
 
-function mapStateToProps(_ref3) {
-  var auth = _ref3.auth;
-
-  return { auth: auth };
-}
-
-exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(NavbarContainer));
+exports.default = NewPin;
 
 /***/ })
 /******/ ]);
