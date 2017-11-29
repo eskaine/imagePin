@@ -5,14 +5,14 @@ import Navbar from '../components/Navbar';
 
 class NavbarContainer extends Component {
 
-  state = { activeItem: 'home' };
+  state = { activeItem: '/home' };
 
-  handleItemClick = (e, { path }) => this.setState({ activeItem: path });
+  handleItemClick = (e, { to }) => this.setState({ activeItem: to });
 
   setActive = (path) => this.setState({ activeItem: path });
 
   componentWillMount() {
-    this.setActive(this.props.location.pathname.split('/')[1]);
+    this.setActive(this.props.location.pathname);
   }
 
   //TODO: fix home

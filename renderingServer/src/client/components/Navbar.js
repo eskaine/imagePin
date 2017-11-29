@@ -7,7 +7,7 @@ const Navbar = ({ authStatus, activeItem, onClick}) => {
 
   function renderNavLink() {
     return authStatus ? (
-      <Menu.Item path='yourpins'  active={activeItem === 'yourpins'} onClick={onClick} as={Link} to='/yourpins'>{navbar.protectedLinkNames[0]}</Menu.Item>
+      <Menu.Item active={activeItem === '/yourPins'} onClick={onClick} as={Link} to='/yourPins'>{navbar.protectedLinkNames[0]}</Menu.Item>
     ) : null;
   }
 
@@ -22,10 +22,10 @@ const Navbar = ({ authStatus, activeItem, onClick}) => {
   }
 
   return (
-    <Menu borderless={true} fixed='top' size='large' color='blue'>
+    <Menu borderless={true} fixed='top' size='large' color={navbar.color}>
       <Container>
-        <Menu.Item path='home' active={activeItem === 'home'} onClick={onClick} as={Link} to='/'>{navbar.appName}</Menu.Item>
-        <Menu.Item path='data'  active={activeItem === 'data'} onClick={onClick} as={Link} to='/data'>{navbar.linkNames[0]}</Menu.Item>
+        <Menu.Item active={activeItem === '/'} onClick={onClick} as={Link} to='/'>{navbar.appName}</Menu.Item>
+        <Menu.Item active={activeItem === '/data'} onClick={onClick} as={Link} to='/data'>{navbar.linkNames[0]}</Menu.Item>
         {renderNavLink()}
 
         <Menu.Menu position='right'>

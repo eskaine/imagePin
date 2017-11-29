@@ -99,6 +99,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var navbar = exports.navbar = {
   appName: 'imagePin',
+  color: 'blue',
   linkNames: ['Pins', 'Login'],
   protectedLinkNames: ['Your Pins', 'Logout']
 };
@@ -153,7 +154,7 @@ var _YourPinsContainer = __webpack_require__(24);
 
 var _YourPinsContainer2 = _interopRequireDefault(_YourPinsContainer);
 
-var _PageNotFoundContainer = __webpack_require__(32);
+var _PageNotFoundContainer = __webpack_require__(33);
 
 var _PageNotFoundContainer2 = _interopRequireDefault(_PageNotFoundContainer);
 
@@ -166,7 +167,7 @@ exports.default = [_extends({}, _App2.default, {
   }), _extends({}, _BookListContainer2.default, {
     path: '/data'
   }), _extends({}, _YourPinsContainer2.default, {
-    path: '/yourpins'
+    path: '/yourPins'
   }), _extends({}, _PageNotFoundContainer2.default)]
 })];
 
@@ -277,22 +278,22 @@ var _routes = __webpack_require__(5);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _htmlTemplate = __webpack_require__(33);
+var _htmlTemplate = __webpack_require__(34);
 
 var _htmlTemplate2 = _interopRequireDefault(_htmlTemplate);
 
-var _createStore = __webpack_require__(35);
+var _createStore = __webpack_require__(36);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
-var _index = __webpack_require__(42);
+var _index = __webpack_require__(43);
 
 var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-__webpack_require__(43).config({ path: '../.env' });
+__webpack_require__(44).config({ path: '../.env' });
 
 app.use('/api', (0, _expressHttpProxy2.default)(process.env.API_URL));
 app.use(_express2.default.static(process.cwd() + '/public'));
@@ -437,9 +438,9 @@ var NavbarContainer = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NavbarContainer.__proto__ || Object.getPrototypeOf(NavbarContainer)).call.apply(_ref, [this].concat(args))), _this), _this.state = { activeItem: 'home' }, _this.handleItemClick = function (e, _ref2) {
-      var path = _ref2.path;
-      return _this.setState({ activeItem: path });
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NavbarContainer.__proto__ || Object.getPrototypeOf(NavbarContainer)).call.apply(_ref, [this].concat(args))), _this), _this.state = { activeItem: '/home' }, _this.handleItemClick = function (e, _ref2) {
+      var to = _ref2.to;
+      return _this.setState({ activeItem: to });
     }, _this.setActive = function (path) {
       return _this.setState({ activeItem: path });
     }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -448,7 +449,7 @@ var NavbarContainer = function (_Component) {
   _createClass(NavbarContainer, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      this.setActive(this.props.location.pathname.split('/')[1]);
+      this.setActive(this.props.location.pathname);
     }
 
     //TODO: fix home
@@ -519,7 +520,7 @@ var Navbar = function Navbar(_ref) {
   function renderNavLink() {
     return authStatus ? _react2.default.createElement(
       _Menu3.default.Item,
-      { path: 'yourpins', active: activeItem === 'yourpins', onClick: onClick, as: _reactRouterDom.Link, to: '/yourpins' },
+      { active: activeItem === '/yourPins', onClick: onClick, as: _reactRouterDom.Link, to: '/yourPins' },
       _attr.navbar.protectedLinkNames[0]
     ) : null;
   }
@@ -543,18 +544,18 @@ var Navbar = function Navbar(_ref) {
 
   return _react2.default.createElement(
     _Menu3.default,
-    { borderless: true, fixed: 'top', size: 'large', color: 'blue' },
+    { borderless: true, fixed: 'top', size: 'large', color: _attr.navbar.color },
     _react2.default.createElement(
       _Container3.default,
       null,
       _react2.default.createElement(
         _Menu3.default.Item,
-        { path: 'home', active: activeItem === 'home', onClick: onClick, as: _reactRouterDom.Link, to: '/' },
+        { active: activeItem === '/', onClick: onClick, as: _reactRouterDom.Link, to: '/' },
         _attr.navbar.appName
       ),
       _react2.default.createElement(
         _Menu3.default.Item,
-        { path: 'data', active: activeItem === 'data', onClick: onClick, as: _reactRouterDom.Link, to: '/data' },
+        { active: activeItem === '/data', onClick: onClick, as: _reactRouterDom.Link, to: '/data' },
         _attr.navbar.linkNames[0]
       ),
       renderNavLink(),
@@ -824,9 +825,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _NewPin = __webpack_require__(27);
+var _NewPinContainer = __webpack_require__(27);
 
-var _NewPin2 = _interopRequireDefault(_NewPin);
+var _NewPinContainer2 = _interopRequireDefault(_NewPinContainer);
 
 var _attr = __webpack_require__(4);
 
@@ -854,7 +855,7 @@ var YourPins = function YourPins() {
         _react2.default.createElement(
           _Menu3.default.Item,
           null,
-          _react2.default.createElement(_NewPin2.default, null)
+          _react2.default.createElement(_NewPinContainer2.default, null)
         )
       ),
       _react2.default.createElement(_Divider3.default, null)
@@ -881,33 +882,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Image2 = __webpack_require__(28);
-
-var _Image3 = _interopRequireDefault(_Image2);
-
-var _Button2 = __webpack_require__(29);
-
-var _Button3 = _interopRequireDefault(_Button2);
-
-var _Form2 = __webpack_require__(30);
-
-var _Form3 = _interopRequireDefault(_Form2);
-
-var _Segment2 = __webpack_require__(10);
-
-var _Segment3 = _interopRequireDefault(_Segment2);
-
-var _Modal2 = __webpack_require__(31);
-
-var _Modal3 = _interopRequireDefault(_Modal2);
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _attr = __webpack_require__(4);
+var _NewPin = __webpack_require__(28);
+
+var _NewPin2 = _interopRequireDefault(_NewPin);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -917,97 +900,157 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var NewPin = function (_Component) {
-  _inherits(NewPin, _Component);
+var NewPinContainer = function (_Component) {
+  _inherits(NewPinContainer, _Component);
 
-  function NewPin() {
+  function NewPinContainer() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, NewPin);
+    _classCallCheck(this, NewPinContainer);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewPin.__proto__ || Object.getPrototypeOf(NewPin)).call.apply(_ref, [this].concat(args))), _this), _this.state = { visible: true }, _this.toggleVisibility = function () {
-      return _this.setState({ visible: !_this.state.visible });
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewPinContainer.__proto__ || Object.getPrototypeOf(NewPinContainer)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      title: '',
+      imageSrc: '/assets/placeholder.png'
+    }, _this.handleTitle = function (e) {
+      return _this.setState({ title: e.target.value });
+    }, _this.handleImage = function (e) {
+      return _this.setState({ imageSrc: e.target.value });
+    }, _this.handleImageError = function () {
+      return _this.setState({ imageSrc: '/assets/placeholder.png' });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(NewPin, [{
+  _createClass(NewPinContainer, [{
     key: 'render',
     value: function render() {
-      var visible = this.state.visible;
-
-      return _react2.default.createElement(
-        _Modal3.default,
-        { trigger: _react2.default.createElement(
-            _Button3.default,
-            { className: 'new-pin-btn', color: _attr.newPin.triggerBtn.color, inverted: true },
-            _attr.newPin.triggerBtn.name
-          ), closeIcon: true },
-        _react2.default.createElement(
-          _Modal3.default.Header,
-          null,
-          _attr.newPin.name
-        ),
-        _react2.default.createElement(
-          _Modal3.default.Content,
-          null,
-          _react2.default.createElement(
-            _Segment3.default,
-            null,
-            _react2.default.createElement(_Image3.default, { src: '/assets/placeholder.png', size: 'medium', centered: true })
-          ),
-          _react2.default.createElement(
-            _Form3.default,
-            null,
-            _react2.default.createElement(_Form3.default.Input, { label: _attr.newPin.labelNames[0], type: 'text' }),
-            _react2.default.createElement(_Form3.default.Input, { label: _attr.newPin.labelNames[1], type: 'url' }),
-            _react2.default.createElement(
-              _Button3.default,
-              { color: _attr.newPin.addBtn.color, type: 'submit' },
-              _attr.newPin.addBtn.name
-            )
-          )
-        )
-      );
+      return _react2.default.createElement(_NewPin2.default, {
+        imageSrc: this.state.imageSrc,
+        handleTitle: this.handleTitle,
+        handleImage: this.handleImage,
+        handleImageError: this.handleImageError
+      });
     }
   }]);
 
-  return NewPin;
+  return NewPinContainer;
 }(_react.Component);
 
-exports.default = NewPin;
+exports.default = NewPinContainer;
 
 /***/ }),
 /* 28 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Image/Image");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Image2 = __webpack_require__(29);
+
+var _Image3 = _interopRequireDefault(_Image2);
+
+var _Button2 = __webpack_require__(30);
+
+var _Button3 = _interopRequireDefault(_Button2);
+
+var _Form2 = __webpack_require__(31);
+
+var _Form3 = _interopRequireDefault(_Form2);
+
+var _Segment2 = __webpack_require__(10);
+
+var _Segment3 = _interopRequireDefault(_Segment2);
+
+var _Modal2 = __webpack_require__(32);
+
+var _Modal3 = _interopRequireDefault(_Modal2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _attr = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NewPin = function NewPin(_ref) {
+  var imageSrc = _ref.imageSrc,
+      handleTitle = _ref.handleTitle,
+      handleImage = _ref.handleImage,
+      handleImageError = _ref.handleImageError;
+
+  return _react2.default.createElement(
+    _Modal3.default,
+    { trigger: _react2.default.createElement(
+        _Button3.default,
+        { className: 'new-pin-btn', color: _attr.newPin.triggerBtn.color, inverted: true },
+        _attr.newPin.triggerBtn.name
+      ), closeIcon: true },
+    _react2.default.createElement(
+      _Modal3.default.Header,
+      null,
+      _attr.newPin.name
+    ),
+    _react2.default.createElement(
+      _Modal3.default.Content,
+      null,
+      _react2.default.createElement(
+        _Segment3.default,
+        null,
+        _react2.default.createElement(_Image3.default, { src: imageSrc, onError: handleImageError, size: 'medium', centered: true })
+      ),
+      _react2.default.createElement(
+        _Form3.default,
+        null,
+        _react2.default.createElement(_Form3.default.Input, { label: _attr.newPin.labelNames[0], onChange: handleTitle, type: 'text' }),
+        _react2.default.createElement(_Form3.default.Input, { label: _attr.newPin.labelNames[1], onChange: handleImage, type: 'url' }),
+        _react2.default.createElement(
+          _Button3.default,
+          { color: _attr.newPin.addBtn.color, type: 'submit' },
+          _attr.newPin.addBtn.name
+        )
+      )
+    )
+  );
+};
+
+exports.default = NewPin;
 
 /***/ }),
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Button/Button");
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Image/Image");
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = require("semantic-ui-react/dist/commonjs/collections/Form/Form");
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Button/Button");
 
 /***/ }),
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = require("semantic-ui-react/dist/commonjs/modules/Modal/Modal");
+module.exports = require("semantic-ui-react/dist/commonjs/collections/Form/Form");
 
 /***/ }),
 /* 32 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/modules/Modal/Modal");
+
+/***/ }),
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1057,7 +1100,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1073,7 +1116,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(11);
 
-var _serializeJavascript = __webpack_require__(34);
+var _serializeJavascript = __webpack_require__(35);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
@@ -1084,13 +1127,13 @@ exports.default = function (pageContent, store) {
 };
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1102,15 +1145,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(12);
 
-var _reduxThunk = __webpack_require__(36);
+var _reduxThunk = __webpack_require__(37);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _axios = __webpack_require__(37);
+var _axios = __webpack_require__(38);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _reducers = __webpack_require__(38);
+var _reducers = __webpack_require__(39);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -1128,44 +1171,16 @@ exports.default = function (req) {
 };
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _redux = __webpack_require__(12);
-
-var _images = __webpack_require__(39);
-
-var _images2 = _interopRequireDefault(_images);
-
-var _auth = __webpack_require__(41);
-
-var _auth2 = _interopRequireDefault(_auth);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = (0, _redux.combineReducers)({
-  auth: _auth2.default,
-  images: _images2.default
-});
 
 /***/ }),
 /* 39 */
@@ -1178,7 +1193,35 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actions = __webpack_require__(40);
+var _redux = __webpack_require__(12);
+
+var _images = __webpack_require__(40);
+
+var _images2 = _interopRequireDefault(_images);
+
+var _auth = __webpack_require__(42);
+
+var _auth2 = _interopRequireDefault(_auth);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _redux.combineReducers)({
+  auth: _auth2.default,
+  images: _images2.default
+});
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _actions = __webpack_require__(41);
 
 exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -1193,7 +1236,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1241,7 +1284,7 @@ var fetchData = exports.fetchData = function fetchData() {
 };
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1266,7 +1309,7 @@ exports.default = function () {
 var _auth = __webpack_require__(8);
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1311,7 +1354,7 @@ exports.default = function (req, store, context) {
 };
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");

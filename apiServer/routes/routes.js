@@ -1,6 +1,6 @@
 module.exports = function(app, passport) {
   const appUrl = process.env.APP_URL;
-  const loginRedirectUrl = appUrl + 'yourpins';
+  const loginRedirectUrl = appUrl + 'yourPins';
 
   //test route
   app.get('/data', function(req, res) {
@@ -23,7 +23,13 @@ module.exports = function(app, passport) {
     res.send(data);
   });
 
-  app.get('/yourpins', function(req, res) {
+  app.get('/yourPins/add', function(req, res) {
+    console.log('add pin');
+    //res.send('yourpins');
+    res.send('');
+  });
+
+  app.get('/yourPins', function(req, res) {
     console.log('yourpins');
     //res.send('yourpins');
   });

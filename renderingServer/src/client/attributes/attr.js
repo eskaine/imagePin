@@ -1,5 +1,6 @@
 export const navbar = {
   appName: 'imagePin',
+  color: 'blue',
   linkNames: ['Pins', 'Login'],
   protectedLinkNames: ['Your Pins', 'Logout']
 }
