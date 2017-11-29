@@ -2,11 +2,11 @@ export const navbar = {
   appName: 'imagePin',
   color: 'blue',
   linkNames: ['Pins', 'Login'],
-  protectedLinkNames: ['Your Pins', 'Logout']
+  protectedLinkNames: ['My Pins', 'Logout']
 }
 
-export const yourPins = {
-  pageName: 'Your Pins'
+export const myPins = {
+  pageName: 'My Pins'
 }
 
 //New Pin Modal
@@ -20,5 +20,9 @@ export const newPin = {
   addBtn: {
     name: 'Add',
     color: 'green'
+  },
+  closeBtn: {
+    name: 'Close',
+    color: 'red'
   }
 }

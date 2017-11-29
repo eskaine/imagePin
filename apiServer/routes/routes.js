@@ -1,6 +1,14 @@
 module.exports = function(app, passport) {
   const appUrl = process.env.APP_URL;
-  const loginRedirectUrl = appUrl + 'yourPins';
+  const loginRedirectUrl = appUrl + 'myPins';
+
+  function authCheck(req, res, next) {
+    if(req.isAuthenticated()) {
+      return next();
+    } else {
+      res.status(401).send('Unauthorized');
+    }
+  }
 
   //test route
   app.get('/data', function(req, res) {
@@ -23,14 +31,14 @@ module.exports = function(app, passport) {
     res.send(data);
   });
 
-  app.get('/yourPins/add', function(req, res) {
-    console.log('add pin');
-    //res.send('yourpins');
-    res.send('');
+  app.post('/myPins/add', function(req, res) {
+    console.log(req.user);
+    res.send(req.body);
   });
 
-  app.get('/yourPins', function(req, res) {
-    console.log('yourpins');
+  app.get('/myPins', authCheck, function(req, res) {
+    console.log('mypins');
+    console.log(req.isAuthenticated());
     //res.send('yourpins');
   });
 

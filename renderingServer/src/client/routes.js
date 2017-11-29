@@ -2,7 +2,7 @@ import React from 'react';
 import App from './App';
 import HomeContainer from './containers/HomeContainer';
 import BookListContainer from './containers/BookListContainer';
-import YourPinsContainer from './containers/YourPinsContainer';
+import MyPinsContainer from './containers/MyPinsContainer';
 import PageNotFoundContainer from './containers/PageNotFoundContainer';
 
 export default [
@@ -19,8 +19,8 @@ export default [
         path: '/data'
       },
       {
-        ...YourPinsContainer,
-        path: '/yourPins'
+        ...MyPinsContainer,
+        path: '/myPins'
       },
       {
         ...PageNotFoundContainer

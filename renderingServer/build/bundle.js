@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,13 +73,13 @@ module.exports = require("react");
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router-config");
+module.exports = require("react-redux");
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-redux");
+module.exports = require("react-router-config");
 
 /***/ }),
 /* 3 */
@@ -101,11 +101,11 @@ var navbar = exports.navbar = {
   appName: 'imagePin',
   color: 'blue',
   linkNames: ['Pins', 'Login'],
-  protectedLinkNames: ['Your Pins', 'Logout']
+  protectedLinkNames: ['My Pins', 'Logout']
 };
 
-var yourPins = exports.yourPins = {
-  pageName: 'Your Pins'
+var myPins = exports.myPins = {
+  pageName: 'My Pins'
 
   //New Pin Modal
 };var newPin = exports.newPin = {
@@ -118,11 +118,96 @@ var yourPins = exports.yourPins = {
   addBtn: {
     name: 'Add',
     color: 'green'
+  },
+  closeBtn: {
+    name: 'Close',
+    color: 'red'
   }
 };
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var ADD_NEW_PIN = exports.ADD_NEW_PIN = 'add_new_pin';
+var addNewPin = exports.addNewPin = function addNewPin(newPin) {
+  return function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch, getState, axiosInstance) {
+      var res;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              console.log('submiting 2');
+              _context.next = 3;
+              return axiosInstance.post('/myPins/add', newPin);
+
+            case 3:
+              res = _context.sent;
+
+
+              console.log(res);
+
+            case 5:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, undefined);
+    }));
+
+    return function (_x, _x2, _x3) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+
+var FETCH_MY_PINS = exports.FETCH_MY_PINS = 'fetch_my_pins';
+var fetchMyPins = exports.fetchMyPins = function fetchMyPins() {
+  return function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch, getState, axiosInstance) {
+      var res;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return axiosInstance.get('/myPins');
+
+            case 2:
+              res = _context2.sent;
+
+
+              dispatch({
+                type: FETCH_DATA,
+                payload: res
+              });
+
+            case 4:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, undefined);
+    }));
+
+    return function (_x4, _x5, _x6) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+};
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -138,23 +223,23 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _App = __webpack_require__(17);
+var _App = __webpack_require__(18);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _HomeContainer = __webpack_require__(21);
+var _HomeContainer = __webpack_require__(22);
 
 var _HomeContainer2 = _interopRequireDefault(_HomeContainer);
 
-var _BookListContainer = __webpack_require__(22);
+var _BookListContainer = __webpack_require__(23);
 
 var _BookListContainer2 = _interopRequireDefault(_BookListContainer);
 
-var _YourPinsContainer = __webpack_require__(24);
+var _MyPinsContainer = __webpack_require__(25);
 
-var _YourPinsContainer2 = _interopRequireDefault(_YourPinsContainer);
+var _MyPinsContainer2 = _interopRequireDefault(_MyPinsContainer);
 
-var _PageNotFoundContainer = __webpack_require__(33);
+var _PageNotFoundContainer = __webpack_require__(34);
 
 var _PageNotFoundContainer2 = _interopRequireDefault(_PageNotFoundContainer);
 
@@ -166,25 +251,25 @@ exports.default = [_extends({}, _App2.default, {
     exact: true
   }), _extends({}, _BookListContainer2.default, {
     path: '/data'
-  }), _extends({}, _YourPinsContainer2.default, {
-    path: '/yourPins'
+  }), _extends({}, _MyPinsContainer2.default, {
+    path: '/myPins'
   }), _extends({}, _PageNotFoundContainer2.default)]
 })];
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("semantic-ui-react/dist/commonjs/collections/Menu/Menu");
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Container/Container");
+module.exports = require("semantic-ui-react/dist/commonjs/collections/Menu/Menu");
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Container/Container");
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -232,68 +317,68 @@ var fetchUser = exports.fetchUser = function fetchUser() {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("semantic-ui-react/dist/commonjs/elements/Header/Header");
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("semantic-ui-react/dist/commonjs/elements/Segment/Segment");
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux");
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(14);
+__webpack_require__(15);
 
-var _express = __webpack_require__(15);
+var _express = __webpack_require__(16);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _expressHttpProxy = __webpack_require__(16);
+var _expressHttpProxy = __webpack_require__(17);
 
 var _expressHttpProxy2 = _interopRequireDefault(_expressHttpProxy);
 
-var _reactRouterConfig = __webpack_require__(1);
+var _reactRouterConfig = __webpack_require__(2);
 
-var _routes = __webpack_require__(5);
+var _routes = __webpack_require__(6);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _htmlTemplate = __webpack_require__(34);
+var _htmlTemplate = __webpack_require__(35);
 
 var _htmlTemplate2 = _interopRequireDefault(_htmlTemplate);
 
-var _createStore = __webpack_require__(36);
+var _createStore = __webpack_require__(37);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
-var _index = __webpack_require__(43);
+var _index = __webpack_require__(44);
 
 var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-__webpack_require__(44).config({ path: '../.env' });
+__webpack_require__(45).config({ path: '../.env' });
 
 app.use('/api', (0, _expressHttpProxy2.default)(process.env.API_URL));
 app.use(_express2.default.static(process.cwd() + '/public'));
@@ -330,25 +415,25 @@ app.listen(port, function () {
 });
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = require("babel-polyfill");
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-http-proxy");
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -362,13 +447,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterConfig = __webpack_require__(1);
+var _reactRouterConfig = __webpack_require__(2);
 
-var _NavbarContainer = __webpack_require__(18);
+var _NavbarContainer = __webpack_require__(19);
 
 var _NavbarContainer2 = _interopRequireDefault(_NavbarContainer);
 
-var _auth = __webpack_require__(8);
+var _auth = __webpack_require__(9);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -392,7 +477,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -408,11 +493,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(2);
+var _reactRedux = __webpack_require__(1);
 
 var _reactRouterDom = __webpack_require__(3);
 
-var _Navbar = __webpack_require__(19);
+var _Navbar = __webpack_require__(20);
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
@@ -479,7 +564,7 @@ function mapStateToProps(_ref3) {
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps)(NavbarContainer));
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -489,15 +574,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Icon2 = __webpack_require__(20);
+var _Icon2 = __webpack_require__(21);
 
 var _Icon3 = _interopRequireDefault(_Icon2);
 
-var _Menu2 = __webpack_require__(6);
+var _Menu2 = __webpack_require__(7);
 
 var _Menu3 = _interopRequireDefault(_Menu2);
 
-var _Container2 = __webpack_require__(7);
+var _Container2 = __webpack_require__(8);
 
 var _Container3 = _interopRequireDefault(_Container2);
 
@@ -520,7 +605,7 @@ var Navbar = function Navbar(_ref) {
   function renderNavLink() {
     return authStatus ? _react2.default.createElement(
       _Menu3.default.Item,
-      { active: activeItem === '/yourPins', onClick: onClick, as: _reactRouterDom.Link, to: '/yourPins' },
+      { active: activeItem === '/myPins', onClick: onClick, as: _reactRouterDom.Link, to: '/myPins' },
       _attr.navbar.protectedLinkNames[0]
     ) : null;
   }
@@ -571,13 +656,13 @@ var Navbar = function Navbar(_ref) {
 exports.default = Navbar;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = require("semantic-ui-react/dist/commonjs/elements/Icon/Icon");
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -607,7 +692,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -623,9 +708,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(2);
+var _reactRedux = __webpack_require__(1);
 
-var _allImages = __webpack_require__(23);
+var _allImages = __webpack_require__(24);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -695,7 +780,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -716,10 +801,11 @@ var fetchData = exports.fetchData = function fetchData() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              console.log('fetchingdata');
+              _context.next = 3;
               return axiosInstance.get('/data');
 
-            case 2:
+            case 3:
               res = _context.sent;
 
 
@@ -728,7 +814,7 @@ var fetchData = exports.fetchData = function fetchData() {
                 payload: res
               });
 
-            case 4:
+            case 5:
             case 'end':
               return _context.stop();
           }
@@ -743,7 +829,7 @@ var fetchData = exports.fetchData = function fetchData() {
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -759,9 +845,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _YourPins = __webpack_require__(25);
+var _MyPins = __webpack_require__(26);
 
-var _YourPins2 = _interopRequireDefault(_YourPins);
+var _MyPins2 = _interopRequireDefault(_MyPins);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -771,31 +857,31 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var YourPinsContainer = function (_Component) {
-  _inherits(YourPinsContainer, _Component);
+var MyPinsContainer = function (_Component) {
+  _inherits(MyPinsContainer, _Component);
 
-  function YourPinsContainer() {
-    _classCallCheck(this, YourPinsContainer);
+  function MyPinsContainer() {
+    _classCallCheck(this, MyPinsContainer);
 
-    return _possibleConstructorReturn(this, (YourPinsContainer.__proto__ || Object.getPrototypeOf(YourPinsContainer)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (MyPinsContainer.__proto__ || Object.getPrototypeOf(MyPinsContainer)).apply(this, arguments));
   }
 
-  _createClass(YourPinsContainer, [{
+  _createClass(MyPinsContainer, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_YourPins2.default, null);
+      return _react2.default.createElement(_MyPins2.default, null);
     }
   }]);
 
-  return YourPinsContainer;
+  return MyPinsContainer;
 }(_react.Component);
 
 exports.default = {
-  component: YourPinsContainer
+  component: MyPinsContainer
 };
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -805,19 +891,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Divider2 = __webpack_require__(26);
+var _Divider2 = __webpack_require__(27);
 
 var _Divider3 = _interopRequireDefault(_Divider2);
 
-var _Header2 = __webpack_require__(9);
+var _Header2 = __webpack_require__(10);
 
 var _Header3 = _interopRequireDefault(_Header2);
 
-var _Menu2 = __webpack_require__(6);
+var _Menu2 = __webpack_require__(7);
 
 var _Menu3 = _interopRequireDefault(_Menu2);
 
-var _Container2 = __webpack_require__(7);
+var _Container2 = __webpack_require__(8);
 
 var _Container3 = _interopRequireDefault(_Container2);
 
@@ -825,7 +911,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _NewPinContainer = __webpack_require__(27);
+var _NewPinContainer = __webpack_require__(28);
 
 var _NewPinContainer2 = _interopRequireDefault(_NewPinContainer);
 
@@ -833,7 +919,7 @@ var _attr = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var YourPins = function YourPins() {
+var MyPins = function MyPins() {
   return _react2.default.createElement(
     _Container3.default,
     null,
@@ -849,7 +935,7 @@ var YourPins = function YourPins() {
           _react2.default.createElement(
             _Header3.default,
             { as: 'h1' },
-            _attr.yourPins.pageName
+            _attr.myPins.pageName
           )
         ),
         _react2.default.createElement(
@@ -863,16 +949,16 @@ var YourPins = function YourPins() {
   );
 };
 
-exports.default = YourPins;
+exports.default = MyPins;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = require("semantic-ui-react/dist/commonjs/elements/Divider/Divider");
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -888,9 +974,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _NewPin = __webpack_require__(28);
+var _NewPin = __webpack_require__(29);
 
 var _NewPin2 = _interopRequireDefault(_NewPin);
+
+var _reactRedux = __webpack_require__(1);
+
+var _actions = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -916,13 +1006,15 @@ var NewPinContainer = function (_Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewPinContainer.__proto__ || Object.getPrototypeOf(NewPinContainer)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       title: '',
-      imageSrc: '/assets/placeholder.png'
+      imageUrl: '/assets/placeholder.png'
     }, _this.handleTitle = function (e) {
       return _this.setState({ title: e.target.value });
     }, _this.handleImage = function (e) {
-      return _this.setState({ imageSrc: e.target.value });
+      return _this.setState({ imageUrl: e.target.value });
     }, _this.handleImageError = function () {
-      return _this.setState({ imageSrc: '/assets/placeholder.png' });
+      return _this.setState({ imageUrl: '/assets/placeholder.png' });
+    }, _this.handleSubmit = function () {
+      _this.props.addNewPin(_this.state);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -930,10 +1022,11 @@ var NewPinContainer = function (_Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(_NewPin2.default, {
-        imageSrc: this.state.imageSrc,
+        imageUrl: this.state.imageUrl,
         handleTitle: this.handleTitle,
         handleImage: this.handleImage,
-        handleImageError: this.handleImageError
+        handleImageError: this.handleImageError,
+        handleSubmit: this.handleSubmit
       });
     }
   }]);
@@ -941,10 +1034,16 @@ var NewPinContainer = function (_Component) {
   return NewPinContainer;
 }(_react.Component);
 
-exports.default = NewPinContainer;
+function mapStateToProps(state) {
+  console.log(state);
+  return {};
+}
+
+//export default NewPinContainer;
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { addNewPin: _actions.addNewPin })(NewPinContainer);
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -954,25 +1053,27 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Image2 = __webpack_require__(29);
+var _Image2 = __webpack_require__(30);
 
 var _Image3 = _interopRequireDefault(_Image2);
 
-var _Button2 = __webpack_require__(30);
+var _Button2 = __webpack_require__(31);
 
 var _Button3 = _interopRequireDefault(_Button2);
 
-var _Form2 = __webpack_require__(31);
+var _Form2 = __webpack_require__(32);
 
 var _Form3 = _interopRequireDefault(_Form2);
 
-var _Segment2 = __webpack_require__(10);
+var _Segment2 = __webpack_require__(11);
 
 var _Segment3 = _interopRequireDefault(_Segment2);
 
-var _Modal2 = __webpack_require__(32);
+var _Modal2 = __webpack_require__(33);
 
 var _Modal3 = _interopRequireDefault(_Modal2);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
@@ -982,75 +1083,123 @@ var _attr = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NewPin = function NewPin(_ref) {
-  var imageSrc = _ref.imageSrc,
-      handleTitle = _ref.handleTitle,
-      handleImage = _ref.handleImage,
-      handleImageError = _ref.handleImageError;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  return _react2.default.createElement(
-    _Modal3.default,
-    { trigger: _react2.default.createElement(
-        _Button3.default,
-        { className: 'new-pin-btn', color: _attr.newPin.triggerBtn.color, inverted: true },
-        _attr.newPin.triggerBtn.name
-      ), closeIcon: true },
-    _react2.default.createElement(
-      _Modal3.default.Header,
-      null,
-      _attr.newPin.name
-    ),
-    _react2.default.createElement(
-      _Modal3.default.Content,
-      null,
-      _react2.default.createElement(
-        _Segment3.default,
-        null,
-        _react2.default.createElement(_Image3.default, { src: imageSrc, onError: handleImageError, size: 'medium', centered: true })
-      ),
-      _react2.default.createElement(
-        _Form3.default,
-        null,
-        _react2.default.createElement(_Form3.default.Input, { label: _attr.newPin.labelNames[0], onChange: handleTitle, type: 'text' }),
-        _react2.default.createElement(_Form3.default.Input, { label: _attr.newPin.labelNames[1], onChange: handleImage, type: 'url' }),
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NewPin = function (_Component) {
+  _inherits(NewPin, _Component);
+
+  function NewPin() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, NewPin);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewPin.__proto__ || Object.getPrototypeOf(NewPin)).call.apply(_ref, [this].concat(args))), _this), _this.state = { modalOpen: false }, _this.handleOpen = function () {
+      return _this.setState({ modalOpen: true });
+    }, _this.handleClose = function () {
+      return _this.setState({ modalOpen: false });
+    }, _this.handleAdd = function () {
+      _this.props.handleSubmit();
+      _this.handleClose();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(NewPin, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          imageUrl = _props.imageUrl,
+          handleTitle = _props.handleTitle,
+          handleImage = _props.handleImage,
+          handleImageError = _props.handleImageError;
+
+
+      return _react2.default.createElement(
+        _Modal3.default,
+        { trigger: _react2.default.createElement(
+            _Button3.default,
+            { className: 'new-pin-btn', color: _attr.newPin.triggerBtn.color, onClick: this.handleOpen, inverted: true },
+            _attr.newPin.triggerBtn.name
+          ),
+          open: this.state.modalOpen },
         _react2.default.createElement(
-          _Button3.default,
-          { color: _attr.newPin.addBtn.color, type: 'submit' },
-          _attr.newPin.addBtn.name
+          _Modal3.default.Header,
+          null,
+          _attr.newPin.name
+        ),
+        _react2.default.createElement(
+          _Modal3.default.Content,
+          null,
+          _react2.default.createElement(
+            _Segment3.default,
+            null,
+            _react2.default.createElement(_Image3.default, { src: imageUrl, onError: handleImageError, size: 'medium', centered: true })
+          ),
+          _react2.default.createElement(
+            _Form3.default,
+            null,
+            _react2.default.createElement(_Form3.default.Input, { label: _attr.newPin.labelNames[0], onChange: handleTitle, type: 'text' }),
+            _react2.default.createElement(_Form3.default.Input, { label: _attr.newPin.labelNames[1], onChange: handleImage, type: 'url' })
+          )
+        ),
+        _react2.default.createElement(
+          _Modal3.default.Actions,
+          null,
+          _react2.default.createElement(
+            _Button3.default,
+            { color: _attr.newPin.addBtn.color, onClick: this.handleAdd },
+            _attr.newPin.addBtn.name
+          ),
+          _react2.default.createElement(
+            _Button3.default,
+            { color: _attr.newPin.closeBtn.color, onClick: this.handleClose },
+            _attr.newPin.closeBtn.name
+          )
         )
-      )
-    )
-  );
-};
+      );
+    }
+  }]);
+
+  return NewPin;
+}(_react.Component);
 
 exports.default = NewPin;
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports) {
-
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Image/Image");
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Button/Button");
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Image/Image");
 
 /***/ }),
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = require("semantic-ui-react/dist/commonjs/collections/Form/Form");
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Button/Button");
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = require("semantic-ui-react/dist/commonjs/modules/Modal/Modal");
+module.exports = require("semantic-ui-react/dist/commonjs/collections/Form/Form");
 
 /***/ }),
 /* 33 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/modules/Modal/Modal");
+
+/***/ }),
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1060,11 +1209,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Segment2 = __webpack_require__(10);
+var _Segment2 = __webpack_require__(11);
 
 var _Segment3 = _interopRequireDefault(_Segment2);
 
-var _Header2 = __webpack_require__(9);
+var _Header2 = __webpack_require__(10);
 
 var _Header3 = _interopRequireDefault(_Header2);
 
@@ -1100,7 +1249,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1114,9 +1263,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(11);
+var _server = __webpack_require__(12);
 
-var _serializeJavascript = __webpack_require__(35);
+var _serializeJavascript = __webpack_require__(36);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
@@ -1127,13 +1276,13 @@ exports.default = function (pageContent, store) {
 };
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1143,17 +1292,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _redux = __webpack_require__(12);
+var _redux = __webpack_require__(13);
 
-var _reduxThunk = __webpack_require__(37);
+var _reduxThunk = __webpack_require__(38);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _axios = __webpack_require__(38);
+var _axios = __webpack_require__(39);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _reducers = __webpack_require__(39);
+var _reducers = __webpack_require__(40);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -1171,44 +1320,16 @@ exports.default = function (req) {
 };
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _redux = __webpack_require__(12);
-
-var _images = __webpack_require__(40);
-
-var _images2 = _interopRequireDefault(_images);
-
-var _auth = __webpack_require__(42);
-
-var _auth2 = _interopRequireDefault(_auth);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = (0, _redux.combineReducers)({
-  auth: _auth2.default,
-  images: _images2.default
-});
 
 /***/ }),
 /* 40 */
@@ -1221,19 +1342,27 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actions = __webpack_require__(41);
+var _redux = __webpack_require__(13);
 
-exports.default = function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
+var _images = __webpack_require__(41);
 
-  switch (action.type) {
-    case _actions.FETCH_DATA:
-      return action.payload.data;
-    default:
-      return state;
-  }
-};
+var _images2 = _interopRequireDefault(_images);
+
+var _auth = __webpack_require__(42);
+
+var _auth2 = _interopRequireDefault(_auth);
+
+var _myPinsReducer = __webpack_require__(43);
+
+var _myPinsReducer2 = _interopRequireDefault(_myPinsReducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _redux.combineReducers)({
+  auth: _auth2.default,
+  myPins: _myPinsReducer2.default,
+  images: _images2.default
+});
 
 /***/ }),
 /* 41 */
@@ -1246,41 +1375,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+var _actions = __webpack_require__(5);
 
-var FETCH_DATA = exports.FETCH_DATA = 'fetch_data';
-var fetchData = exports.fetchData = function fetchData() {
-  return function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch, getState, axiosInstance) {
-      var res;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return axiosInstance.get('/data');
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
 
-            case 2:
-              res = _context.sent;
-
-
-              dispatch({
-                type: FETCH_DATA,
-                payload: res
-              });
-
-            case 4:
-            case 'end':
-              return _context.stop();
-          }
-        }
-      }, _callee, undefined);
-    }));
-
-    return function (_x, _x2, _x3) {
-      return _ref.apply(this, arguments);
-    };
-  }();
+  switch (action.type) {
+    case _actions.FETCH_DATA:
+      return action.payload.data;
+    default:
+      return state;
+  }
 };
 
 /***/ }),
@@ -1306,10 +1412,53 @@ exports.default = function () {
   }
 };
 
-var _auth = __webpack_require__(8);
+var _auth = __webpack_require__(9);
 
 /***/ }),
 /* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _actions = __webpack_require__(5);
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var pin = function pin(state, action) {
+  switch (action.type) {
+    case _actions.ADD_NEW_PIN:
+      return {
+        title: action.title,
+        imageUrl: action.imageUrl
+      };
+    default:
+      return state;
+  }
+};
+
+var myPinsReducer = function myPinsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _actions.FETCH_MY_PINS:
+      return action.payload.data;
+    case _actions.ADD_NEW_PIN:
+      return [].concat(_toConsumableArray(state), [pin(undefined, action)]);
+    default:
+      return state;
+  }
+};
+
+exports.default = myPinsReducer;
+
+/***/ }),
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1323,15 +1472,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(11);
+var _server = __webpack_require__(12);
 
 var _reactRouterDom = __webpack_require__(3);
 
-var _reactRedux = __webpack_require__(2);
+var _reactRedux = __webpack_require__(1);
 
-var _reactRouterConfig = __webpack_require__(1);
+var _reactRouterConfig = __webpack_require__(2);
 
-var _routes = __webpack_require__(5);
+var _routes = __webpack_require__(6);
 
 var _routes2 = _interopRequireDefault(_routes);
 
@@ -1354,7 +1503,7 @@ exports.default = function (req, store, context) {
 };
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");

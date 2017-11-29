@@ -7,7 +7,7 @@ const Navbar = ({ authStatus, activeItem, onClick}) => {
 
   function renderNavLink() {
     return authStatus ? (
-      <Menu.Item active={activeItem === '/yourPins'} onClick={onClick} as={Link} to='/yourPins'>{navbar.protectedLinkNames[0]}</Menu.Item>
+      <Menu.Item active={activeItem === '/myPins'} onClick={onClick} as={Link} to='/myPins'>{navbar.protectedLinkNames[0]}</Menu.Item>
     ) : null;
   }
 

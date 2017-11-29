@@ -3,6 +3,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const routes = require('./routes/routes');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
@@ -18,6 +19,8 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
