@@ -23,6 +23,11 @@ module.exports = function(app, passport) {
     res.send(data);
   });
 
+  app.get('/yourpins', function(req, res) {
+    console.log('yourpins');
+    //res.send('yourpins');
+  });
+
   app.get('/user', function(req, res) {
     res.send(req.isAuthenticated());
   });

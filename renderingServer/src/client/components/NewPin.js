@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Modal, Button, Image, Header } from 'semantic-ui-react';
+import { Modal, Segment, Form, Button, Image, Header, Icon } from 'semantic-ui-react';
+import { newPin } from '../attributes/attr';
 
 class NewPin extends Component {
   state = { visible: true }
@@ -9,15 +10,18 @@ class NewPin extends Component {
   render() {
     const { visible } = this.state;
     return (
-      <Modal trigger={<Button className='new-pin-btn' color='green' inverted>New Pin</Button>}>
-        <Modal.Header>Select a Photo</Modal.Header>
-        <Modal.Content image>
-          <Image wrapped size='medium' src='/assets/images/avatar/large/rachel.png' />
-          <Modal.Description>
-            <Header>Default Profile Image</Header>
-            <p>We've found the following gravatar image associated with your e-mail address.</p>
-            <p>Is it okay to use this photo?</p>
-          </Modal.Description>
+      <Modal trigger={<Button className='new-pin-btn' color={newPin.triggerBtn.color} inverted>{newPin.triggerBtn.name}</Button>} closeIcon>
+        <Modal.Header>{newPin.name}</Modal.Header>
+        <Modal.Content>
+          <Segment>
+            <Image src='/assets/placeholder.png' size='medium' centered />
+          </Segment>
+          <Form>
+            <Form.Input label={newPin.labelNames[0]} type='text' />
+            <Form.Input label={newPin.labelNames[1]} type='url' />
+            <Button color={newPin.addBtn.color} type='submit'>{newPin.addBtn.name}</Button>
+          </Form>
+
         </Modal.Content>
       </Modal>
     );
