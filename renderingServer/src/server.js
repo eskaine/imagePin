@@ -14,7 +14,6 @@ require('dotenv').config({path: '../.env'});
 app.use('/api', proxy(process.env.API_URL));
 app.use(express.static(process.cwd() + '/public'));
 
-
 app.get('*', function(req, res) {
   var store = createStore(req);
 

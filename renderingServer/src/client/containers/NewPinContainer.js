@@ -14,7 +14,7 @@ class NewPinContainer extends Component {
 
   handleImage = (e) => this.setState({ imageUrl: e.target.value });
 
-  handleImageError = () => this.setState({ imageUrl: '/assets/placeholder.png' });
+  resetImage = () => this.setState({ imageUrl: '/assets/placeholder.png' });
 
   handleSubmit = () => {
     this.props.addNewPin(this.state);
@@ -26,7 +26,7 @@ class NewPinContainer extends Component {
         imageUrl={this.state.imageUrl}
         handleTitle={this.handleTitle}
         handleImage={this.handleImage}
-        handleImageError={this.handleImageError}
+        resetImage={this.resetImage}
         handleSubmit={this.handleSubmit}
       />
     );
@@ -35,7 +35,6 @@ class NewPinContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {};
 }
 

@@ -8,7 +8,10 @@ class NewPin extends Component {
 
   handleOpen = () => this.setState({ modalOpen: true });
 
-  handleClose = () => this.setState({ modalOpen: false });
+  handleClose = () => {
+    this.setState({ modalOpen: false });
+    this.props.resetImage();
+  }
 
   handleAdd = () => {
     this.props.handleSubmit();
@@ -16,7 +19,7 @@ class NewPin extends Component {
   }
 
   render() {
-    const { imageUrl, handleTitle, handleImage, handleImageError } = this.props;
+    const { imageUrl, handleTitle, handleImage, resetImage } = this.props;
 
     return (
       <Modal trigger={<Button className='new-pin-btn' color={newPin.triggerBtn.color} onClick={this.handleOpen} inverted>{newPin.triggerBtn.name}</Button>}
@@ -24,7 +27,7 @@ class NewPin extends Component {
         <Modal.Header>{newPin.name}</Modal.Header>
         <Modal.Content>
           <Segment>
-            <Image src={imageUrl} onError={handleImageError} size='medium' centered />
+            <Image className='image-preview' src={imageUrl} onError={resetImage} centered />
           </Segment>
           <Form>
             <Form.Input label={newPin.labelNames[0]} onChange={handleTitle} type='text' />

@@ -20,7 +20,6 @@ module.exports = function(passport) {
       callbackURL: auth.twitterAuth.callbackURL
     },
     function(token, tokenSecret, profile, done) {
-
       process.nextTick(function() {
         User.findOne({ 'twitter.id': profile.id }, function (err, user) {
           if(err)

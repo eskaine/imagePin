@@ -1011,7 +1011,7 @@ var NewPinContainer = function (_Component) {
       return _this.setState({ title: e.target.value });
     }, _this.handleImage = function (e) {
       return _this.setState({ imageUrl: e.target.value });
-    }, _this.handleImageError = function () {
+    }, _this.resetImage = function () {
       return _this.setState({ imageUrl: '/assets/placeholder.png' });
     }, _this.handleSubmit = function () {
       _this.props.addNewPin(_this.state);
@@ -1025,7 +1025,7 @@ var NewPinContainer = function (_Component) {
         imageUrl: this.state.imageUrl,
         handleTitle: this.handleTitle,
         handleImage: this.handleImage,
-        handleImageError: this.handleImageError,
+        resetImage: this.resetImage,
         handleSubmit: this.handleSubmit
       });
     }
@@ -1035,7 +1035,6 @@ var NewPinContainer = function (_Component) {
 }(_react.Component);
 
 function mapStateToProps(state) {
-  console.log(state);
   return {};
 }
 
@@ -1106,7 +1105,8 @@ var NewPin = function (_Component) {
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewPin.__proto__ || Object.getPrototypeOf(NewPin)).call.apply(_ref, [this].concat(args))), _this), _this.state = { modalOpen: false }, _this.handleOpen = function () {
       return _this.setState({ modalOpen: true });
     }, _this.handleClose = function () {
-      return _this.setState({ modalOpen: false });
+      _this.setState({ modalOpen: false });
+      _this.props.resetImage();
     }, _this.handleAdd = function () {
       _this.props.handleSubmit();
       _this.handleClose();
@@ -1120,7 +1120,7 @@ var NewPin = function (_Component) {
           imageUrl = _props.imageUrl,
           handleTitle = _props.handleTitle,
           handleImage = _props.handleImage,
-          handleImageError = _props.handleImageError;
+          resetImage = _props.resetImage;
 
 
       return _react2.default.createElement(
@@ -1142,7 +1142,7 @@ var NewPin = function (_Component) {
           _react2.default.createElement(
             _Segment3.default,
             null,
-            _react2.default.createElement(_Image3.default, { src: imageUrl, onError: handleImageError, size: 'medium', centered: true })
+            _react2.default.createElement(_Image3.default, { className: 'image-preview', src: imageUrl, onError: resetImage, centered: true })
           ),
           _react2.default.createElement(
             _Form3.default,

@@ -1,4 +1,10 @@
+const pinsHandler = require('../handlers/pinsHandler');
+
+
 module.exports = function(app, passport) {
+
+  const PinsHandler = new pinsHandler();
+
   const appUrl = process.env.APP_URL;
   const loginRedirectUrl = appUrl + 'myPins';
 
@@ -31,10 +37,7 @@ module.exports = function(app, passport) {
     res.send(data);
   });
 
-  app.post('/myPins/add', function(req, res) {
-    console.log(req.user);
-    res.send(req.body);
-  });
+  app.post('/myPins/add', PinsHandler.add);
 
   app.get('/myPins', authCheck, function(req, res) {
     console.log('mypins');

@@ -6,7 +6,7 @@ var User = new Schema({
     id: String,
     name: String
   },
-  images: []
+  pins: []
 });
 
 module.exports = mongoose.model('User', User);
