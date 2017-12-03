@@ -12,7 +12,7 @@ module.exports = function(app, passport) {
     if(req.isAuthenticated()) {
       return next();
     } else {
-      res.status(401).send('Unauthorized');
+      res.end();
     }
   }
 
@@ -40,9 +40,7 @@ module.exports = function(app, passport) {
   app.post('/myPins/add', PinsHandler.add);
 
   app.get('/myPins', authCheck, function(req, res) {
-    console.log('mypins');
-    console.log(req.isAuthenticated());
-    //res.send('yourpins');
+      res.send(req.user.myPins);
   });
 
   app.get('/user', function(req, res) {

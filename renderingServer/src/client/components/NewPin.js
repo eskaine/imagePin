@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Segment, Form, Button, Image, Header } from 'semantic-ui-react';
 import { newPin } from '../attributes/attr';
+import NewImage from './NewImage';
 
 class NewPin extends Component {
 
@@ -8,10 +9,7 @@ class NewPin extends Component {
 
   handleOpen = () => this.setState({ modalOpen: true });
 
-  handleClose = () => {
-    this.setState({ modalOpen: false });
-    this.props.resetImage();
-  }
+  handleClose = () => this.setState({ modalOpen: false });
 
   handleAdd = () => {
     this.props.handleSubmit();
@@ -19,7 +17,7 @@ class NewPin extends Component {
   }
 
   render() {
-    const { imageUrl, handleTitle, handleImage, resetImage } = this.props;
+    const { imageUrl, handleTitle, handleImage } = this.props;
 
     return (
       <Modal trigger={<Button className='new-pin-btn' color={newPin.triggerBtn.color} onClick={this.handleOpen} inverted>{newPin.triggerBtn.name}</Button>}
@@ -27,7 +25,7 @@ class NewPin extends Component {
         <Modal.Header>{newPin.name}</Modal.Header>
         <Modal.Content>
           <Segment>
-            <Image className='image-preview' src={imageUrl} onError={resetImage} centered />
+            <NewImage className='image-preview' src={imageUrl} />
           </Segment>
           <Form>
             <Form.Input label={newPin.labelNames[0]} onChange={handleTitle} type='text' />

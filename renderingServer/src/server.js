@@ -5,11 +5,11 @@ import { matchRoutes } from 'react-router-config';
 import routes from './client/routes';
 import htmlTemplate from './server/htmlTemplate';
 import createStore from './server/createStore';
-
 import createApp from './server/index';
 
 const app = express();
 require('dotenv').config({path: '../.env'});
+
 
 app.use('/api', proxy(process.env.API_URL));
 app.use(express.static(process.cwd() + '/public'));
@@ -17,9 +17,17 @@ app.use(express.static(process.cwd() + '/public'));
 app.get('*', function(req, res) {
   var store = createStore(req);
 
-  var promises = matchRoutes(routes, req.path).map(({route}) => {
-    return route.loadData ? route.loadData(store) :  null;
-  });
+  var promises = matchRoutes(routes, req.path)
+    .map(({route}) => {
+      return route.loadData ? route.loadData(store) :  null;
+    })
+    .map(promise => {
+      if(promise) {
+        return new Promise((resolve, reject) => {
+            promise.then(resolve).catch(resolve);
+        });
+      }
+    });
 
   Promise.all(promises)
   .then(() => {
@@ -30,6 +38,11 @@ app.get('*', function(req, res) {
 
     //embed app into html page
     let page = htmlTemplate(newApp, store);
+
+    //ssr auth redirect fallback
+    if(context.url) {
+      return res.redirect(301, context.url);
+    }
 
     if(context.notFound) {
       res.status(404);

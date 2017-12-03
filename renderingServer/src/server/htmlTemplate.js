@@ -17,7 +17,6 @@ export default (pageContent, store) => {
         <script>
           window.INITIAL_STATE = ${serialize(store.getState())}
         </script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="bundle.js"></script>
       </body>
     </html>

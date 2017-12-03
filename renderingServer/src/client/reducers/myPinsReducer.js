@@ -4,8 +4,8 @@ const pin = (state, action) => {
   switch(action.type) {
     case ADD_NEW_PIN:
       return {
-        title: action.title,
-        imageUrl: action.imageUrl
+        title: action.payload.title,
+        imageUrl: action.payload.imageUrl
       };
     default:
       return state;

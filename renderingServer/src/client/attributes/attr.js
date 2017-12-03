@@ -1,11 +1,11 @@
 export const navbar = {
   appName: 'imagePin',
   color: 'blue',
-  linkNames: ['Pins', 'Login'],
+  linkNames: ['Data', 'Login'],
   protectedLinkNames: ['My Pins', 'Logout']
 }
 
-export const myPins = {
+export const myPinsAttr = {
   pageName: 'My Pins'
 }
 

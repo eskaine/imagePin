@@ -28,7 +28,7 @@ class NavbarContainer extends Component {
 
 }
 
-function mapStateToProps({ auth }) {
+function mapStateToProps({auth}) {
   return { auth };
 }
 

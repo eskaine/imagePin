@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchData } from '../actions/allImages';
+import { fetchData } from '../actions';
 
 class BookListContainer extends Component {
 

@@ -12,6 +12,29 @@ import reducers from './reducers';
 
 import './styles/styles.scss';
 
+
+//import $ from 'jquery';
+//import jQueryBridget from 'jquery-bridget';
+import Masonry from 'masonry-layout';
+//import imagesLoaded from 'imagesloaded';
+//import Minigrid from 'minigrid';
+
+//var grid = new Minigrid({
+  //container: '.grid',
+  ///item: '.column'
+//});
+//grid.mount();
+//const grid = document.querySelector('.mypins-list');
+//jQueryBridget('masonry', Masonry, $);
+
+const masonry = new Masonry('.grid', {
+  itemSelector: '.column'
+});
+/*
+imagesLoaded(grid).on('progress', function() {
+  masonry.layout();
+});*/
+
 const axiosInstance = axios.create({
   baseURL: '/api'
 });
