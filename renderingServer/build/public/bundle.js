@@ -18961,33 +18961,8 @@ var _reducers2 = _interopRequireDefault(_reducers);
 
 __webpack_require__(1069);
 
-var _masonryLayout = __webpack_require__(431);
-
-var _masonryLayout2 = _interopRequireDefault(_masonryLayout);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//import imagesLoaded from 'imagesloaded';
-//import Minigrid from 'minigrid';
-
-//var grid = new Minigrid({
-//container: '.grid',
-///item: '.column'
-//});
-//grid.mount();
-//const grid = document.querySelector('.mypins-list');
-//jQueryBridget('masonry', Masonry, $);
-
-var masonry = new _masonryLayout2.default('.grid', {
-  itemSelector: '.column'
-});
-/*
-imagesLoaded(grid).on('progress', function() {
-  masonry.layout();
-});*/
-
-//import $ from 'jquery';
-//import jQueryBridget from 'jquery-bridget';
 var axiosInstance = _axios2.default.create({
   baseURL: '/api'
 });
