@@ -1,44 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Modal, Segment, Form, Button, Image, Header } from 'semantic-ui-react';
-import { newPin } from '../attributes/attr';
 import NewImage from './NewImage';
 
-class NewPin extends Component {
+const NewPin = (props) => {
 
-  state = { modalOpen: false };
-
-  handleOpen = () => this.setState({ modalOpen: true });
-
-  handleClose = () => this.setState({ modalOpen: false });
-
-  handleAdd = () => {
-    this.props.handleSubmit();
-    this.handleClose();
-  }
-
-  render() {
-    const { imageUrl, handleTitle, handleImage } = this.props;
+    const { modalStatus, imageUrl, handleTitle, handleImage, handleModal, closeModal, handleSubmit } = props;
 
     return (
-      <Modal trigger={<Button className='new-pin-btn' color={newPin.triggerBtn.color} onClick={this.handleOpen} inverted>{newPin.triggerBtn.name}</Button>}
-        open={this.state.modalOpen}>
-        <Modal.Header>{newPin.name}</Modal.Header>
+      <Modal trigger={<Button className='new-pin-btn' color='green' onClick={handleModal} inverted>New Pin</Button>}
+        open={modalStatus}>
+        <Modal.Header>New Pin</Modal.Header>
         <Modal.Content>
           <Segment>
             <NewImage className='image-preview' src={imageUrl} />
           </Segment>
           <Form>
-            <Form.Input label={newPin.labelNames[0]} onChange={handleTitle} type='text' />
-            <Form.Input label={newPin.labelNames[1]} onChange={handleImage} type='url' />
+            <Form.Input label='Title' onChange={handleTitle} type='text' />
+            <Form.Input label='Link' onChange={handleImage} type='url' />
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button color={newPin.addBtn.color} onClick={this.handleAdd}>{newPin.addBtn.name}</Button>
-          <Button color={newPin.closeBtn.color} onClick={this.handleClose}>{newPin.closeBtn.name}</Button>
+          <Button color='green' onClick={handleSubmit}>Add</Button>
+          <Button color='red' onClick={closeModal}>Close</Button>
         </Modal.Actions>
       </Modal>
     );
-  }
+  
 }
 
 export default NewPin;

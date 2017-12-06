@@ -38,6 +38,7 @@ module.exports = function(app, passport) {
   });
 
   app.post('/myPins/add', PinsHandler.add);
+  app.post('/myPins/delete', PinsHandler.delete);
 
   app.get('/myPins', authCheck, function(req, res) {
       res.send(req.user.myPins);

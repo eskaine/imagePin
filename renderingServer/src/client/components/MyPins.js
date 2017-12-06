@@ -1,22 +1,20 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Container, Menu, Header, Divider } from 'semantic-ui-react';
 import NewPinContainer from '../containers/NewPinContainer';
-import {myPinsAttr} from '../attributes/attr';
 import PinsList from './PinsList';
 
-const MyPins = ({ myPins }) => {
-
+const MyPins = (props) => {
   return (
     <Container>
       <div className='page-content'>
         <Menu secondary borderless={true} size='large'>
           <Menu.Item>
-            <Header as='h1'>{myPinsAttr.pageName}</Header>
+            <Header as='h1'>My Pins</Header>
           </Menu.Item>
           <Menu.Item><NewPinContainer/></Menu.Item>
         </Menu>
         <Divider/>
-        <PinsList pins={myPins} />
+        <PinsList {...props} />
       </div>
     </Container>
   );

@@ -6,6 +6,7 @@ import { addNewPin } from '../actions';
 class NewPinContainer extends Component {
 
   state = {
+    modalOpen: false,
     title: '',
     imageUrl: '/assets/placeholder.png'
   };
@@ -14,15 +15,30 @@ class NewPinContainer extends Component {
 
   handleImage = (e) => this.setState({ imageUrl: e.target.value });
 
-  handleSubmit = () => this.props.addNewPin(this.state);
+  clearImage = (e) => this.setState({ imageUrl: '' });
+
+  handleModal = () => this.setState({ modalOpen: true });
+
+  closeModal = () => {
+    this.setState({ modalOpen: false });
+    this.clearImage();
+  }
+
+  handleSubmit = () => {
+    this.props.addNewPin({ title: this.state.title, imageUrl: this.state.imageUrl});
+    this.closeModal();
+  }
 
   render() {
     return (
       <NewPin
+        modalStatus={this.state.modalOpen}
+        handleModal={this.handleModal}
         imageUrl={this.state.imageUrl}
         handleTitle={this.handleTitle}
         handleImage={this.handleImage}
         handleSubmit={this.handleSubmit}
+        closeModal={this.closeModal}
       />
     );
   }

@@ -4,7 +4,7 @@ export const addNewPin = (newPin) => async(dispatch, getState, axiosInstance) =>
 
   dispatch({
     type: ADD_NEW_PIN,
-    payload: newPin
+    payload: res
   });
 };
 
@@ -36,5 +36,16 @@ export const fetchData = () => async (dispatch, getState, axiosInstance) => {
   dispatch({
     type: FETCH_DATA,
     payload: res
+  });
+};
+
+
+export const DELETE_PIN = 'delete_pin';
+export const deletePin = (pinId) => async (dispatch, getState, axiosInstance) => {
+  const res =  await axiosInstance.post('/myPins/delete', {id: pinId});
+
+  dispatch({
+    type: DELETE_PIN,
+    payload: pinId
   });
 };

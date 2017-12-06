@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchMyPins } from '../actions';
+import { fetchMyPins, deletePin } from '../actions';
 import MyPins from '../components/MyPins';
 import requireAuth from '../components/hocs/requireAuth';
 
 class MyPinsContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete(e) {
+    e.target.parentNode.blur();
+    this.props.deletePin(e.target.parentNode.id);
+  }
 
   componentDidMount() {
     this.props.fetchMyPins();
   }
 
   render() {
-    return <MyPins myPins={this.props.myPins} />;
+    return <MyPins myPins={this.props.myPins} handleDelete={this.handleDelete} />;
   }
 
 }
@@ -26,5 +35,5 @@ function loadData(store) {
 
 export default {
   loadData,
-  component: connect(mapStateToProps, {fetchMyPins})(requireAuth(MyPinsContainer))
+  component: connect(mapStateToProps, {fetchMyPins, deletePin})(requireAuth(MyPinsContainer))
 };

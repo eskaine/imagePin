@@ -7,10 +7,10 @@ const masonryOptions = {
   transitionDuration: 0
 };
 
-const PinsList = ({ pins }) => {
+const PinsList = ({ myPins, handleDelete }) => {
 
   var renderMyPins = () => {
-    return pins.map((pin, i) => {
+    return myPins.map((pin, i) => {
       return (
           <Card key={i}>
             <NewImage src={pin.imageUrl} />
@@ -18,10 +18,7 @@ const PinsList = ({ pins }) => {
               <Card.Header>{pin.title}</Card.Header>
             </Card.Content>
             <Card.Content extra>
-              <a>
-                <Icon name='user'/>
-                10 Friends
-              </a>
+              <Button id={pin.id} icon='close' floated='right' onClick={handleDelete.bind(this)} />
             </Card.Content>
           </Card>
       );
