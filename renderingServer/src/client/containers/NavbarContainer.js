@@ -14,9 +14,7 @@ class NavbarContainer extends Component {
   componentWillMount() {
     this.setActive(this.props.location.pathname);
   }
-
-  //TODO: fix home
-
+  
   render() {
     const { activeItem } = this.state;
 

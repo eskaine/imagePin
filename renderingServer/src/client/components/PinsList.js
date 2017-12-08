@@ -9,7 +9,7 @@ const masonryOptions = {
 
 const PinsList = (props) => {
 
-  const{ listType, pinsList } = props;
+  const { listType, pinsList } = props;
 
   const renderButton = (data) => {
     if(listType === 'myPins')
@@ -18,9 +18,7 @@ const PinsList = (props) => {
           <Button icon='heart' label={{ as: 'a', basic: true, content: data.likes }} labelPosition='right' disabled basic />
           <Button id={data.id} icon='close' floated='right' onClick={props.handleDelete.bind(this)} />
         </React.Fragment>
-
       );
-
     else
       return (
         <React.Fragment>
@@ -36,7 +34,6 @@ const PinsList = (props) => {
   };
 
   const renderMyPins = (type) => {
-
     return pinsList.map((pin, i) => {
       return (
           <Card key={i}>
@@ -50,7 +47,6 @@ const PinsList = (props) => {
           </Card>
       );
     });
-
   }
 
   return (

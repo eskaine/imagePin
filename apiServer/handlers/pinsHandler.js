@@ -50,19 +50,13 @@ function PinsHandler() {
   }
 
   this.like = function(req, res) {
-    /*User.findOneAndUpdate(
-      { "myPins.id": req.body.id },
-      { $inc: {"myPins.$[elem].likes" : 1}},
-      {arrayFilters: [{"myPins.id": {$eq: req.body.id}}]}
-
-    ).exec(function(err, result) {
+    User.findOneAndUpdate({ "myPins.id": req.body.id }, { $inc: { "myPins.$.likes" : 1 }}, { projection: projection })
+      .exec(function(err, result) {
         if(err)
           throw err;
 
-          console.log(result);
-
         res.end();
-      });*/
+      });
   }
 
 }

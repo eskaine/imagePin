@@ -168,16 +168,14 @@ var likePin = exports.likePin = function likePin(pinId) {
               res = _context3.sent;
 
 
-              console.log('like');
-              console.log(pinId);
-              console.log(res.data);
+              res.data = { id: pinId };
 
-              /*dispatch({
+              dispatch({
                 type: LIKE_PIN,
-                payload: pinId
-              });*/
+                payload: res
+              });
 
-            case 6:
+            case 5:
             case 'end':
               return _context3.stop();
           }
@@ -277,12 +275,14 @@ var deletePin = exports.deletePin = function deletePin(pinId) {
               res = _context6.sent;
 
 
+              res.data = { id: pinId };
+
               dispatch({
                 type: DELETE_PIN,
-                payload: pinId
+                payload: res
               });
 
-            case 4:
+            case 5:
             case 'end':
               return _context6.stop();
           }
@@ -444,7 +444,6 @@ var PinsList = function PinsList(props) {
   };
 
   var renderMyPins = function renderMyPins(type) {
-
     return pinsList.map(function (pin, i) {
       return _react2.default.createElement(
         _Card3.default,
@@ -769,9 +768,6 @@ var NavbarContainer = function (_Component) {
     value: function componentWillMount() {
       this.setActive(this.props.location.pathname);
     }
-
-    //TODO: fix home
-
   }, {
     key: 'render',
     value: function render() {
@@ -833,15 +829,15 @@ var Navbar = function Navbar(_ref) {
       onClick = _ref.onClick;
 
 
-  function renderNavLink() {
+  var renderNavLink = function renderNavLink() {
     return authStatus ? _react2.default.createElement(
       _Menu3.default.Item,
       { active: activeItem === '/myPins', onClick: onClick, as: _reactRouterDom.Link, to: '/myPins' },
       'My Pins'
     ) : null;
-  }
+  };
 
-  function renderAuthButton() {
+  var renderAuthButton = function renderAuthButton() {
     return authStatus ? _react2.default.createElement(
       'a',
       { className: 'item', href: '/api/logout' },
@@ -856,7 +852,7 @@ var Navbar = function Navbar(_ref) {
         'Login'
       )
     );
-  }
+  };
 
   return _react2.default.createElement(
     _Menu3.default,
@@ -1077,7 +1073,7 @@ var MyPinsContainer = function (_Component) {
     key: 'handleDelete',
     value: function handleDelete(e) {
       e.target.parentNode.blur();
-      this.props.deletePin(e.target.id);
+      this.props.deletePin(e.target.parentNode.id);
     }
   }, {
     key: 'componentDidMount',
@@ -1652,6 +1648,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _actions = __webpack_require__(1);
 
+var updateLike = function updateLike(state, action) {
+  if (state.id === action.payload.data.id) {
+    state.likes += 1;
+  }
+  return state;
+};
+
 var allPinsReducer = function allPinsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments[1];
@@ -1660,8 +1663,9 @@ var allPinsReducer = function allPinsReducer() {
     case _actions.FETCH_ALL_PINS:
       return action.payload.data;
     case _actions.LIKE_PIN:
-      //TODO
-      return state;
+      return state.map(function (i) {
+        return updateLike(i, action);
+      });
     default:
       return state;
   }
@@ -1699,7 +1703,7 @@ var pin = function pin(state, action) {
 
 var deletePin = function deletePin(state, action) {
   for (var i in state) {
-    if (state[i].id === action.payload) {
+    if (state[i].id === action.payload.data.id) {
       return [].concat(_toConsumableArray(state.slice(0, i)), _toConsumableArray(state.slice(Number(i) + 1)));
     }
   }

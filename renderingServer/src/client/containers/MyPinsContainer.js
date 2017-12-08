@@ -12,7 +12,7 @@ class MyPinsContainer extends Component {
 
   handleDelete(e) {
     e.target.parentNode.blur();
-    this.props.deletePin(e.target.id);
+    this.props.deletePin(e.target.parentNode.id);
   }
 
   componentDidMount() {

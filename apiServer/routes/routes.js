@@ -16,20 +16,6 @@ module.exports = function(app, passport) {
     }
   }
 
-  app.get('/allPins', PinsHandler.allPins);
-  app.post('/allPins/like', PinsHandler.like);
-
-  app.get('/myPins', authCheck, function(req, res) {
-      res.send(req.user.myPins);
-  });
-
-  app.post('/myPins/add', PinsHandler.add);
-  app.post('/myPins/delete', PinsHandler.delete);
-
-  app.get('/user', function(req, res) {
-    res.send(req.isAuthenticated());
-  });
-
   app.get('/auth/twitter',
     passport.authenticate('twitter')
   );
@@ -41,6 +27,20 @@ module.exports = function(app, passport) {
     })
   );
 
+  app.get('/user', function(req, res) {
+    res.send(req.isAuthenticated());
+  });
+
+  app.get('/allPins', PinsHandler.allPins);
+  app.post('/allPins/like', PinsHandler.like);
+
+  app.get('/myPins', authCheck, function(req, res) {
+      res.send(req.user.myPins);
+  });
+
+  app.post('/myPins/add', PinsHandler.add);
+  app.post('/myPins/delete', PinsHandler.delete);
+  
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect(appUrl);

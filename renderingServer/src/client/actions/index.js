@@ -22,14 +22,12 @@ export const LIKE_PIN = 'like_pin';
 export const likePin = (pinId) => async (dispatch, getState, axiosInstance) => {
   const res =  await axiosInstance.post('/allPins/like', {id: pinId});
 
-  console.log('like');
-  console.log(pinId);
-  console.log(res.data);
+  res.data = {id: pinId};
 
-  /*dispatch({
+  dispatch({
     type: LIKE_PIN,
-    payload: pinId
-  });*/
+    payload: res
+  });
 };
 
 export const FETCH_MY_PINS = 'fetch_my_pins';
@@ -56,8 +54,10 @@ export const DELETE_PIN = 'delete_pin';
 export const deletePin = (pinId) => async (dispatch, getState, axiosInstance) => {
   const res =  await axiosInstance.post('/myPins/delete', {id: pinId});
 
+  res.data = {id: pinId};
+
   dispatch({
     type: DELETE_PIN,
-    payload: pinId
+    payload: res
   });
 };

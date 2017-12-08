@@ -15,7 +15,7 @@ const pin = (state, action) => {
 
 const deletePin = (state, action) => {
   for(let i in state) {
-    if(state[i].id === action.payload) {
+    if(state[i].id === action.payload.data.id) {
       return [
         ...state.slice(0, i),
         ...state.slice(Number(i) + 1)

@@ -18,7 +18,6 @@ const MyPins = (props) => {
       </div>
     </Container>
   );
-
 }
 
 export default MyPins;
