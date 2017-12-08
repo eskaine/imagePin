@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 var User = new Schema({
   twitter: {
     id: String,
-    name: String
+    name: String,
+    profileImage: String
   },
   myPins: []
 });

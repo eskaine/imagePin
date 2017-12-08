@@ -16,33 +16,15 @@ module.exports = function(app, passport) {
     }
   }
 
-  //test route
-  app.get('/data', function(req, res) {
-
-    var data = [
-      {
-        book_id: 1,
-        book_name: "GOT"
-      },
-      {
-        book_id: 2,
-        book_name: "LOTR"
-      },
-      {
-        book_id: 3,
-        book_name: "HP"
-      }
-    ];
-
-    res.send(data);
-  });
-
-  app.post('/myPins/add', PinsHandler.add);
-  app.post('/myPins/delete', PinsHandler.delete);
+  app.get('/allPins', PinsHandler.allPins);
+  app.post('/allPins/like', PinsHandler.like);
 
   app.get('/myPins', authCheck, function(req, res) {
       res.send(req.user.myPins);
   });
+
+  app.post('/myPins/add', PinsHandler.add);
+  app.post('/myPins/delete', PinsHandler.delete);
 
   app.get('/user', function(req, res) {
     res.send(req.isAuthenticated());

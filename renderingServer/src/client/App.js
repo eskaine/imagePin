@@ -5,10 +5,10 @@ import { fetchUser } from './actions';
 
 const App = ({ route }) => {
   return (
-    <div>
+    <React.Fragment>
       <NavbarContainer />
       {renderRoutes(route.routes)}
-    </div>
+    </React.Fragment>
   );
 };
 

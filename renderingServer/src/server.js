@@ -34,7 +34,7 @@ app.get('*', function(req, res) {
 
     //fetch data and embed into app
     let newApp = createApp(req, store, context);
-
+    
     //embed app into html page
     let page = htmlTemplate(newApp, store);
 

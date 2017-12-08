@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 
 class NavbarContainer extends Component {
 
-  state = { activeItem: '/home' };
+  state = { activeItem: '' };
 
   handleItemClick = (e, { to }) => this.setState({ activeItem: to });
 

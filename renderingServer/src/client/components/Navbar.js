@@ -15,16 +15,15 @@ const Navbar = ({ authStatus, activeItem, onClick}) => {
       <a className="item" href='/api/logout'>Logout</a>
     ) : (
       <Menu.Item>
-        <a className="ui twitter button" href='/api/auth/twitter'><Icon name='twitter' />Login</a>
+        <a className="ui twitter inverted button" href='/api/auth/twitter'><Icon name='twitter' />Login</a>
       </Menu.Item>
     );
   }
 
   return (
-    <Menu borderless={true} fixed='top' size='large' color='blue'>
+    <Menu borderless={true} fixed='top' size='large' color='teal' inverted>
       <Container>
-        <Menu.Item active={activeItem === '/'} onClick={onClick} as={Link} to='/'>imagePin</Menu.Item>
-        <Menu.Item active={activeItem === '/data'} onClick={onClick} as={Link} to='/data'>Data</Menu.Item>
+        <Menu.Item onClick={onClick} as={Link} to='/'>imagePin</Menu.Item>
         {renderNavLink()}
 
         <Menu.Menu position='right'>
