@@ -240,12 +240,14 @@ var addNewPin = exports.addNewPin = function addNewPin(newPin) {
               res = _context5.sent;
 
 
+              console.log(res.data);
+
               dispatch({
                 type: ADD_NEW_PIN,
                 payload: res
               });
 
-            case 4:
+            case 5:
             case 'end':
               return _context5.stop();
           }
@@ -306,13 +308,13 @@ module.exports = require("react-redux");
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router-dom");
+module.exports = require("react-router-config");
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router-config");
+module.exports = require("react-router-dom");
 
 /***/ }),
 /* 5 */
@@ -349,7 +351,7 @@ var _MyPinsContainer = __webpack_require__(29);
 
 var _MyPinsContainer2 = _interopRequireDefault(_MyPinsContainer);
 
-var _PageNotFoundContainer = __webpack_require__(37);
+var _PageNotFoundContainer = __webpack_require__(36);
 
 var _PageNotFoundContainer2 = _interopRequireDefault(_PageNotFoundContainer);
 
@@ -417,6 +419,7 @@ var PinsList = function PinsList(props) {
 
 
   var renderButton = function renderButton(data) {
+
     if (listType === 'myPins') return _react2.default.createElement(
       _react2.default.Fragment,
       null,
@@ -578,28 +581,28 @@ var _expressHttpProxy = __webpack_require__(19);
 
 var _expressHttpProxy2 = _interopRequireDefault(_expressHttpProxy);
 
-var _reactRouterConfig = __webpack_require__(4);
+var _reactRouterConfig = __webpack_require__(3);
 
 var _routes = __webpack_require__(6);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _htmlTemplate = __webpack_require__(38);
+var _htmlTemplate = __webpack_require__(37);
 
 var _htmlTemplate2 = _interopRequireDefault(_htmlTemplate);
 
-var _createStore = __webpack_require__(40);
+var _createStore = __webpack_require__(39);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
-var _index = __webpack_require__(47);
+var _index = __webpack_require__(46);
 
 var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-__webpack_require__(48).config({ path: '../.env' });
+__webpack_require__(47).config({ path: '../.env' });
 
 app.use('/api', (0, _expressHttpProxy2.default)(process.env.API_URL));
 app.use(_express2.default.static(process.cwd() + '/public'));
@@ -679,7 +682,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterConfig = __webpack_require__(4);
+var _reactRouterConfig = __webpack_require__(3);
 
 var _NavbarContainer = __webpack_require__(21);
 
@@ -727,7 +730,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(2);
 
-var _reactRouterDom = __webpack_require__(3);
+var _reactRouterDom = __webpack_require__(4);
 
 var _Navbar = __webpack_require__(22);
 
@@ -819,7 +822,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(3);
+var _reactRouterDom = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1045,9 +1048,9 @@ var _MyPins = __webpack_require__(30);
 
 var _MyPins2 = _interopRequireDefault(_MyPins);
 
-var _requireAuth = __webpack_require__(36);
+var _RequireAuth = __webpack_require__(48);
 
-var _requireAuth2 = _interopRequireDefault(_requireAuth);
+var _RequireAuth2 = _interopRequireDefault(_RequireAuth);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1100,7 +1103,7 @@ function loadData(store) {
 
 exports.default = {
   loadData: loadData,
-  component: (0, _reactRedux.connect)(mapStateToProps, { fetchMyPins: _actions.fetchMyPins, deletePin: _actions.deletePin })((0, _requireAuth2.default)(MyPinsContainer))
+  component: (0, _reactRedux.connect)(mapStateToProps, { fetchMyPins: _actions.fetchMyPins, deletePin: _actions.deletePin })((0, _RequireAuth2.default)(MyPinsContainer))
 };
 
 /***/ }),
@@ -1392,69 +1395,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(2);
-
-var _reactRouterDom = __webpack_require__(3);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-exports.default = function (ChildComponent) {
-  var RequireAuth = function (_Component) {
-    _inherits(RequireAuth, _Component);
-
-    function RequireAuth() {
-      _classCallCheck(this, RequireAuth);
-
-      return _possibleConstructorReturn(this, (RequireAuth.__proto__ || Object.getPrototypeOf(RequireAuth)).apply(this, arguments));
-    }
-
-    _createClass(RequireAuth, [{
-      key: 'render',
-      value: function render() {
-        switch (this.props.auth) {
-          case false:
-            return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
-          default:
-            return _react2.default.createElement(ChildComponent, this.props);
-        }
-      }
-    }]);
-
-    return RequireAuth;
-  }(_react.Component);
-
-  function mapStateToProps(_ref) {
-    var auth = _ref.auth;
-
-    return { auth: auth };
-  }
-
-  return (0, _reactRedux.connect)(mapStateToProps)(RequireAuth);
-};
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _Segment2 = __webpack_require__(13);
 
 var _Segment3 = _interopRequireDefault(_Segment2);
@@ -1495,7 +1435,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1511,7 +1451,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(14);
 
-var _serializeJavascript = __webpack_require__(39);
+var _serializeJavascript = __webpack_require__(38);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
@@ -1522,13 +1462,13 @@ exports.default = function (pageContent, store) {
 };
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1540,15 +1480,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(15);
 
-var _reduxThunk = __webpack_require__(41);
+var _reduxThunk = __webpack_require__(40);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _axios = __webpack_require__(42);
+var _axios = __webpack_require__(41);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _reducers = __webpack_require__(43);
+var _reducers = __webpack_require__(42);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -1566,19 +1506,19 @@ exports.default = function (req) {
 };
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1590,15 +1530,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(15);
 
-var _auth = __webpack_require__(44);
+var _auth = __webpack_require__(43);
 
 var _auth2 = _interopRequireDefault(_auth);
 
-var _allPinsReducer = __webpack_require__(45);
+var _allPinsReducer = __webpack_require__(44);
 
 var _allPinsReducer2 = _interopRequireDefault(_allPinsReducer);
 
-var _myPinsReducer = __webpack_require__(46);
+var _myPinsReducer = __webpack_require__(45);
 
 var _myPinsReducer2 = _interopRequireDefault(_myPinsReducer);
 
@@ -1611,7 +1551,7 @@ exports.default = (0, _redux.combineReducers)({
 });
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1636,7 +1576,7 @@ exports.default = function () {
 var _actions = __webpack_require__(1);
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1674,7 +1614,7 @@ var allPinsReducer = function allPinsReducer() {
 exports.default = allPinsReducer;
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1728,7 +1668,7 @@ var myPinsReducer = function myPinsReducer() {
 exports.default = myPinsReducer;
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1744,11 +1684,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(14);
 
-var _reactRouterDom = __webpack_require__(3);
+var _reactRouterDom = __webpack_require__(4);
 
 var _reactRedux = __webpack_require__(2);
 
-var _reactRouterConfig = __webpack_require__(4);
+var _reactRouterConfig = __webpack_require__(3);
 
 var _routes = __webpack_require__(6);
 
@@ -1773,10 +1713,73 @@ exports.default = function (req, store, context) {
 };
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(2);
+
+var _reactRouterDom = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+exports.default = function (ChildComponent) {
+  var RequireAuth = function (_Component) {
+    _inherits(RequireAuth, _Component);
+
+    function RequireAuth() {
+      _classCallCheck(this, RequireAuth);
+
+      return _possibleConstructorReturn(this, (RequireAuth.__proto__ || Object.getPrototypeOf(RequireAuth)).apply(this, arguments));
+    }
+
+    _createClass(RequireAuth, [{
+      key: 'render',
+      value: function render() {
+        switch (this.props.auth) {
+          case false:
+            return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
+          default:
+            return _react2.default.createElement(ChildComponent, this.props);
+        }
+      }
+    }]);
+
+    return RequireAuth;
+  }(_react.Component);
+
+  function mapStateToProps(_ref) {
+    var auth = _ref.auth;
+
+    return { auth: auth };
+  }
+
+  return (0, _reactRedux.connect)(mapStateToProps)(RequireAuth);
+};
 
 /***/ })
 /******/ ]);

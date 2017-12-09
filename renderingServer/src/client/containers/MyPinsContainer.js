@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchMyPins, deletePin } from '../actions';
 import MyPins from '../components/MyPins';
-import requireAuth from '../components/hocs/requireAuth';
+import RequireAuth from '../components/hocs/RequireAuth';
 
 class MyPinsContainer extends Component {
   constructor(props) {
@@ -35,5 +35,5 @@ function loadData(store) {
 
 export default {
   loadData,
-  component: connect(mapStateToProps, {fetchMyPins, deletePin})(requireAuth(MyPinsContainer))
+  component: connect(mapStateToProps, {fetchMyPins, deletePin})(RequireAuth(MyPinsContainer))
 };

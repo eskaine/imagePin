@@ -12,10 +12,11 @@ const PinsList = (props) => {
   const { listType, pinsList } = props;
 
   const renderButton = (data) => {
+    
     if(listType === 'myPins')
       return (
         <React.Fragment>
-          <Button icon='heart' label={{ as: 'a', basic: true, content: data.likes }} labelPosition='right' disabled basic />
+          <Button icon='heart' label={{ as: 'a', basic: true, content:data.likes }} labelPosition='right' disabled basic />
           <Button id={data.id} icon='close' floated='right' onClick={props.handleDelete.bind(this)} />
         </React.Fragment>
       );

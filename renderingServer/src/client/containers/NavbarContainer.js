@@ -14,7 +14,7 @@ class NavbarContainer extends Component {
   componentWillMount() {
     this.setActive(this.props.location.pathname);
   }
-  
+
   render() {
     const { activeItem } = this.state;
 
@@ -26,7 +26,7 @@ class NavbarContainer extends Component {
 
 }
 
-function mapStateToProps({auth}) {
+function mapStateToProps({ auth }) {
   return { auth };
 }
 

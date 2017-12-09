@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "cd build && node bundle.js",
     "start": "npm-run-all --parallel server webpack:*",
     "server": "cd build && nodemon bundle.js",
     "webpack:server": "webpack --config webpack.config.server.js --watch",
