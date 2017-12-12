@@ -240,14 +240,12 @@ var addNewPin = exports.addNewPin = function addNewPin(newPin) {
               res = _context5.sent;
 
 
-              console.log(res.data);
-
               dispatch({
                 type: ADD_NEW_PIN,
                 payload: res
               });
 
-            case 5:
+            case 4:
             case 'end':
               return _context5.stop();
           }
@@ -308,13 +306,13 @@ module.exports = require("react-redux");
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router-config");
+module.exports = require("react-router-dom");
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router-dom");
+module.exports = require("react-router-config");
 
 /***/ }),
 /* 5 */
@@ -351,7 +349,7 @@ var _MyPinsContainer = __webpack_require__(29);
 
 var _MyPinsContainer2 = _interopRequireDefault(_MyPinsContainer);
 
-var _PageNotFoundContainer = __webpack_require__(36);
+var _PageNotFoundContainer = __webpack_require__(37);
 
 var _PageNotFoundContainer2 = _interopRequireDefault(_PageNotFoundContainer);
 
@@ -374,6 +372,12 @@ module.exports = require("semantic-ui-react/dist/commonjs/collections/Menu/Menu"
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Image/Image");
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -383,14 +387,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Image2 = __webpack_require__(9);
-
-var _Image3 = _interopRequireDefault(_Image2);
-
-var _Button2 = __webpack_require__(10);
-
-var _Button3 = _interopRequireDefault(_Button2);
-
 var _Card2 = __webpack_require__(26);
 
 var _Card3 = _interopRequireDefault(_Card2);
@@ -399,7 +395,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _NewImage = __webpack_require__(11);
+var _NewImage = __webpack_require__(10);
 
 var _NewImage2 = _interopRequireDefault(_NewImage);
 
@@ -414,39 +410,11 @@ var masonryOptions = {
 };
 
 var PinsList = function PinsList(props) {
-  var listType = props.listType,
-      pinsList = props.pinsList;
+  var pinsList = props.pinsList,
+      renderExtra = props.renderExtra;
 
 
-  var renderButton = function renderButton(data) {
-
-    if (listType === 'myPins') return _react2.default.createElement(
-      _react2.default.Fragment,
-      null,
-      _react2.default.createElement(_Button3.default, { icon: 'heart', label: { as: 'a', basic: true, content: data.likes }, labelPosition: 'right', disabled: true, basic: true }),
-      _react2.default.createElement(_Button3.default, { id: data.id, icon: 'close', floated: 'right', onClick: props.handleDelete.bind(undefined) })
-    );else return _react2.default.createElement(
-      _react2.default.Fragment,
-      null,
-      _react2.default.createElement(
-        'div',
-        { className: 'ui right labeled button' },
-        _react2.default.createElement(
-          'button',
-          { id: data.id, className: 'ui icon basic button', tabIndex: '0', onClick: props.handleLike.bind(undefined) },
-          _react2.default.createElement('i', { 'aria-hidden': 'true', className: 'heart icon' })
-        ),
-        _react2.default.createElement(
-          'a',
-          { className: 'ui left pointing basic label' },
-          data.likes
-        )
-      ),
-      _react2.default.createElement(_Image3.default, { src: data.profileImage, size: 'mini', floated: 'right' })
-    );
-  };
-
-  var renderMyPins = function renderMyPins(type) {
+  var renderMyPins = function renderMyPins() {
     return pinsList.map(function (pin, i) {
       return _react2.default.createElement(
         _Card3.default,
@@ -464,7 +432,7 @@ var PinsList = function PinsList(props) {
         _react2.default.createElement(
           _Card3.default.Content,
           { extra: true },
-          renderButton(pin)
+          renderExtra(pin)
         )
       );
     });
@@ -480,19 +448,7 @@ var PinsList = function PinsList(props) {
 exports.default = PinsList;
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Image/Image");
-
-/***/ }),
 /* 10 */
-/***/ (function(module, exports) {
-
-module.exports = require("semantic-ui-react/dist/commonjs/elements/Button/Button");
-
-/***/ }),
-/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -502,7 +458,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Image2 = __webpack_require__(9);
+var _Image2 = __webpack_require__(8);
 
 var _Image3 = _interopRequireDefault(_Image2);
 
@@ -539,6 +495,12 @@ var NewImage = function NewImage(_ref) {
 };
 
 exports.default = NewImage;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react/dist/commonjs/elements/Button/Button");
 
 /***/ }),
 /* 12 */
@@ -581,33 +543,34 @@ var _expressHttpProxy = __webpack_require__(19);
 
 var _expressHttpProxy2 = _interopRequireDefault(_expressHttpProxy);
 
-var _reactRouterConfig = __webpack_require__(3);
+var _reactRouterConfig = __webpack_require__(4);
 
 var _routes = __webpack_require__(6);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _htmlTemplate = __webpack_require__(37);
+var _htmlTemplate = __webpack_require__(38);
 
 var _htmlTemplate2 = _interopRequireDefault(_htmlTemplate);
 
-var _createStore = __webpack_require__(39);
+var _createStore = __webpack_require__(40);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
-var _index = __webpack_require__(46);
+var _index = __webpack_require__(47);
 
 var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-__webpack_require__(47).config({ path: '../.env' });
+__webpack_require__(48).config({ path: '../.env' });
 
 app.use('/api', (0, _expressHttpProxy2.default)(process.env.API_URL));
 app.use(_express2.default.static(process.cwd() + '/public'));
 
 app.get('*', function (req, res) {
+
   var store = (0, _createStore2.default)(req);
 
   var promises = (0, _reactRouterConfig.matchRoutes)(_routes2.default, req.path).map(function (_ref) {
@@ -682,7 +645,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterConfig = __webpack_require__(3);
+var _reactRouterConfig = __webpack_require__(4);
 
 var _NavbarContainer = __webpack_require__(21);
 
@@ -730,7 +693,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(2);
 
-var _reactRouterDom = __webpack_require__(4);
+var _reactRouterDom = __webpack_require__(3);
 
 var _Navbar = __webpack_require__(22);
 
@@ -822,7 +785,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(4);
+var _reactRouterDom = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -944,7 +907,7 @@ var HomeContainer = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_Home2.default, { listType: 'allPins', pinsList: this.props.allPins, handleLike: this.handleLike });
+      return _react2.default.createElement(_Home2.default, { pinsList: this.props.allPins, handleLike: this.handleLike });
     }
   }]);
 
@@ -977,28 +940,57 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _Image2 = __webpack_require__(8);
+
+var _Image3 = _interopRequireDefault(_Image2);
+
 var _Container2 = __webpack_require__(5);
 
 var _Container3 = _interopRequireDefault(_Container2);
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _PinsList = __webpack_require__(8);
+var _PinsList = __webpack_require__(9);
 
 var _PinsList2 = _interopRequireDefault(_PinsList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Home = function Home(props) {
+
+  var renderCardExtra = function renderCardExtra(data) {
+    return _react2.default.createElement(
+      _react2.default.Fragment,
+      null,
+      _react2.default.createElement(
+        'div',
+        { className: 'ui right labeled button' },
+        _react2.default.createElement(
+          'button',
+          { id: data.id, className: 'ui icon basic button', tabIndex: '0', onClick: props.handleLike.bind(undefined) },
+          _react2.default.createElement('i', { 'aria-hidden': 'true', className: 'heart icon' })
+        ),
+        _react2.default.createElement(
+          'a',
+          { className: 'ui left pointing basic label' },
+          data.likes
+        )
+      ),
+      _react2.default.createElement(_Image3.default, { src: data.profileImage, size: 'mini', floated: 'right' })
+    );
+  };
+
   return _react2.default.createElement(
     _Container3.default,
     null,
     _react2.default.createElement(
       'div',
       { className: 'page-content' },
-      _react2.default.createElement(_PinsList2.default, props)
+      _react2.default.createElement(_PinsList2.default, _extends({}, props, { renderExtra: renderCardExtra }))
     )
   );
 };
@@ -1048,7 +1040,7 @@ var _MyPins = __webpack_require__(30);
 
 var _MyPins2 = _interopRequireDefault(_MyPins);
 
-var _RequireAuth = __webpack_require__(48);
+var _RequireAuth = __webpack_require__(36);
 
 var _RequireAuth2 = _interopRequireDefault(_RequireAuth);
 
@@ -1075,8 +1067,14 @@ var MyPinsContainer = function (_Component) {
   _createClass(MyPinsContainer, [{
     key: 'handleDelete',
     value: function handleDelete(e) {
-      e.target.parentNode.blur();
-      this.props.deletePin(e.target.parentNode.id);
+      var element = e.target;
+
+      if (!e.target.id) {
+        element = e.target.parentNode;
+      }
+
+      element.blur();
+      this.props.deletePin(element.id);
     }
   }, {
     key: 'componentDidMount',
@@ -1086,7 +1084,7 @@ var MyPinsContainer = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_MyPins2.default, { listType: 'myPins', pinsList: this.props.myPins, handleDelete: this.handleDelete });
+      return _react2.default.createElement(_MyPins2.default, { pinsList: this.props.myPins, handleDelete: this.handleDelete });
     }
   }]);
 
@@ -1117,6 +1115,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _Button2 = __webpack_require__(11);
+
+var _Button3 = _interopRequireDefault(_Button2);
+
 var _Divider2 = __webpack_require__(31);
 
 var _Divider3 = _interopRequireDefault(_Divider2);
@@ -1133,6 +1135,8 @@ var _Container2 = __webpack_require__(5);
 
 var _Container3 = _interopRequireDefault(_Container2);
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -1141,13 +1145,36 @@ var _NewPinContainer = __webpack_require__(32);
 
 var _NewPinContainer2 = _interopRequireDefault(_NewPinContainer);
 
-var _PinsList = __webpack_require__(8);
+var _PinsList = __webpack_require__(9);
 
 var _PinsList2 = _interopRequireDefault(_PinsList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var MyPins = function MyPins(props) {
+
+  var renderCardExtra = function renderCardExtra(data) {
+    return _react2.default.createElement(
+      _react2.default.Fragment,
+      null,
+      _react2.default.createElement(
+        'div',
+        { className: 'ui right labeled button disabled ' },
+        _react2.default.createElement(
+          'button',
+          { id: data.id, className: 'ui icon basic button', disabled: true, tabIndex: '-1' },
+          _react2.default.createElement('i', { 'aria-hidden': 'true', className: 'heart icon' })
+        ),
+        _react2.default.createElement(
+          'a',
+          { className: 'ui left pointing basic label' },
+          data.likes
+        )
+      ),
+      _react2.default.createElement(_Button3.default, { id: data.id, icon: 'close', floated: 'right', onClick: props.handleDelete.bind(undefined) })
+    );
+  };
+
   return _react2.default.createElement(
     _Container3.default,
     null,
@@ -1173,7 +1200,7 @@ var MyPins = function MyPins(props) {
         )
       ),
       _react2.default.createElement(_Divider3.default, null),
-      _react2.default.createElement(_PinsList2.default, props)
+      _react2.default.createElement(_PinsList2.default, _extends({}, props, { renderExtra: renderCardExtra }))
     )
   );
 };
@@ -1289,7 +1316,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Button2 = __webpack_require__(10);
+var _Button2 = __webpack_require__(11);
 
 var _Button3 = _interopRequireDefault(_Button2);
 
@@ -1309,7 +1336,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _NewImage = __webpack_require__(11);
+var _NewImage = __webpack_require__(10);
 
 var _NewImage2 = _interopRequireDefault(_NewImage);
 
@@ -1395,340 +1422,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Segment2 = __webpack_require__(13);
-
-var _Segment3 = _interopRequireDefault(_Segment2);
-
-var _Header2 = __webpack_require__(12);
-
-var _Header3 = _interopRequireDefault(_Header2);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var PageNotFound = function PageNotFound(_ref) {
-  var _ref$staticContext = _ref.staticContext,
-      staticContext = _ref$staticContext === undefined ? {} : _ref$staticContext;
-
-  staticContext.notFound = true;
-
-  return _react2.default.createElement(
-    'div',
-    { className: 'notfound-content' },
-    _react2.default.createElement(
-      _Segment3.default,
-      { secondary: true, textAlign: 'center' },
-      _react2.default.createElement(
-        _Header3.default,
-        { as: 'h1' },
-        'Page Not Found!'
-      )
-    )
-  );
-};
-
-exports.default = {
-  component: PageNotFound
-};
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _server = __webpack_require__(14);
-
-var _serializeJavascript = __webpack_require__(38);
-
-var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (pageContent, store) {
-  return '\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <meta charset="utf-8">\n        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\n        <title></title>\n        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>\n      </head>\n      <body>\n        <div id="root">' + pageContent + '</div>\n        <script>\n          window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n        </script>\n        <script src="bundle.js"></script>\n      </body>\n    </html>\n  ';
-};
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-module.exports = require("serialize-javascript");
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _redux = __webpack_require__(15);
-
-var _reduxThunk = __webpack_require__(40);
-
-var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-
-var _axios = __webpack_require__(41);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _reducers = __webpack_require__(42);
-
-var _reducers2 = _interopRequireDefault(_reducers);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (req) {
-  var axiosInstance = _axios2.default.create({
-    baseURL: process.env.API_URL,
-    headers: { cookie: req.get('cookie') || '' }
-  });
-
-  var store = (0, _redux.createStore)(_reducers2.default, {}, (0, _redux.applyMiddleware)(_reduxThunk2.default.withExtraArgument(axiosInstance)));
-
-  return store;
-};
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports) {
-
-module.exports = require("redux-thunk");
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports) {
-
-module.exports = require("axios");
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _redux = __webpack_require__(15);
-
-var _auth = __webpack_require__(43);
-
-var _auth2 = _interopRequireDefault(_auth);
-
-var _allPinsReducer = __webpack_require__(44);
-
-var _allPinsReducer2 = _interopRequireDefault(_allPinsReducer);
-
-var _myPinsReducer = __webpack_require__(45);
-
-var _myPinsReducer2 = _interopRequireDefault(_myPinsReducer);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = (0, _redux.combineReducers)({
-  auth: _auth2.default,
-  allPins: _allPinsReducer2.default,
-  myPins: _myPinsReducer2.default
-});
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case _actions.FETCH_USER:
-      return action.payload.data;
-    default:
-      return state;
-  }
-};
-
-var _actions = __webpack_require__(1);
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _actions = __webpack_require__(1);
-
-var updateLike = function updateLike(state, action) {
-  if (state.id === action.payload.data.id) {
-    state.likes += 1;
-  }
-  return state;
-};
-
-var allPinsReducer = function allPinsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
-
-  switch (action.type) {
-    case _actions.FETCH_ALL_PINS:
-      return action.payload.data;
-    case _actions.LIKE_PIN:
-      return state.map(function (i) {
-        return updateLike(i, action);
-      });
-    default:
-      return state;
-  }
-};
-
-exports.default = allPinsReducer;
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _actions = __webpack_require__(1);
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var pin = function pin(state, action) {
-  switch (action.type) {
-    case _actions.ADD_NEW_PIN:
-      return {
-        id: action.payload.data.id,
-        title: action.payload.data.title,
-        imageUrl: action.payload.data.imageUrl
-      };
-    default:
-      return state;
-  }
-};
-
-var deletePin = function deletePin(state, action) {
-  for (var i in state) {
-    if (state[i].id === action.payload.data.id) {
-      return [].concat(_toConsumableArray(state.slice(0, i)), _toConsumableArray(state.slice(Number(i) + 1)));
-    }
-  }
-};
-
-var myPinsReducer = function myPinsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
-
-  switch (action.type) {
-    case _actions.FETCH_MY_PINS:
-      return action.payload.data;
-    case _actions.ADD_NEW_PIN:
-      return [].concat(_toConsumableArray(state), [pin(undefined, action)]);
-    case _actions.DELETE_PIN:
-      return deletePin(state, action);
-    default:
-      return state;
-  }
-};
-
-exports.default = myPinsReducer;
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _server = __webpack_require__(14);
-
-var _reactRouterDom = __webpack_require__(4);
-
-var _reactRedux = __webpack_require__(2);
-
-var _reactRouterConfig = __webpack_require__(3);
-
-var _routes = __webpack_require__(6);
-
-var _routes2 = _interopRequireDefault(_routes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (req, store, context) {
-  return (0, _server.renderToString)(_react2.default.createElement(
-    _reactRedux.Provider,
-    { store: store },
-    _react2.default.createElement(
-      _reactRouterDom.StaticRouter,
-      { location: req.path, context: context },
-      _react2.default.createElement(
-        _react2.default.Fragment,
-        null,
-        (0, _reactRouterConfig.renderRoutes)(_routes2.default)
-      )
-    )
-  ));
-};
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports) {
-
-module.exports = require("dotenv");
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
@@ -1737,7 +1430,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(2);
 
-var _reactRouterDom = __webpack_require__(4);
+var _reactRouterDom = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1780,6 +1473,341 @@ exports.default = function (ChildComponent) {
 
   return (0, _reactRedux.connect)(mapStateToProps)(RequireAuth);
 };
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Segment2 = __webpack_require__(13);
+
+var _Segment3 = _interopRequireDefault(_Segment2);
+
+var _Header2 = __webpack_require__(12);
+
+var _Header3 = _interopRequireDefault(_Header2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PageNotFound = function PageNotFound(_ref) {
+  var _ref$staticContext = _ref.staticContext,
+      staticContext = _ref$staticContext === undefined ? {} : _ref$staticContext;
+
+  staticContext.notFound = true;
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'notfound-content' },
+    _react2.default.createElement(
+      _Segment3.default,
+      { secondary: true, textAlign: 'center' },
+      _react2.default.createElement(
+        _Header3.default,
+        { as: 'h1' },
+        'Page Not Found!'
+      )
+    )
+  );
+};
+
+exports.default = {
+  component: PageNotFound
+};
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _server = __webpack_require__(14);
+
+var _serializeJavascript = __webpack_require__(39);
+
+var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (pageContent, store) {
+  return '\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <meta charset="utf-8">\n        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\n        <title></title>\n        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>\n      </head>\n      <body>\n        <div id="root">' + pageContent + '</div>\n        <script>\n          window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n        </script>\n        <script src="bundle.js"></script>\n      </body>\n    </html>\n  ';
+};
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports) {
+
+module.exports = require("serialize-javascript");
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__(15);
+
+var _reduxThunk = __webpack_require__(41);
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+var _axios = __webpack_require__(42);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _reducers = __webpack_require__(43);
+
+var _reducers2 = _interopRequireDefault(_reducers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (req) {
+  var axiosInstance = _axios2.default.create({
+    baseURL: process.env.API_URL,
+    headers: { cookie: req.get('cookie') || '' }
+  });
+
+  var store = (0, _redux.createStore)(_reducers2.default, {}, (0, _redux.applyMiddleware)(_reduxThunk2.default.withExtraArgument(axiosInstance)));
+
+  return store;
+};
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-thunk");
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__(15);
+
+var _auth = __webpack_require__(44);
+
+var _auth2 = _interopRequireDefault(_auth);
+
+var _allPinsReducer = __webpack_require__(45);
+
+var _allPinsReducer2 = _interopRequireDefault(_allPinsReducer);
+
+var _myPinsReducer = __webpack_require__(46);
+
+var _myPinsReducer2 = _interopRequireDefault(_myPinsReducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _redux.combineReducers)({
+  auth: _auth2.default,
+  allPins: _allPinsReducer2.default,
+  myPins: _myPinsReducer2.default
+});
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _actions.FETCH_USER:
+      return action.payload.data;
+    default:
+      return state;
+  }
+};
+
+var _actions = __webpack_require__(1);
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _actions = __webpack_require__(1);
+
+var updateLike = function updateLike(state, action) {
+  if (state.id === action.payload.data.id) {
+    state.likes += 1;
+  }
+  return state;
+};
+
+var allPinsReducer = function allPinsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _actions.FETCH_ALL_PINS:
+      return action.payload.data;
+    case _actions.LIKE_PIN:
+      return state.map(function (i) {
+        return updateLike(i, action);
+      });
+    default:
+      return state;
+  }
+};
+
+exports.default = allPinsReducer;
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _actions = __webpack_require__(1);
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var pin = function pin(state, action) {
+  switch (action.type) {
+    case _actions.ADD_NEW_PIN:
+      return {
+        id: action.payload.data.id,
+        title: action.payload.data.title,
+        imageUrl: action.payload.data.imageUrl,
+        likes: action.payload.data.likes
+      };
+    default:
+      return state;
+  }
+};
+
+var deletePin = function deletePin(state, action) {
+  for (var i in state) {
+    if (state[i].id === action.payload.data.id) {
+      return [].concat(_toConsumableArray(state.slice(0, i)), _toConsumableArray(state.slice(Number(i) + 1)));
+    }
+  }
+};
+
+var myPinsReducer = function myPinsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _actions.FETCH_MY_PINS:
+      return action.payload.data;
+    case _actions.ADD_NEW_PIN:
+      return [].concat(_toConsumableArray(state), [pin(undefined, action)]);
+    case _actions.DELETE_PIN:
+      return deletePin(state, action);
+    default:
+      return state;
+  }
+};
+
+exports.default = myPinsReducer;
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _server = __webpack_require__(14);
+
+var _reactRouterDom = __webpack_require__(3);
+
+var _reactRedux = __webpack_require__(2);
+
+var _reactRouterConfig = __webpack_require__(4);
+
+var _routes = __webpack_require__(6);
+
+var _routes2 = _interopRequireDefault(_routes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (req, store, context) {
+  return (0, _server.renderToString)(_react2.default.createElement(
+    _reactRedux.Provider,
+    { store: store },
+    _react2.default.createElement(
+      _reactRouterDom.StaticRouter,
+      { location: req.path, context: context },
+      _react2.default.createElement(
+        _react2.default.Fragment,
+        null,
+        (0, _reactRouterConfig.renderRoutes)(_routes2.default)
+      )
+    )
+  ));
+};
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
+module.exports = require("dotenv");
 
 /***/ })
 /******/ ]);

@@ -18,7 +18,7 @@ class HomeContainer extends Component {
   }
 
   render() {
-    return <Home listType='allPins' pinsList={this.props.allPins} handleLike={this.handleLike} />;
+    return <Home pinsList={this.props.allPins} handleLike={this.handleLike} />;
   }
 };
 

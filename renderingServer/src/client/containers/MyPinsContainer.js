@@ -11,8 +11,14 @@ class MyPinsContainer extends Component {
   }
 
   handleDelete(e) {
-    e.target.parentNode.blur();
-    this.props.deletePin(e.target.parentNode.id);
+    let element = e.target;
+
+    if(!e.target.id) {
+      element = e.target.parentNode;
+    }
+
+    element.blur();
+    this.props.deletePin(element.id);
   }
 
   componentDidMount() {
@@ -20,7 +26,7 @@ class MyPinsContainer extends Component {
   }
 
   render() {
-    return <MyPins listType='myPins' pinsList={this.props.myPins} handleDelete={this.handleDelete} />;
+    return <MyPins pinsList={this.props.myPins} handleDelete={this.handleDelete} />;
   }
 
 }

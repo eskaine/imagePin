@@ -6,7 +6,8 @@ const pin = (state, action) => {
       return {
         id: action.payload.data.id,
         title: action.payload.data.title,
-        imageUrl: action.payload.data.imageUrl
+        imageUrl: action.payload.data.imageUrl,
+        likes: action.payload.data.likes
       };
     default:
       return state;
